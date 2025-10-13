@@ -1,0 +1,244 @@
+
+% 2025 MITA [SimpleSystemTeX]
+
+% 导言区 (XeLaTeX)
+
+\documentclass[10pt]{article}
+\usepackage{ctex,bm,xcolor,xparse,import}
+
+% 编译时间
+
+\usepackage{datetime2}
+\DTMsetstyle{iso}
+\special{
+    pdf: encrypt
+    ownerpw (\DTMtoday)
+    length (128)
+    perm (0)
+}
+
+% 页面规格
+
+\usepackage{geometry}
+\geometry{b5paper, left=18.75mm, right=18.75mm, top=20mm, bottom=25mm}
+\renewcommand{\baselinestretch}{1.75}
+
+% MITA Logo
+
+\usepackage{graphicx}
+\newcommand{\MITALogo}[1]{
+	\includegraphics[scale=#1]{./Pictures/MITA Logo（压缩版）.png}
+}
+
+% 字体库 & 字符修正
+
+\xeCJKsetup{
+    CJKecglue = \hspace{0.15em}
+}
+\newCJKfontfamily\titlefontC{方正春晚龙行体 简 Heavy}
+\newCJKfontfamily\labelfontC{方正春晚龙行体 简 Bold}
+\newCJKfontfamily\quotefontC{方正春晚龙行体 简 Thin}
+\newfontfamily\titlefontE{FZChunWanLXTS Heavy}
+\newcommand{\「}{\;「}
+\newcommand{\」}{」\;}
+
+% 通用显示宏
+
+\usepackage{siunitx}
+\newcommand{\serial}[1]{\par\noindent{\bf #1}}
+\renewcommand{\and}{\,,\,}
+
+% 数学显示宏
+
+\usepackage{amssymb,amsmath}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\re}{\mathrm{e}}
+\newcommand{\ri}{\mathrm{i}}
+\newcommand{\rC}{\mathrm{C}}
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\bN}{\mathbf{N}}
+\newcommand{\bZ}{\mathbf{Z}}
+\newcommand{\bQ}{\mathbf{Q}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\AND}{\quad\text{和}\quad}
+\newcommand{\braI}[1]{\left(\,#1\,\right)}
+\newcommand{\braII}[1]{\left[\ #1\ \right]}
+\newcommand{\braIII}[1]{\left\{\,#1\,\right\}}
+\newcommand{\braIV}[1]{\left|\,#1\,\right|}
+\newcommand{\braV}[1]{\left\langle\,#1\,\right\rangle}
+\newcommand{\braVI}[1]{\left\lfloor\,#1\,\right\rfloor}
+\newcommand{\braVII}[1]{\left\lceil\,#1\,\right\rceil}
+\newcommand{\norm}[1]{\left|\left|\,#1\,\right|\right|}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\der}{^{\prime}}
+\newcommand{\dder}{^{\prime\prime}}
+\newcommand{\ddder}{^{\prime\prime\prime}}
+\newcommand{\dn}[1]{^{(#1)}}
+\newcommand{\fder}{^{\,\prime\!}}
+\newcommand{\fdder}{^{\,\prime\prime\!}}
+\newcommand{\fddder}{^{\,\prime\prime\prime\!}}
+\newcommand{\fdn}[1]{^{\,(#1)\!}}
+\newcommand{\sfrac}[2]{#1\!\mathbin{\slash}\!#2}
+\newcommand{\bigsfrac}[2]{#1\!\mathbin{\big\slash}\!#2}
+\newcommand{\Bigsfrac}[2]{#1\!\mathbin{\Big\slash}\!#2}
+\newcommand{\biggsfrac}[2]{#1\!\mathbin{\bigg\slash}\!#2}
+\newcommand{\Biggsfrac}[2]{#1\!\mathbin{\Bigg\slash}\!#2}
+\newcommand{\Exists}[2]{\exists\ #1\in #2\ \,\rm{s.t.}\quad}
+\newcommand{\Forall}[2]{\forall\ #1\in #2\ :\quad}
+\newcommand{\ForallII}[4]{\forall\ #1\in #2\ ,\ #3\in #4\ :\quad}
+\newcommand{\FORALL}[2]{\forall\ #1\in #2\ :}
+\newcommand{\FORALLIF}[3]{\forall\ #1\in #2\ :\ #3\ \implies}
+\newcommand{\FORALLII}[4]{\forall\ #1\in #2\ ,\ #3\in #4\ :}
+\newcommand{\FORALLIFII}[5]{\forall\ #1\in #2\ ,\ #3\in #4\ :\ #5\ \implies}
+\newcommand{\casesII}[5]{\begin{cases}\\[-10mm]\ \ \dis#1&\quad#2\\[#3mm]\ \ \dis#4&\quad#5\end{cases}}
+\DeclareMathOperator{\sech}{\mathrm{sech}\,}
+\DeclareMathOperator{\csch}{\mathrm{csch}\,}
+\DeclareMathOperator{\arccot}{\mathrm{arccot}\,}
+\DeclareMathOperator{\arcsec}{\mathrm{arcsec}\,}
+\DeclareMathOperator{\arccsc}{\mathrm{arccsc}\,}
+\DeclareMathOperator{\arsinh}{\mathrm{arsinh}\,}
+\DeclareMathOperator{\arcosh}{\mathrm{arcosh}\,}
+\DeclareMathOperator{\artanh}{\mathrm{artanh}\,}
+\DeclareMathOperator{\arcoth}{\mathrm{arcoth}\,}
+\DeclareMathOperator{\arsech}{\mathrm{arsech}\,}
+\DeclareMathOperator{\arcsch}{\mathrm{arcsch}\,}
+\DeclareMathOperator{\rd}{d}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\gm}{gm}
+\DeclareMathOperator{\am}{am}
+
+% 超链接
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = black
+}
+\newcommand{\labelname}{}
+\NewDocumentCommand{\link}{d<>+ m m}{
+    \IfNoValueTF{#1}{
+        \renewcommand{\labelname}{#3}
+    }{
+        \renewcommand{\labelname}{#1}
+    }
+    \hyperref[#2|#3]{\bf\quotefontC\!\!\!\!\!\!\!\!\!\labelname\!\!\!}
+}
+\NewDocumentCommand{\seclink}{m}{
+    \hyperref[-#1]{\bf\quotefontC\,#1\,}
+}
+
+% 章节标题
+
+\usepackage{ntheorem}
+\newcommand{\sectionlabel}{}
+\newcommand{\sectionname}{}
+\newtheorem*{head}{}
+\NewDocumentCommand{\heading}{+d<> m}{
+    \IfNoValueTF{#1}{
+        \renewcommand{\sectionname}{#2}
+    }{
+        \renewcommand{\sectionname}{#1}
+    }
+    \renewcommand{\sectionlabel}{#2}
+    \begin{head}
+        \label{-\sectionlabel}
+    \end{head}
+    \vspace{-24pt}
+    \noindent
+    {\bf\titlefontC\huge\sectionname}
+    \par\bigskip
+}
+
+% 公式
+
+\newcommand{\Formulaname}{}
+\newenvironment{FormulaEnvironment}[1]{
+    \phantomsection
+    \label{\sectionlabel|#1}
+}{\par\smallskip}
+\NewDocumentCommand{\Formula}{m +d<> +m}{
+    \IfNoValueTF{#2}{
+        \renewcommand{\Formulaname}{#1}
+    }{
+        \renewcommand{\Formulaname}{#2}
+    }
+    \begin{FormulaEnvironment}{#1}
+        \smallskip\noindent
+        {\bf\quotefontC\Formulaname\quad}\kaishu
+        #3
+    \end{FormulaEnvironment}
+}
+
+% 定义
+
+\newenvironment{DefinitionEnvironment}[1]{
+    \label{\sectionlabel|#1}
+}{\par\smallskip}
+\NewDocumentCommand{\Definition}{s m +m}{
+    \begin{DefinitionEnvironment}{#2}
+        \color{purple}\smallskip\noindent
+        \IfBooleanTF{#1}{{\bf\quotefontC#2$^{\star}$\;\,}}{{\bf\quotefontC#2\quad}}\kaishu
+        #3
+    \end{DefinitionEnvironment}
+}
+
+% 定理（包含证明）
+
+\newcommand{\THEOREMname}{}
+\newenvironment{TheoremEnvironment}[1]{
+    \phantomsection
+    \label{\sectionlabel|#1}
+}{\par\smallskip}
+\NewDocumentCommand{\Theorem}{s m +d<> +m +m}{
+    \IfNoValueTF{#3}{
+        \renewcommand{\THEOREMname}{#2}
+    }{
+        \renewcommand{\THEOREMname}{#3}
+    }
+    \begin{TheoremEnvironment}{#2}
+        \color{teal}\smallskip\noindent
+        \IfBooleanTF{#1}{{\bf\quotefontC\THEOREMname$^{\star}$\;\,}}{{\bf\quotefontC\THEOREMname\quad}}\kaishu
+        #4
+    \end{TheoremEnvironment}
+    #5
+}
+
+% 证明
+
+\newenvironment{ProofEnvironment}[1]{
+    \kaishu\par\noindent#1
+}{\par\smallskip}
+\NewDocumentCommand{\Proof}{m +m}{
+    \begin{ProofEnvironment}{#1}
+        #2
+    \end{ProofEnvironment}
+}
+\newcommand{\ProofEndT}{\unskip\hspace*{\fill}$\square$\par}
+\newcommand{\ProofEndF}{\tag*{$\square$}}
+
+% 编码区
+
+\begin{document}
+
+    \pagestyle{empty}
+
+    % 封面 Cover
+    \include{./封面}
+
+    % 目录 Content
+    \include{./目录}
+
+    \pagestyle{plain}
+
+    \subimport{./Sections/}{初等函数导数表}
+    \subimport{./Sections/}{裂项求和}
+    \subimport{./Sections/}{三角恒等式}
+    \subimport{./Sections/}{Taylor级数}
+
+    \pagestyle{empty}
+
+\end{document}
