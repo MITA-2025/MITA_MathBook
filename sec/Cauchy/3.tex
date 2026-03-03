@@ -1,0 +1,142 @@
+
+\Formula{A$_{\bm3}$}{
+	证明
+	\Equation{
+		\sqrt[n]{n\,!}\sim\sfrac{n}{\rme}\ .\quad\braI{n\to\infty}
+	}
+}
+\Proof{证明I\score{1}}{
+	\par 根据定积分的定义, 我们有
+	\Equation{
+		\lim_{n\to\infty}\frac{\sqrt[n]{n\,!}}{n}=\lim_{n\to\infty}\prod_{k=1}^{n}\sqrt[n]{\frac{k}{n}}=\lim_{n\to\infty}\exp\braI{\frac{1}{n}\sum_{k=1}^{n}\ln\frac{k}{n}}=\exp\Int{0}{1}{\ln t}{t}=\boxed{\frac{1}{\rme}}\ .
+	}
+}
+\Proof{证明II\score{1}}{
+	\Equation*{
+		\lim_{n\to\infty}\frac{\sqrt[n]{n\,!}}{n}=\lim_{n\to\infty}\exp\braI{\frac{1}{n}\braI{\sum_{k=1}^{n}\ln k-n\ln n}\!}\xlongequal[\text*{(指数)}]{\mathrm{Stolz}}\lim_{n\to\infty}\exp\braI{n\ln\frac{n}{n+1}}=\boxed{\frac{1}{\rme}}\ .
+	}
+}
+\Proof{要点}{
+	+ 对于含有阶乘或其它类型乘积的表达式, 可以考虑通过取对数化为和的形式.
+	+ 上述结论可以推广为Stirling公式:
+	\Equation{
+		n\,!\sim\sqrt{2\pi}\cdot\rme^{-n}n^{n+1/2}\ .\quad\braI{n\to\infty}
+	}
+	+ 上面的结论不能被写作 $\lim_{n\to\infty}\sqrt[n]{n\,!}-\sfrac{n}{\rme}=0$ , 事实上根据Stirling公式有
+	\Equation{
+		\sqrt[n]{n\,!}-\frac{n}{\rme}\sim\frac{\ln n}{2\rme}\ .\quad\braI{n\to\infty}
+	}
+}
+
+\bigskip
+
+\Formula{B$_{\bm3}$}{
+	计算
+	\Equation{
+	    \lim_{n\to\infty}\braI{\frac{n}{\sqrt[n]{\braI{2n}\,!!}}+\frac{n}{\sqrt[n]{\braI{2n-1}\,!!}}}\ .
+	}
+}
+\Proof{证明I\score{1.5}}{
+	\par 由\textbf{A}$_{\bm3}$可知
+    \Equation{
+        \lim_{n\to\infty}\braI{\frac{n}{\sqrt[n]{\braI{2n}\,!!}}+\frac{n}{\sqrt[n]{\braI{2n-1}\,!!}}}&=\lim_{n\to\infty}\frac{n}{2\sqrt[n]{n\,!}}+\lim_{n\to\infty}\frac{2n\sqrt[n]{n\,!}}{\sqrt[n]{\braI{2n}\,!}}\\[1mm]
+		&=\lim_{n\to\infty}\frac{n}{2\rme^{-1}n}+\lim_{n\to\infty}\frac{2\rme^{-1}n^{2}}{\braI{2\rme^{-1}n}^{2}}\\[-1mm]
+		&=\boxed{\rme}\ .
+    }
+}
+
+\newpage
+
+\Proof{证明II\score{1.5}}{
+	\par 依Wallis公式有
+	\Equation{
+		\frac{\braI{2n}\,!!}{\braI{2n-1}\,!!}\sim\sqrt{\pi n}\ ,\\[-14mm]
+	}
+	\Equation{
+		\lim_{n\to\infty}\biggsfrac{\ln\frac{\braI{2n}\,!!}{\braI{2n-1}\,!!}}{\ln\sqrt{n}}=\lim_{n\to\infty}\biggsfrac{\braI{\ln\sqrt{n}+\ln\frac{\braI{2n}\,!!}{\sqrt{n}\braI{2n-1}\,!!}}}{\ln\sqrt{n}}=1\ ,
+	}
+	于是
+	\Equation*{
+        \lim_{n\to\infty}\braI{\frac{n}{\sqrt[n]{\braI{2n}\,!!}}+\frac{n}{\sqrt[n]{\braI{2n-1}\,!!}}}&=\lim_{n\to\infty}\exp\braI{\frac{1}{n}\ln\frac{n^{n}}{\braI{2n}\,!!}}\braII{1+\exp\braI{\frac{1}{n}\ln\frac{\braI{2n}\,!!}{\braI{2n-1}\,!!}}\!}\\[1mm]
+		&=2\lim_{n\to\infty}\exp\braI{\frac{1}{n}\sum_{k=1}^{n}\ln\frac{n}{2k}}\\[1mm]
+		&=2\exp\Int{0}{1}{-\ln 2t}{t}\\[-1mm]
+		&=\boxed{\rme}\ .
+    }
+}
+\Proof{要点}{
+	+ 证明I中应用了关于双阶乘的重要关系式
+	\Equation{
+		\braI{2n}\,!!=2^{n}n\,!\AND\braI{2n}\,!!\braI{2n-1}\,!!=\braI{2n}\,!\ .
+	}
+	+ 从证明II中还可以得到一个基本结论: 对于无穷大 $A$ 和 $B$ 有 $A\sim B\implies\ln A\sim\ln B$ .
+	+ 上面的两种方法均表明: 无穷大 $\sqrt[n]{\braI{2n-1}\,!!}$ 和 $\sqrt[n]{\braI{2n}\,!!}$ 在 $n\to\infty$ 时拥有相同的阶, 也即 $\braI{2n-1}\,!!$ 和 $\braI{2n}\,!!$ 的阶差 $\sqrt{\pi n}$ 在 $n$ 次方根下趋于 $1$ .
+}
+
+\bigskip
+
+\Formula{C$_{\bm3}$}{
+	计算
+	\Equation{
+	    \lim_{n\to\infty}\braI{\!\!\sqrt[n+1]{\braI{n+1}\,!}-\sqrt[n]{n\,!}}\ .
+	}
+}
+\Proof{证明\score{2}}{
+	\par 由\textbf{A}$_{\bm3}$可知
+    \Equation{
+        \sqrt[n]{n\,!}\sim\rme^{-1}\braI{n+1}\implies\lim_{n\to\infty}\braI{\ln\braI{n+1}-\frac{\ln n\,!}{n}}=1\ ,
+    }
+	于是
+	\Equation*{
+        \lim_{n\to\infty}\braI{\!\!\sqrt[n+1]{\braI{n+1}\,!}-\sqrt[n]{n\,!}}&=\lim_{n\to\infty}\sqrt[n]{n\,!}\braI{\frac{\!\!\sqrt[n+1]{\braI{n+1}\,!}}{\sqrt[n]{n\,!}}-1}\\[1mm]
+        &=\lim_{n\to\infty}\frac{n}{\rme}\braII{\exp\braI{\frac{1}{n+1}\sum_{k=1}^{n+1}\ln k-\frac{1}{n}\sum_{k=1}^{n}\ln k}-1}\\[1mm]
+        &=\lim_{n\to\infty}\frac{n}{\rme}\braII{\exp\braI{\frac{1}{n^{2}+n}\braI{n\sum_{k=1}^{n+1}\ln k-\braI{n+1}\sum_{k=1}^{n}\ln k}\!}-1}\\[1mm]
+        &=\lim_{n\to\infty}\frac{n}{\rme}\braII{\exp\braI{\frac{n\ln\braI{n+1}-\ln n\,!}{n^{2}+n}}-1}\\[1mm]
+        &=\lim_{n\to\infty}\frac{\rme^{-1}n}{n+1}\braI{\ln\braI{n+1}-\frac{\ln n\,!}{n}}\\[-1mm]
+        &=\boxed{\rme^{-1}}\ .
+    }
+}
+\Proof{要点}{
+	+ 切记勿在加减法运算中使用等价无穷小代换.
+}
+
+\bigskip
+
+\Formula{END$_{\,\mathbf{Cauchy}}$}{
+	设数列 $(a_{n})_{n=1}^{\infty}$ 满足 $a_{1}>1$ 和 $a_{n+1}\braI{a_{n}^{2}-1}=a_{n}^{3}$ , 计算
+    \Equation{
+        \lim_{n\to\infty}\frac{n}{\ln n}\braI{\frac{a_{n}}{\sqrt{n}}-A}\ ,
+    }
+    其中
+    \Equation{
+        A=\lim_{n\to\infty}\frac{a_{n}}{\sqrt{n}}\ .
+    }
+}
+\Proof{证明\score{(1+2+4)}}{
+	\par 由
+    \Equation{
+        a_{n+1}-a_{n}=\frac{a_{n}^{3}}{a_{n}^{2}-1}-a_{n}=\frac{a_{n}}{a_{n}^{2}-1}
+    }
+    知当 $a_{n}>1$ 时必有 $a_{n+1}>a_{n}>1$ , 而我们有 $a_{1}>1$ , 由此可归纳得 $(a_{n})_{n=1}^{\infty}$ 严格递增. 假设该数列收敛于 $L$ , 对 $a_{n+1}\braI{a_{n}^{2}-1}=a_{n}^{3}$ 两边同时求极限有 $L=0$ , 但这是不可能的, 从而 $\lim_{n\to\infty}a_{n}=+\infty$ . 并且
+	\Equation{
+		\lim_{n\to\infty}\frac{a_{n}^{2}}{n}\xlongequal{\rm{Stolz}}\lim_{n\to\infty}\braI{a_{n+1}^{2}-a_{n}^{2}}=\lim_{n\to\infty}\frac{2a_{n}^{4}-a_{n}^{2}}{a_{n}^{4}-2a_{n}^{2}+1}=2\ ,
+	}
+    于是 $A=\sqrt{2}$ , 从而
+    \Equation{
+        \lim_{n\to\infty}\frac{n}{\ln n}\braI{\frac{a_{n}}{\sqrt{n}}-\sqrt{2}}=\,&\lim_{n\to\infty}\frac{a_{n}^{2}-2n}{\ln n\braI{\sfrac{a_{n}}{\sqrt{n}}+\sqrt{2}}}\\[1mm]
+        =\,&\,\frac{\sqrt{2}}{4}\lim_{n\to\infty}\frac{a_{n}^{2}-2n}{\ln n}\\[1mm]
+        \xlongequal{\mathrm{Stolz}}\,&\,\frac{\sqrt{2}}{4}\lim_{n\to\infty}\frac{a_{n+1}^{2}-a_{n}^{2}-2}{\ln\braI{1+\sfrac{1}{n}}}\\[1mm]
+        =\,&\,\frac{\sqrt{2}}{4}\lim_{n\to\infty}\frac{n\braI{3a_{n}^{2}-2}}{a_{n}^{4}-2a_{n}^{2}+1}\\[1mm]
+        =\,&\,\frac{\sqrt{2}}{4}\lim_{n\to\infty}\frac{na_{n}^{-2}\braI{3-2a_{n}^{-2}}}{1-2a_{n}^{-2}+a_{n}^{-4}}\\[1mm]
+        =\,&\,\boxed{\frac{3\sqrt{2}}{8}}\ .
+    }
+}
+\Proof{要点}{
+	+ 本题中关于 $a_{n}$ 的已知条件较少, 因此核心思路在于将关于 $n$ 的表达式转化为关于 $a_{n}$ 的表达式并应用极限的复合法则进行求解.
+	+ 若对表达式
+	\Equation{
+		\lim_{n\to\infty}\frac{n}{\ln n}\braI{\frac{a_{n}}{\sqrt{n}}-\sqrt{2}}
+	}
+	直接应用Stolz定理, 将无法避免 $\sqrt{n}-\sqrt{n-1}$ 的出现而不利于求解, 因此可以考虑通过平方差公式对分子进行转化. 分母中剩余的 $\braI{\sfrac{a_{n}}{\sqrt{n}}+\sqrt{2}}$ 可以提出表达式, 而 $\ln n$ 的差分可以通过等价无穷小 $\ln\braI{1+x}\sim x$ 进行代换.
+}
+
+\newpage

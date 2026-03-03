@@ -1,0 +1,110 @@
+
+\Formula{A$_{\bm7}$}{
+	计算 $$\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}\ .$$
+}
+\Proof{证明I\score{1}}{
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}&=\frac{1}{2}\Int{}{}{\frac{\braI{\sin x+\cos x}^2-1}{\sin x+\cos x}}{x}\\[1mm]
+		&=\frac{1}{2}\Int{}{}{\sin x+\cos x}{x}-\frac{\sqrt{2}}{4}\Int{}{}{\csc\braI{x+\frac{\pi}{4}}}{\braI{x+\frac{\pi}{4}}}\\[1mm]
+		&=\boxed{\frac{1}{2}\braI{\sin x-\cos x}-\frac{\sqrt{2}}{4}\ln\braIV{\tan\braI{\frac{x}{2}+\frac{\pi}{8}}}+C}\ .
+	}
+}
+\Proof{证明II\score{1}}{
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}&=\Int{}{}{\frac{\sin x\cos x\braI{\sin x-\cos x}}{\sin^{2}x-\cos^{2}x}}{x}\\[1mm]
+		&=\Int{}{}{\frac{\sin^{2}x\cos x}{\sin^{2}x-\cos^{2}x}}{x}-\Int{}{}{\frac{\sin x\cos^{2}x}{\sin^{2}x-\cos^{2}x}}{x}\ ,
+	}
+	对上面两个积分分别作代换 $t=\sin x$ 和 $t=\cos x$ , 则
+	\Equation{
+		\Int{}{}{\frac{\sin^{2}x\cos x}{\sin^{2}x-\cos^{2}x}}{x}=\Int{}{}{\frac{t^{2}}{2t^{2}-1}}{t}=\frac{t}{2}-\frac{\sqrt{2}}{8}\ln\braIV{\frac{1+\sqrt{2}t}{1-\sqrt{2}t}}+C\ ,\\[-14mm]
+	}
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos^{2}x}{\sin^{2}x-\cos^{2}x}}{x}=\Int{}{}{\frac{t^{2}}{2t^{2}-1}}{t}=\frac{t}{2}-\frac{\sqrt{2}}{8}\ln\braIV{\frac{1+\sqrt{2}t}{1-\sqrt{2}t}}+C\ ,
+	}
+	综上可得
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}=\boxed{\frac{1}{2}\braI{\sin x-\cos x}+\frac{\sqrt{2}}{8}\ln\braIV{\frac{\braI{1+\sqrt{2}\cos x}\braI{1-\sqrt{2}\sin x}}{\braI{1-\sqrt{2}\cos x}\braI{1+\sqrt{2}\sin x}}}+C}\ .
+	}
+}
+\Proof{证明III\score{1}}{
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}&=\frac{1}{2}\Int{}{}{\frac{\braI{\sin x+\cos x}^2-1}{\sin x+\cos x}}{x}\\[1mm]
+		&=\frac{1}{2}\Int{}{}{\sin x+\cos x}{x}-\frac{1}{2}\Int{}{}{\frac{\sin x+\cos x}{2-\braI{\sin x-\cos x}^{2}}}{x}\\[1mm]
+		&=\boxed{\frac{1}{2}\braI{\sin x-\cos x}+\frac{\sqrt{2}}{8}\ln\braIV{\frac{\sin x-\cos x-\sqrt{2}}{\sin x-\cos x+\sqrt{2}}}+C}\ .
+	}
+}
+
+\newpage
+
+\Proof{证明IV\score{0.5}}{
+	\par 作代换 $t=\tan\braI{\sfrac{x}{2}}$ , 则
+	\Equation{
+		\Int{}{}{\frac{\sin x\cos x}{\sin x+\cos x}}{x}&=\Int{}{}{\frac{\frac{2t}{1+t^{2}}\,\frac{1-t^{2}}{1+t^{2}}}{\frac{2t}{1+t^{2}}+\frac{1-t^{2}}{1+t^{2}}}\,\frac{2}{1+t^{2}}}{t}\\[1mm]
+		&=\Int{}{}{\frac{4t\braI{t^{2}-1}}{\braI{t^{2}+1}^{2}\braI{t^{2}-2t-1}}}{t}\\[1mm]
+		&=\Int{}{}{\frac{1-t^{2}}{\braI{1+t^{2}}^{2}}}{t}+\Int{}{}{\frac{2t}{\braI{1+t^{2}}^{2}}}{t}+\Int{}{}{\frac{1}{t^{2}-2t-1}}{t}\\[1mm]
+		&=\frac{t}{1+t^{2}}-\frac{1}{1+t^{2}}-\frac{\sqrt{2}}{4}\ln\braIV{\frac{\sqrt{2}-1+t}{\sqrt{2}+1-t}}+C\\[1mm]
+		&=\frac{\tan\braI{\sfrac{x}{2}}-1}{\sec^{2}\braI{\sfrac{x}{2}}}-\frac{\sqrt{2}}{4}\ln\braIV{\frac{\sqrt{2}-1+\tan\braI{\sfrac{x}{2}}}{\sqrt{2}+1-\tan\braI{\sfrac{x}{2}}}}+C\\[1mm]
+		&=\boxed{\frac{1}{2}\braI{\sin x-\cos x}-\frac{\sqrt{2}}{4}\ln\braIV{\frac{\sqrt{2}-1+\tan\braI{\sfrac{x}{2}}}{\sqrt{2}+1-\tan\braI{\sfrac{x}{2}}}}+C}\ .
+	}
+}
+\Proof{要点}{
+	+ 可以验证下面的恒等式成立:
+	\Equation{
+		\tan^{2}\braI{\frac{x}{2}+\frac{\pi}{8}}&=\braIV{\frac{\braI{1-\sqrt{2}\cos x}\braI{1+\sqrt{2}\sin x}}{\braI{1+\sqrt{2}\cos x}\braI{1-\sqrt{2}\sin x}}}\\[1mm]
+		&=\braIV{\frac{\sin x-\cos x+\sqrt{2}}{\sin x-\cos x-\sqrt{2}}}\\[1mm]
+		&=\braI{3+2\sqrt{2}}\braI{\frac{\sqrt{2}-1+\tan\braI{\sfrac{x}{2}}}{\sqrt{2}+1-\tan\braI{\sfrac{x}{2}}}}^{2}\ .
+	}
+	+ 如下恒等式经常在三角函数相关的积分问题中被使用:
+	\Equation{
+		2\sin x\cos x=\braI{\sin x+\cos x}^{2}-1=1-\braI{\sin x-\cos x}^{2}\ .
+	}
+}
+
+\bigskip
+
+\Formula{B$_{\bm7}$}{
+	计算
+	\Equation{
+		\Int{}{}{\frac{1}{x^{2n}\braI{x^{2}+1}}}{x}\ .\quad\braI{n\in\bfN}
+	}
+}
+
+\newpage
+
+\Proof{证明\score{1.5}}{
+	\par 设 $I_{n}=\Int{}{}{\frac{1}{x^{2n}\braI{x^{2}+1}}}{x}$ , 则
+	\Equation{
+		I_{n}=\Int{}{}{\frac{1}{x^{2n}}-\frac{1}{x^{2n-2}\braI{x^{2}+1}}}{x}=-\frac{1}{\braI{2n-1}x^{2n-1}}-I_{n-1}
+	}
+	并且 $I_{0}=\arctan x+C$ , 由此可递推得出
+	\Equation{
+		I_{n}=\boxed{\braI{-1}^{n}\arctan x+\sum_{k=1}^{n}\frac{\braI{-1}^{n-k+1}}{\braI{2k-1}x^{2k-1}}+C}\ .
+	}
+}
+\Proof{要点}{
+	+ 对于交错累加式的通项公式, 我们可以通过考察其中的特殊项来确定符号因子, 例如上式中 $x^{-(2n-1)}$ 项的符号为负, 因此由交错性知通项 $x^{-(2k-1)}$ 的符号因子必为 $\braI{-1}^{n-k+1}$ .
+}
+
+\bigskip
+
+\Formula{C$_{\bm7}$}{
+	计算 $$\Int{0}{\pi}{\ln\sin x}{x}\ .$$
+}
+\Proof{证明\score{2}}{
+	\par 设 $I=\Int{0}{\pi}{\ln\sin x}{x}$ , 则
+	\Equation{
+		I&=2\Int{0}{\pi/2}{\ln\sin x}{x}\\[1mm]
+		&=\Int{0}{\pi/2}{\ln\sin x}{x}+\Int{0}{\pi/2}{\ln\cos x}{x}\\[1mm]
+		&=\Int{0}{\pi/2}{\ln\sin 2x}{x}-\Int{0}{\pi/2}{\ln 2}{x}\\[1mm]
+		&=\frac{I}{2}-\frac{\pi\ln 2}{2}\ ,
+	}
+	于是 $I=\boxed{-\pi\ln 2}$ .
+}
+\Proof{要点}{
+	+ 上述证明中使用了定积分的翻折变换:
+	\Equation{
+		\Int{a}{b}{f\braI{x}}{x}=\Int{a}{b}{f\braI{a+b-x}}{x}\ .
+	}
+}
+
+\newpage

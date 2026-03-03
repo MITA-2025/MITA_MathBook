@@ -1,0 +1,50 @@
+\Command {\bigskip}
+\Part {$\bm \alpha $}
+\Section {Alpha}{-NoValue-}{微分中值定理}{-NoValue-}
+\Section {Alpha}{-NoValue-}{Jenson不等式}{-NoValue-}
+\Section {Alpha}{-NoValue-}{Taylor多项式及其余项}{-NoValue-}
+\Command {\par\bigskip}
+\Part {$\bm \beta $}
+\Section {Beta}{-NoValue-}{自然常数e}{-NoValue-}
+\Section {Beta}{-NoValue-}{Euler-Mascheroni常数γ}{-NoValue-}
+\Section {Beta}{-NoValue-}{幂平均}{-NoValue-}
+\Section {Beta}{-NoValue-}{算术几何平均}{-NoValue-}
+\Command {\par\bigskip}
+\Part {$\bm \gamma $}
+\Section {Gamma}{-NoValue-}{初等函数导数表}{-NoValue-}
+\Section {Gamma}{-NoValue-}{三角恒等式}{-NoValue-}
+\Section {Gamma}{-NoValue-}{裂项求和}{-NoValue-}
+\Section {Gamma}{-NoValue-}{Taylor级数表}{-NoValue-}
+\Command {\par\bigskip}
+\Part {极限计算}
+\Section {极限计算}{-NoValue-}{Peano余项}{-NoValue-}
+\Section {极限计算}{-NoValue-}{Lagrange中值定理}{-NoValue-}
+\Section {极限计算}{-NoValue-}{含参积分}{-NoValue-}
+\Section {极限计算}{-NoValue-}{整数逼近}{-NoValue-}
+\Section {极限计算}{-NoValue-}{等价无穷拟合}{-NoValue-}
+\Command {\par\bigskip}
+\Part {$\bm n$ 阶导数计算}
+\Section {n阶导数计算}{-NoValue-}{Leibniz公式}{-NoValue-}
+\Section {n阶导数计算}{-NoValue-}{递推公式}{-NoValue-}
+\Command {\par\bigskip}
+\Part {中值问题}
+\Section {中值问题}{-NoValue-}{多项式拟合}{-NoValue-}
+\Section {中值问题}{-NoValue-}{区间延拓}{-NoValue-}
+\Command {\par\bigskip}
+\Part {25-26 “名人杯”数学挑战赛}
+\Section {Cauchy}{-NoValue-}{0}{2025.10.10}
+\Section {Cauchy}{-NoValue-}{1}{2025.10.17}
+\Section {Cauchy}{-NoValue-}{2}{2025.10.24}
+\Section {Cauchy}{-NoValue-}{3}{2025.10.31}
+\Section {Leibniz}{-NoValue-}{4}{2025.11.14}
+\Section {Leibniz}{-NoValue-}{5}{2025.11.21}
+\Section {Leibniz}{-NoValue-}{6}{2025.11.28}
+\Section {Riemann}{-NoValue-}{7}{2025.12.12}
+\Section {Riemann}{-NoValue-}{8}{2025.12.19}
+\Section {Riemann}{-NoValue-}{9}{2025.12.26}
+\Command {\par\bigskip}
+\Part {25-26 “花梨杯”数学竞赛}
+\Section {I组}{-NoValue-}{试题册（初赛）}{初赛}
+\Section {I组}{-NoValue-}{答案册（初赛）}{初赛}
+\Section {II组}{-NoValue-}{试题册}{-NoValue-}
+\Section {II组}{-NoValue-}{答案册}{-NoValue-}

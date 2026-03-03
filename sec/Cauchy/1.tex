@@ -1,0 +1,153 @@
+
+\Formula{A$_{\bm1}$}{
+	计算
+	\Equation{
+	    \lim_{n\to\infty}n^{1/n}\ .
+	}
+}
+\Proof{证明I\score{1.5}}{
+	\par 当 $n\geqslant 2$ 时, 根据AM\—GM不等式我们有
+	\Equation{
+		1\leqslant n^{1/n}=\braI{\sqrt{n}\cdot\sqrt{n}\cdot\underbrace{1\cdots1}_{(n-2)\text*{个}1}}^{\tfrac{1}{n}}\leqslant\frac{1}{n}\braI{\sqrt{n}+\sqrt{n}+\underbrace{1+\cdots+1}_{(n-2)\text*{个}1}}=1+\frac{2\sqrt{n}-2}{n}\ ,
+	}
+	使用迫敛性即得 $\lim_{n\to\infty}n^{1/n}=\boxed{1}$ .
+}
+\Proof{证明II\score{1.5}}{
+	\par 根据AM\—GM不等式我们有
+	\Equation{
+		1\leqslant n^{1/n}=\braI{1\cdot\prod_{k=2}^{n}\frac{k}{k-1}}^{\tfrac{1}{n}}\leqslant\frac{1}{n}\braI{1+\sum_{k=2}^{n}\frac{k}{k-1}}\ ,
+	}
+	而
+	\Equation{
+		\lim_{n\to\infty}\frac{1}{n}\braI{1+\sum_{k=2}^{n}\frac{k}{k-1}}\xlongequal{\mathrm{Stolz}}\lim_{n\to\infty}\frac{n}{n-1}=1\ ,
+	}
+	使用迫敛性即得 $\lim_{n\to\infty}n^{1/n}=\boxed{1}$ .
+}
+\Proof{证明III\score{1.5}}{
+	\par 我们有
+	\Equation{
+		\lim_{n\to\infty}\frac{\braI{n+1}^{n}}{n^{n+1}}=\lim_{n\to\infty}\frac{1}{n}\braI{1+\frac{1}{n}}^{n}=\lim_{n\to\infty}\frac{1}{n}\cdot\lim_{n\to\infty}\braI{1+\frac{1}{n}}^{n}=0\ ,
+	}
+	于是由极限的保号性, 对于 $\varepsilon=1$ 可以找到自然数 $N$ 使得对一切正整数 $n>N$ 有
+	\Equation{
+		\frac{\braI{n+1}^{n}}{n^{n+1}}<1\ ,\\[-14mm]
+	}
+	\Equation{
+		\frac{\braI{n+1}^{1/(n+1)}}{n^{1/n}}=\braII{\frac{\braI{n+1}^{n}}{n^{n+1}}}^{\tfrac{1}{n(n+1)}}<1\ ,
+	}
+	即数列 $n^{1/n}$ 在 $n>N$ 时递减, 又有 $n^{1/n}\geqslant 1$ 恒成立, 于是由单调有界准则知其极限存在.
+
+\newpage
+
+	设 $\lim_{n\to\infty}n^{1/n}=A$ , 注意到
+	\Equation{
+		\lim_{n\to\infty}n^{2/n}=A^{2}\AND\lim_{n\to\infty}\braI{\frac{n}{2}}^{2/n}=A\ ,
+	}
+	于是
+	\Equation{
+		A=\biggsfrac{\lim_{n\to\infty}n^{2/n}}{\lim_{n\to\infty}\braI{\frac{n}{2}}^{2/n}}=\lim_{n\to\infty}4^{1/n}=\boxed{1}\ .
+	}
+}
+\Proof{证明IV\score{1}}{
+	\par 利用极限的定义, 对任意 $\varepsilon>0$ 我们取 $N=\floor{\sfrac{2}{\varepsilon^{2}}}+1$ , 则
+	\Equation{
+		\Forall{n}{\bfN}
+		n>\floor{\frac{2}{\varepsilon^{2}}}+1&\implies\frac{\varepsilon^{2}n\braI{n-1}}{2}>n\\[-1mm]
+		&\implies\sum_{k=0}^{n}\rmC_{n}^{k}\varepsilon^{k}>n\\[-1mm]
+		&\implies\braI{1+\varepsilon}^{n}>n\\[-1mm]
+		&\implies\braIV{n^{1/n}-1}<\varepsilon\ ,
+	}
+	这就证明了 $\lim_{n\to\infty}n^{1/n}=\boxed{1}$ .
+}
+\Proof{证明V\score{0.5}}{
+	\Equation{
+		\lim_{n\to\infty}n^{1/n}=\lim_{n\to\infty}\rme^{\,\ln n/n}\xlongequal[\text*{(指数)}]{\mathrm{Stolz}}\lim_{n\to\infty}\rme^{\ln(1+1/n)}=\lim_{n\to\infty}\braI{1+\frac{1}{n}}=\boxed{1}\ .
+	}
+}
+\Proof{证明VI\score{0.5}}{
+	\Equation{
+		\lim_{x\to+\infty}x^{1/x}=\lim_{x\to+\infty}\rme^{\,\ln x/x}\xlongequal[\text*{(指数)}]{\mathrm{Stolz}}\lim_{x\to+\infty}\rme^{1/x}=\lim_{x\to 0^{+}}\rme^{x}=\boxed{1}\ ,
+	}
+	于是由Heine定理可得 $\lim_{n\to\infty}n^{1/n}$ .
+}
+\Proof{要点}{
+	+ 对数列极限不能使用L'Hôpital法则, 除非利用Heine定理进行延拓.
+	+ 极限的保号性是证明不等式的重要手段, 证明III体现了这一点.
+	+ 证明IV中我们要求 $N=\floor{\sfrac{2}{\varepsilon^{2}}}+1$ 的原因是必须保证 $n\geqslant 2$ , 否则二项展开式中的项 $\rmC_{n}^{2}\varepsilon^{2}$ 可能不存在. 若我们的目标是证明 $\lim_{n\to\infty}n^{k/n}$ , 则可以对证明IV作出修改, 具体做法是改用 $\rmC_{n}^{k+1}\varepsilon^{k+1}$ 来进行放缩, 此时 $N$ 也必须随之增大.
+}
+
+\newpage
+
+\Formula{B$_{\bm1}$}{
+	计算
+	\Equation{
+	    \lim_{x\to\infty}x\braII{\!\braI{1+\frac{1}{x}}^{2x}+\rme^{2}\ln\braI{1+\frac{1}{x}}-\rme^{2}}\ .
+	}
+}
+\Proof{证明\score{1}}{
+	\Equation{
+		\lim_{x\to\infty}x\braII{\!\braI{1+\frac{1}{x}}^{2x}+\rme^{2}\ln\braI{1+\frac{1}{x}}-\rme^{2}}&=\lim_{x\to 0}\frac{\braI{1+x}^{2/x}+\rme^{2}\ln\braI{1+x}-\rme^{2}}{x}\\[1mm]
+		&=\rme^{2}\lim_{x\to 0}\frac{\ln\braI{1+x}}{x}+\lim_{x\to 0}\frac{\braI{1+x}^{2/x}-\rme^{2}}{x}\\[1mm]
+		&=\rme^{2}+\lim_{x\to 0}\frac{\braI{1+x}^{2/x}-\rme^{2}}{x}\\[1mm]
+		&=\rme^{2}+\rme^{2}\lim_{x\to 0}\frac{\exp\braI{\frac{2\ln(1+x)}{x}-2}-1}{x}\\[1mm]
+		&=\rme^{2}+\rme^{2}\lim_{x\to 0}\frac{2\ln(1+x)-2x}{x^{2}}\\[-1mm]
+		&=\rme^{2}-\rme^{2}\\[-2mm]
+		&=\boxed{0}\ .
+	}
+}
+\Proof{要点}{
+	+ 使用极限的四则运算法则时注意避免 $\infty-\infty$ 和 $0\cdot\infty$ 等未定式的情形.
+}
+
+\bigskip
+
+\Formula{C$_{\bm1}$}{
+	计算
+	\Equation{
+	    \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\cos\frac{\braI{2k-1}\pi}{4n}\ .
+	}
+}
+\Proof{证明I\score{2}}{
+	\Equation{
+		\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\cos\frac{\braI{2k-1}\pi}{4n}&=\lim_{n\to\infty}\frac{1}{n\sin\braI{\!\tfrac{\pi}{4n}\!}}\sum_{k=1}^{n}\sin\frac{\pi}{4n}\cos\frac{\braI{2k-1}\pi}{4n}\\[1mm]
+		&=\lim_{n\to\infty}\frac{1}{n\sin\braI{\!\tfrac{\pi}{4n}\!}}\sum_{k=1}^{n}\frac{1}{2}\braI{\sin\frac{k\pi}{2n}-\sin\frac{\braI{k-1}\pi}{2n}}\\[1mm]
+		&=\lim_{n\to\infty}\frac{1}{2n\sin\braI{\!\tfrac{\pi}{4n}\!}}\\[-1mm]
+		&=\boxed{\sfrac{2}{\pi}}\ .
+	}
+}
+
+\newpage
+
+\Proof{证明II\score{1.5}}{
+	\par 根据定积分的定义, 我们有
+	\Equation*{
+		\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\cos\frac{\braI{2k-1}\pi}{4n}=2\lim_{n\to\infty}\frac{1}{2n}\sum_{k=1}^{n}\cos\frac{\braI{2k-1}\pi}{4n}=2\Int{0}{1/2}{\cos\braI{\pi x}}{x}=\boxed{\frac{2}{\pi}}\ .
+	}
+}
+\Proof{$^{*}$证明III\score{1.5}}{
+	\par 利用Euler公式, 我们有
+	\Equation{
+		\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\cos\frac{\braI{2k-1}\pi}{4n}&=\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\Re\braII{\exp\frac{\braI{2k-1}\pi\rmi}{4n}}\\[1mm]
+		&=\Re\braII{\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\braI{\exp\frac{\braI{2k-1}\pi\rmi}{4n}}\!}\\[1mm]
+		&=\Re\braII{\lim_{n\to\infty}\frac{1}{n}\frac{\exp\braI{\!\tfrac{\pi\rmi}{4n}\!}\braI{\exp\braI{\!\tfrac{\pi\rmi}{2}\!}-1}}{\exp\braI{\!\tfrac{\pi\rmi}{2n}\!}-1}}\\[1mm]
+		&=\Re\braII{\frac{2\braI{\rmi-1}}{\pi\rmi}}\\[-1mm]
+		&=\boxed{\sfrac{2}{\pi}}\ .
+	}
+}
+\Proof{要点}{
+	+ 在证明I中我们使用了裂项求和公式
+	\Equation{
+		\sum\sin\theta\cos\braI{2n\theta+\theta}=\sum\braII{\sin\braI{2n\theta+2\theta}-\sin\braI{2n\theta}\!}\ .
+	}
+	+ 在证明III中我们使用了复变函数 $\exp z$ 的连续性和等价无穷小
+	\Equation{
+		z\to 0\ :\quad\exp z-1\sim z\ .
+	}
+	+ 从证明I和证明III中我们还可以得到三角等差数列的前 $n$ 项和公式
+	\Equation*{
+		\sum_{k=0}^{n}\sin\braI{kx+b}=\frac{\sin\braI{\!\tfrac{nx+x}{2}\!}\sin\braI{\!\tfrac{nx+2b}{2}\!}}{\sin\braI{\!\tfrac{x}{2}\!}}\AND\sum_{k=0}^{n}\cos\braI{kx+b}=\frac{\sin\braI{\!\tfrac{nx+x}{2}\!}\cos\braI{\!\tfrac{nx+2b}{2}\!}}{\sin\braI{\!\tfrac{x}{2}\!}}\ ,
+	}
+	这同时给出了该题的另一种解法, 其在本质上与直接使用这两种方法没有区别.
+}
+
+\newpage

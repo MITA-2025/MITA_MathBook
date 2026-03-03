@@ -1,0 +1,262 @@
+
+\stem{A}{
+	\branch{A$_{\bm1}$}{
+		\par 分别设关于参数 $\lambda$ 和 $\mu$ 的两族直母线为
+		\Equation{
+			\begin{cases}\\[-10mm]
+				\ \ x-y=\lambda \\[-2mm]
+				\ \ \lambda\braI{x+y}=2z
+			\end{cases}\AND\begin{cases}\\[-10mm]
+				\ \ x+y=\mu \\[-2mm]
+				\ \ \mu\braI{x-y}=2z
+			\end{cases}\ ,
+		}
+		其方向向量分别为 $\bm s_{1}=\braI{1\and 1\and\lambda}$ 和 $\bm s_{2}=\braI{1\and -1\and\mu}$ , 又已知平面 $x+y-z-1=0$ 的法向量为 $\bm n=\braI{1\and 1\and -1}$ , 由 $\bm n\cdot\bm s_{1}=\bm n\cdot\bm s_{2}=0$ 可解得 $\braI{\lambda\and\mu}=\braI{2\and 0}$ , 即所求直母线为
+		\Equation{
+			\begin{cases}\\[-10mm]
+				\ \ x-y=2 \\[-2mm]
+				\ \ x+y=z
+			\end{cases}\AND\begin{cases}\\[-10mm]
+				\ \ x+y=0 \\[-2mm]
+				\ \ z=0
+			\end{cases}\ .
+		}
+	}
+}
+
+\stem{B}{
+	\branch{B$_{\bm1}$}{
+		\par 由介值定理可知存在 $\xi\in\braI{0\and 1}$ 使得 $f\braI{\xi}=0$ , 假设存在某个与 $\xi$ 不同的 $\eta\in\braI{0\and 1}$ 使得 $f\braI{\eta}=0$ , 则由\link{Alpha}{Lagrange中值定理}知存在 $\zeta\in\braI{0\and 1}$ 使得
+		\Equation{
+			f\fder\braI{\zeta}=\frac{f\braI{\eta}-f\braI{\xi}}{\eta-\xi}=0\ ,
+		}
+		这与 $f\fder\braI{x}>0$ 矛盾, 因此证明了 $\xi$ 的唯一性.
+	}
+	\branch{B$_{\bm2}$}{
+		\par 将 $f\braI{\xi}$ 在 $x=x_{n}$ 处作二阶Taylor展开可得
+		\Equation{
+			f\braI{x_{n}}+f\fder\braI{x_{n}}\braI{\xi-x_{n}}+\frac{f\fdder\braI{\eta_{n}}}{2}\braI{\xi-x_{n}}^{2}=0\ ,
+		}
+		其中 $\eta_{n}\in\braI{\min\braIII{x_{n}\and\xi}\and\max\braIII{x_{n}\and\xi}\!}$ , 整理后可得
+		\Equation{
+			x_{n+1}-\xi=\frac{f\fdder\braI{\eta_{n}}}{2f\fder\braI{x_{n}}}\braI{x_{n}-\xi}^{2}\ ,
+		}
+		由此我们有 $x_{n}>\xi$ 恒成立, 进而又有
+		\Equation{
+			x_{n+1}-x_{n}=-\frac{f\braI{x_{n}}}{f\fder\braI{x_{n}}}<0
+		}
+
+\newpage
+
+		\noindent 恒成立, 依单调有界准则可知 $\lim_{n\to\infty}x_{n}$ 存在.
+		\par 不妨设 $\lim_{n\to\infty}x_{n}=L$ , 由
+		\Equation{
+			L=L-\frac{f\braI{L}}{f\fder\braI{L}}
+		}
+		知 $f\braI{L}=0$ , 而 $\xi$ 是 $f$ 在 $\braI{0\and 1}$ 上的唯一零点, 于是 $L=\xi$ .
+	}
+	\branch{B$_{\bm3}$}{
+		\par 由夹逼准则知当 $n\to\infty$ 时有 $\eta_{n}\to\xi$ , 再由 $f\fder$ 和 $f\fdder$ 的连续性可得
+		\Equation{
+			\lim_{n\to\infty}\frac{x_{n+1}-\xi}{\braI{x_{n}-\xi}^{2}}=\lim_{n\to\infty}\frac{f\fdder\braI{\eta_{n}}}{2f\fder\braI{x_{n}}}=\frac{f\fdder\braI{\xi}}{2f\fder\braI{\xi}}\ .
+		}
+	}
+}
+
+\stem{C}{
+	\branch{C$_{\bm1}$}{
+		\Equation{
+			&\quad\,\det\braI{\!\matrix{cc}{
+				a_{1,1} & a_{1,2} \\[-1mm]
+				a_{2,1} & a_{2,2}
+			}+\matrix{cc}{
+				b_{1,1} & b_{1,2} \\[-1mm]
+				b_{2,1} & b_{2,2}
+			}\!}\\[-1mm]
+			&=\braI{a_{1,1}+b_{1,1}}\braI{a_{2,2}+b_{2,2}}-\braI{a_{1,2}+b_{1,2}}\braI{a_{2,1}+b_{2,1}}\\[-2mm]
+			&=a_{1,1}a_{2,2}+b_{1,1}b_{2,2}+a_{1,1}b_{2,2}+a_{2,2}b_{1,1}-a_{1,2}a_{2,1}-b_{1,2}b_{2,1}-a_{1,2}b_{2,1}-a_{2,1}b_{1,2}\ ,\\[-14mm]
+		}
+		\Equation{
+			&\quad\,\determinant{cc}{
+				a_{1,1} & a_{1,2} \\[-1mm]
+				a_{2,1} & a_{2,2}
+			}+\determinant{cc}{
+				b_{1,1} & b_{1,2} \\[-1mm]
+				b_{2,1} & b_{2,2}
+			}+\tr\braI{\!\matrix{cc}{
+				a_{1,1} & a_{1,2} \\[-1mm]
+				a_{2,1} & a_{2,2}
+			}^{*}\matrix{cc}{
+				b_{1,1} & b_{1,2} \\[-1mm]
+				b_{2,1} & b_{2,2}
+			}\!}\\[1mm]
+			&=a_{1,1}a_{2,2}-a_{1,2}a_{2,1}+b_{1,1}b_{2,2}-b_{1,2}b_{2,1}+\tr\matrix{cc}{
+				a_{2,2}b_{1,1}-a_{1,2}b_{2,1} & a_{2,2}b_{1,2}-a_{1,2}b_{2,2} \\[-1mm]
+				a_{1,1}b_{2,1}-a_{2,1}b_{1,1} & a_{1,1}b_{2,2}-a_{2,1}b_{1,2}
+			}\\[-1mm]
+			&=a_{1,1}a_{2,2}-a_{1,2}a_{2,1}+b_{1,1}b_{2,2}-b_{1,2}b_{2,1}+a_{2,2}b_{1,1}-a_{1,2}b_{2,1}+a_{1,1}b_{2,2}-a_{2,1}b_{1,2}\ ,
+		}
+		这就证明了 $\det\braI{\bm A_{1}+\bm A_{2}}=\det\bm A_{1}+\det\bm A_{2}+\tr\braI{\bm A_{1}^{*}\bm A_{2}}$ .
+	}
+	\branch{C$_{\bm2}$}{
+		\par 考虑线性映射
+		\Equation{
+			\phi:\bfR^{2\times 2}\to\bfR\ ,\ \bm A\mapsto\tr\braI{\bm B^{*}\bm A}\ ,
+		}
+
+\newpage
+
+		\noindent 由 $\bm B\ne\bm O$ 可知 $\bm B^{*}\ne\bm O$ , 因此
+		\Equation{
+			\dim\ker\phi=\dim\bfR^{2\times 2}-\dim\bfR=3\ ,
+		}
+		注意到 $\bm A_{1}\and\bm A_{2}\and\bm A_{3}\and\bm A_{4}\in\ker\phi$ , 于是 $\braI{\bm A_{1}\and\bm A_{2}\and\bm A_{3}\and\bm A_{4}}$ 线性相关, 此即待证结论.
+	}
+}
+
+\stem{D}{
+	\branch{D$_{\bm1}$}{
+		\par 考虑函数 $f\braI{x}=\bigsfrac{3x^{2}}{2}$ , 下面我们证明 $f\in\mathcal{F}$ , 从而验证 $A\ne\emptyset$ .
+		\par 显然 $f$ 是 $\braII{0\and 1}$ 上的连续函数, 考虑函数
+		\Equation{
+			F\braI{x}=\Int{x}{1}{\frac{3t^{2}}{2}}{t}-\frac{1-x^{3}}{2}\ ,
+		}
+		我们有 $F\fder\braI{x}=0$ 恒成立, 并且 $F\braI{1}=0$ , 因此 $F\braI{x}\geqslant 0$ 恒成立, 这就完成了证明.
+	}
+	\branch{D$_{\bm2}$}{
+		\par 一方面, 对任意 $f\in\mathcal{F}$ , 依Cauchy不等式有
+		\Equation{
+			\Int{0}{1}{f^{2}\braI{x}}{x}&=5\Int{0}{1}{x^{4}}{x}\Int{0}{1}{f^{2}\braI{x}}{x}\\[1mm]
+			&\geqslant 5\braI{\Int{0}{1}{x^{2}f\braI{x}}{x}}^{2}\\[1mm]
+			&=5\braI{x^{2}\Int{1}{x}{f\braI{t}}{t}\bigsubst{0}{1}+\Int{0}{1}{2x\Int{x}{1}{f\braI{t}}{t}}{x}}^{2}\\[1mm]
+			&=5\braI{\Int{0}{1}{2x\Int{x}{1}{f\braI{t}}{t}}{x}}^{2}\\[1mm]
+			&\geqslant 5\braI{\Int{0}{1}{x-x^{4}}{x}}^{2}\\[-1mm]
+			&=\sfrac{9}{20}\ ,
+		}
+		另一方面, 考虑函数 $f\braI{x}=\bigsfrac{3x^{2}}{2}$ , 我们有 $f\in\mathcal{F}$ 并且
+		\Equation{
+			\Int{0}{1}{f^{2}\braI{x}}{x}=\frac{9}{20}\ ,
+		}
+		于是 $\inf A=\sfrac{9}{20}$ .
+	}
+}
+
+\newpage
+
+\stem{E}{
+	\branch{E$_{\bm1}$}{
+		\par 假设 $f\braI{x}=0$ , 则显然与
+		\Equation{
+			\Int{0}{1}{x^{n}f\braI{x}}{x}=1
+		}
+		矛盾.
+		\par 假设 $f\braI{x}=a$ , 其中 $a\ne 0$ , 则
+		\Equation{
+			0=\Int{0}{1}{x^{0}f\braI{x}}{x}=a\Int{0}{1}{x^{0}}{x}=a\ ,
+		}
+		又导出了矛盾.
+	}
+	\branch{E$_{\bm2}$}{
+        \par 如果
+        \Equation{
+            \Int{0}{1}{f\braI{x}}{x}=0\ ,
+        }
+        则显然 $f$ 在 $\braI{0\and 1}$ 上至少有 $1$ 个零点, 因此上述命题对 $n=1$ 成立.
+        \par 假设上述命题对 $n$ 成立, 现在考虑 $n+1$ 的情形, 考虑辅助函数
+        \Equation{
+            F\braI{x}:=\Int{0}{x}{f\braI{t}}{t}\ ,
+        }
+        注意到 $F\braI{0}=F\braI{1}=0$ , 由分部积分法我们有
+        \Equation{
+			\Int{0}{1}{x^{k}F\braI{x}}{x}=-\frac{1}{k+1}\Int{0}{1}{x^{k+1}f\braI{x}}{x}=0
+        }
+        对一切自然数 $k<n$ 成立, 由归纳假设可知 $F$ 在 $\braII{0\and 1}$ 上至少有 $n$ 个不同的零点, 将其记为 $x_{1}\and\cdots\and x_{n}$ , 并规定 $x_{0}=0$ 和 $x_{n+1}=1$ , 则
+        \Equation{
+            \Int{x_{k}}{x_{k+1}}{f\braI{x}}{x}=0
+        }
+        对一切自然数 $k\leqslant n$ 成立, 从而 $f$ 在每个 $\braI{x_{k}\and x_{k+1}}$ 上至少各有一个零点, 即 $f$ 在 $\braI{0\and 1}$ 上至少有 $n$ 个不同的零点.
+        \par 因此上述命题对一切自然数 $n$ 成立.
+	}
+
+\newpage
+
+	\branch{E$_{\bm3}$}{
+		\par 假设 $\braIV{f\braI{x}}<2^{n}\braI{n+1}$ 在 $\braII{0\and 1}$ 上恒成立, 一方面,
+		\Equation{
+			\Int{0}{1}{\braI{x-\frac{1}{2}}^{n}f\braI{x}}{x}&\leqslant\Int{0}{1}{\braIV{x-\frac{1}{2}}^{n}\braIV{f\braI{x}}}{x}\\[1mm]
+			&<2^{n}\braI{n+1}\Int{0}{1}{\braIV{x-\frac{1}{2}}^{n}}{x}\\[1mm]
+			&=2^{n}\braI{n+1}\braII{\!\braI{-1}^{n}\Int{0}{1/2}{\braI{x-\frac{1}{2}}^{n}}{x}+\Int{1/2}{1}{\braI{x-\frac{1}{2}}^{n}}{x}}\\[1mm]
+			&=2^{n}\braI{n+1}\braI{\frac{1}{2^{n+1}\braI{n+1}}+\frac{1}{2^{n+1}\braI{n+1}}}\\[-1mm]
+			&=1\ ,
+		}
+		另一方面,
+		\Equation{
+			\Int{0}{1}{\braI{x-\frac{1}{2}}^{n}f\braI{x}}{x}&=\Int{0}{1}{\sum_{k=0}^{n}\rmC_{n}^{k}\braI{-2}^{k-n}x^{k}f\braI{x}}{x}\\[1mm]
+			&=\sum_{k=0}^{n}\rmC_{n}^{k}\braI{-2}^{k-n}\Int{0}{1}{x^{k}f\braI{x}}{x}\\[1mm]
+			&=\Int{0}{1}{x^{n}f\braI{x}}{x}\\[-1mm]
+			&=1\ ,
+		}
+		这就导出了矛盾.
+	}
+}
+
+\stem{F}{
+	\branch{F$_{\bm1}$}{
+		\par 设 $\mathcal{I}$ 是 $\bfR^{n\times n}$ 的双边理想并且 $\mathcal{I}\ne\braIII{\bm O}$ , 接下来我们证明 $\mathcal{I}=\bfR^{n\times n}$ . 不妨设
+		\Equation{
+			\bm A=\matrix{ccccc}{
+            	A_{1,1} & \cdots & A_{1,q} & \cdots & A_{1,n} \\[-1mm]
+            	\vdots & \ddots & \vdots & \ddots & \vdots \\[-1mm]
+            	A_{p,1} & \cdots & A_{p,q} & \cdots & A_{p,n} \\[-1mm]
+            	\vdots & \ddots & \vdots & \ddots & \vdots \\[-1mm]
+            	A_{n,1} & \cdots & A_{n,q} & \cdots & A_{n,n}
+        	}
+		}
+		是 $\mathcal{I}$ 中的非零矩阵, 其中 $A_{p,q}\ne 0$ .
+
+\newpage
+
+		令
+		\Equation*{
+			\bm P_{k}=\matrix{cccccccc}{
+            	& 0 & \cdots & \cdots & \overset{\text*{第$p$列}\vphantom{\dfrac{1}{2}}}{0} & \cdots & \cdots & 0 \\[-2mm]
+            	& \vdots & \ddots & & \vdots & & \rdots & \vdots \\[-2mm]
+            	& \vdots & & \ddots & 0 & \rdots & & \vdots \\[-2mm]
+            	\!\!\text*{\raisebox{.25\height}{\fontsize{6pt}{7.2pt}\selectfont 第$k$行}} & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\[-2mm]
+            	& \vdots & & \rdots & 0 & \ddots & & \vdots \\[-2mm]
+            	& \vdots & \rdots & & \vdots & & \ddots & \vdots \\[-2mm]
+            	& 0 & \cdots & \cdots& 0 & \cdots & \cdots & 0
+        	}\!\AND\!\bm Q_{k}=\matrix{cccccccc}{
+            	& 0 & \cdots & \cdots & \overset{\text*{第$k$列}\vphantom{\dfrac{1}{2}}}{0} & \cdots & \cdots & 0 \\[-2mm]
+            	& \vdots & \ddots & & \vdots & & \rdots & \vdots \\[-2mm]
+            	& \vdots & & \ddots & 0 & \rdots & & \vdots \\[-2mm]
+            	\!\!\text*{\raisebox{.25\height}{\fontsize{6pt}{7.2pt}\selectfont 第$q$行}} & 0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\[-2mm]
+            	& \vdots & & \rdots & 0 & \ddots & & \vdots \\[-2mm]
+            	& \vdots & \rdots & & \vdots & & \ddots & \vdots \\[-2mm]
+            	& 0 & \cdots & \cdots& 0 & \cdots & \cdots & 0
+        	}\ ,
+		}
+		注意到
+		\Equation{
+			\bm I=A_{p,q}^{-1}\sum_{k=1}^{n}\matrix{cccccccc}{
+            	& 0 & \cdots & \cdots & \overset{\text*{第$k$列}\vphantom{\dfrac{1}{2}}}{0} & \cdots & \cdots & 0 \\[-2mm]
+            	& \vdots & \ddots & & \vdots & & \rdots & \vdots \\[-2mm]
+            	& \vdots & & \ddots & 0 & \rdots & & \vdots \\[-1mm]
+            	\!\!\text*{\raisebox{.25\height}{\scriptsize 第$k$行}} & 0 & \cdots & 0 & A_{p,q} & 0 & \cdots & 0 \\[-1mm]
+            	& \vdots & & \rdots & 0 & \ddots & & \vdots \\[-2mm]
+            	& \vdots & \rdots & & \vdots & & \ddots & \vdots \\[-2mm]
+            	& 0 & \cdots & \cdots& 0 & \cdots & \cdots & 0
+        	}=A_{p,q}^{-1}\sum_{k=1}^{n}\bm P_{k}\bm A\bm Q_{k}\ ,
+		}
+		其中对每个 $k$ 都有 $\bm P_{k}\bm A\bm Q_{k}\in\mathcal{I}$ , 由 $\mathcal{I}$ 是线性空间可知 $\bm I\in\mathcal{I}$ , 进而对任意 $\bm X\in\bfR^{n\times n}$ 有 $\bm X=\bm X\bm I\in\mathcal{I}$ , 这就证明了 $\mathcal{I}=\bfR^{n\times n}$ .
+	}
+	\branch{F$_{\bm2}$}{
+		\par 显然 $\ker\phi$ 是 $\bfR^{n\times n}$ 的双边理想, 假设 $\ker\phi=\braIII{\bm O}$ , 则
+		\Equation{
+			\dim\im\phi=\dim\bfR^{n\times n}-\dim\ker\phi=n^{2}>1\ ,
+		}
+		但 $\dim\bfR=1$ , 这是不可能的, 因此 $\ker\phi=\bfR^{n\times n}$ .
+	}
+}
+
+\newpage

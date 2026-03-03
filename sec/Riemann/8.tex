@@ -1,0 +1,66 @@
+
+\Formula{A$_{\bm8}$}{
+	计算 $$\Int{}{}{\sqrt{\braIV{x}}}{x}\ .$$
+}
+\Proof{证明\score{0.5}}{
+	\Equation{
+		\Int{}{}{\sqrt{\braIV{x}}}{x}=\sgn x\Int{}{}{\sqrt{\braIV{x}}}{\braI{\braIV{x}}}=\sgn x\cdot\frac{2\braIV{x}^{3/2}}{3}+C=\boxed{\frac{2x\sqrt{\braIV{x}}}{3}+C}\ .
+	}
+}
+\Proof{要点}{
+	+ 我们定义\newconcept{符号函数}
+	\Equation{
+		\sgn x=\casesIII{1}{x>0}{-2}{0}{x=0}{-2}{-1}{x<0}\ ,
+	}
+	则有 $\braIV{x}'=\sgn x$ 成立, 并且 $\sgn x$ 在任何 $x\ne 0$ 处恒为常数, 故可将其移至积分号外部.
+}
+
+\bigskip
+
+\Formula{B$_{\bm8}$}{
+	计算 $$\Int{}{}{\frac{x+\sin x}{1+\cos x}}{x}\ .$$
+}
+\Proof{证明I\score{1}}{
+	\par 由 $1+\cos x=2\cos^{2}\braI{\sfrac{x}{2}}$ 可得
+	\Equation{
+		\Int{}{}{\frac{x+\sin x}{1+\cos x}}{x}&=\tan\frac{x}{2}\braI{x+\sin x}-\Int{}{}{2\cos^{2}\frac{x}{2}\tan\frac{x}{2}}{x}\\[-1mm]
+		&=\tan\braI{\sfrac{x}{2}}\braI{x+\sin x}+\cos x+C\\[-2mm]
+		&=\boxed{x\tan\braI{\sfrac{x}{2}}+C}\ .
+	}
+}
+\Proof{证明II\score{1}}{
+	\Equation{
+		\Int{}{}{\frac{x+\sin x}{1+\cos x}}{x}&=\Int{}{}{\frac{\braI{x+\sin x}\braI{1-\cos x}}{\sin^{2}x}}{x}\\[1mm]
+		&=\Int{}{}{x\csc^{2}x}{x}+\Int{}{}{\csc x}{x}-\Int{}{}{x\csc x\cot x}{x}-\Int{}{}{\cot x}{x}\\[1mm]
+		&=-\Int{}{}{x}{\braI{\cot x}}+\Int{}{}{\csc x}{x}+\Int{}{}{x}{\braI{\csc x}}-\Int{}{}{\cot x}{x}\\[-1mm]
+		&=\boxed{x\csc x-x\cot x+C}\ .
+	}
+}
+
+\newpage
+
+\Formula{C$_{\bm8}$}{
+	计算
+	\Equation{
+		\Int{0}{1/2}{y^{-1}}{x}\ ,
+	}
+	其中 $y$ 由方程 $y^{2}\braI{x-y}=x^{2}$ 确定.
+}
+\Proof{证明\score{2}}{
+	\par 设 $y=tx$ , 则由上述方程可得
+	\Equation{
+		\casesII{x=\frac{1}{t^{2}\braI{1-t}}}{}{1}{y=\frac{1}{t\braI{1-t}}}{}\ ,
+	}
+	于是
+	\Equation{
+		\Int{0}{1/2}{y^{-1}}{x}&=\Int{-\infty}{-1}{\braI{t-t^{2}}\braI{\frac{1}{t^{2}\braI{1-t}}}'}{t}\\[1mm]
+		&=t^{-1}\bigg|_{-\infty}^{-1}-\Int{-\infty}{-1}{\frac{2t-1}{t^{2}\braI{t-1}}}{t}\\[1mm]
+		&=-1-\Int{-\infty}{-1}{\frac{1}{t\braI{t-1}}}{t}-\Int{-\infty}{-1}{t^{-2}}{t}\\[-1mm]
+		&=\boxed{-\ln 2-2}\ .
+	}
+}
+\Proof{要点}{
+	+ 利用参数方程实现变量统一是解决隐函数积分问题的关键, 比值换元是最常见的方法.
+}
+
+\newpage

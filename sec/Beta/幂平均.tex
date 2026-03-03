@@ -1,0 +1,70 @@
+
+\par 幂平均可以看作是算术平均, 几何平均和调和平均的推广.
+
+\Definition{幂平均函数}{
+    我们定义权为 $(p_{k})_{k=1}^{n}$ 的\newconcept{$t$ 次幂平均函数}为
+    \Equation{
+        M_{t}\braI{\bm x}:=\casesII{\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}}^{1/t}}{t\ne 0}{3}{\prod_{k=1}^{n}x^{p_{k}}_{k}}{t=0}\ ,
+    }
+    其中 $\bm x=(x_{k})_{k=1}^{n}$ , 各 $x_{k}\and p_{k}>0$ 且 $p_{1}+\cdots+p_{n}=1$ .
+}
+
+\Theorem{幂平均函数的连续性}{
+    关于幂平均次数 $t$ 的函数 $\mathcal{M}\braI{t}=M_{t}\braI{\bm{x}}$ 在 $\bfR$ 上连续.
+}
+\Proof{证明}{
+    \par 注意到 $\mathcal{M}$ 在 $\bfR\setminus\braIII{0}$ 上为初等函数, 因而必定连续.
+    \par 现在考察 $\mathcal{M}$ 在 $t=0$ 处的连续性, 我们有
+    \Equation{
+        \lim_{t\to 0}\ln\braI{M_{t}\braI{\bm{x}}\!}=\lim_{t\to 0}\frac{1}{t}\ln\sum_{k=1}^{n}p_{k}x_{k}^{t}\xlongequal{\mathrm{L'H}}\lim_{t\to 0}\frac{\sum_{k=1}^{n}p_{k}x_{k}^{t}\ln x_{k}}{\sum_{k=1}^{n}p_{k}x_{k}^{t}}=\sum_{k=1}^{n}p_{k}\ln x_{k}\ ,
+    }
+    两边取指数即得到 $\lim_{t\to 0}M_{t}\braI{\bm{x}}=M_{0}\braI{\bm{x}}$ .
+}
+
+\Theorem{幂平均函数的极限}{
+    \Equation{
+        \lim_{t\to-\infty}M_{t}\braI{\bm{x}}=\min\braIII{x_{1}\and\cdots\and x_{n}}\ ,\\[-16mm]
+    }
+    \Equation{
+        \lim_{t\to+\infty}M_{t}\braI{\bm{x}}=\max\braIII{x_{1}\and\cdots\and x_{n}}\ .
+    }
+}
+\Proof{证明}{
+    \par 设 $m$ 和 $M$ 分别使得 $x_{m}=\min\braIII{x_{1}\and\cdots\and x_{n}}$ 和 $x_{\sM}=\max\braIII{x_{1}\and\cdots\and x_{n}}$ 成立, 则
+    \Equation{
+        t>0\text{时}:\quad\braI{p_{\sM}x_{\sM}^{t}}^{1/t}<\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}}^{1/t}\leqslant\braI{\sum_{k=1}^{n}p_{k}x_{\sM}^{t}}^{1/t}\ ,\\[-14mm]
+    }
+    \Equation{
+        t<0\text{时}:\quad\braI{\sum_{k=1}^{n}p_{k}x_{m}^{t}}^{1/t}\leqslant\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}}^{1/t}<\braI{p_{m}x_{m}^{t}}^{1/t}\ ,
+    }
+
+\newpage
+
+    \noindent 同时
+    \Equation{
+        \lim_{t\to+\infty}\braI{p_{\sM}x_{\sM}^{t}}^{1/t}=\lim_{t\to+\infty}\braI{\sum_{k=1}^{n}p_{k}x_{\sM}^{t}}^{1/t}=x_{\sM}\ ,\\[-14mm]
+    }
+    \Equation{
+        \lim_{t\to-\infty}\braI{\sum_{k=1}^{n}p_{k}x_{m}^{t}}^{1/t}=\lim_{t\to-\infty}\braI{p_{m}x_{m}^{t}}^{1/t}=x_{m}\ ,
+    }
+    于是由迫敛性有
+    \Equation{
+        \lim_{t\to+\infty}\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}}^{1/t}=x_{\sM}\AND\lim_{t\to-\infty}\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}}^{1/t}=x_{m}\ .
+    }
+}
+
+\Theorem{幂平均不等式}{
+    关于幂平均次数 $t$ 的函数 $\mathcal{M}\braI{t}=M_{t}\braI{\bm{x}}$ 在 $\bfR$ 上单调递增.
+}
+\Proof{证明}{
+    \par 由 $\braI{x\ln x}''=\sfrac{1}{x}$ 知 $f\braI{x}=x\ln x$ 在 $\braI{0\and+\infty}$ 上下凸, 根据\link{Alpha}{Rolle中值定理}有
+    \Equation{
+        \frac{\rmd}{\rmd t}\ln\braI{M_{t}\braI{\bm{x}}\!}&=\frac{\rmd}{\rmd t}\braI{\frac{1}{t}\ln\sum_{k=1}^{n}p_{k}x_{k}^{t}}\\[1mm]
+        &=\frac{1}{t^{2}\sum_{k=1}^{n}p_{k}x_{k}^{t}}\braI{\sum_{k=1}^{n}p_{k}x_{k}^{t}\ln x_{k}^{t}-\sum_{k=1}^{n}p_{k}x_{k}^{t}\cdot\ln\sum_{k=1}^{n}p_{k}x_{k}^{t}}
+    }
+	对一切 $t\in\bfR$ 恒正, 从而 $\mathcal{M}$ 在 $\bfR$ 上单调递增.
+}
+
+\par 因此\link{Beta}{幂平均不等式}又可作为AM\—GM不等式的一种推广.
+
+\newpage

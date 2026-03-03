@@ -1,0 +1,119 @@
+
+\Formula{A$_{\bm0}$\,|\,B$_{\bm0}$}{
+	计算
+	\Equation{
+	    \lim_{x\to 0^{+}}\frac{\rme^{\rme^{x^{2}}}-\rme}{\braI{x^{\rme}+x^{\rme+1}}^{1/\rme}-x}\ .
+	}
+}
+\Proof{证明\score{0.5}}{
+	\Equation{
+		\lim_{x\to 0^{+}}\frac{\rme^{\rme^{x^{2}}}-\rme}{\braI{x^{\rme}+x^{\rme+1}}^{1/\rme}-x}=\lim_{x\to 0^{+}}\frac{\rme\braI{\rme^{\rme^{x^{2}}-1}-1}}{x\braII{\!\braI{1+x}^{1/\rme}-1}}=\lim_{x\to 0^{+}}\frac{\rme\braI{\rme^{x^{2}}-1}}{\sfrac{x^{2}}{\rme}}=\boxed{\rme^{2}}\ .
+	}
+}
+\Proof{要点}{
+	+ 分子结构为 $A-B$ 时, 通常可以尝试改写为 $B\braI{\sfrac{A}{B}-1}$ 的形式.
+	+ 注意本题中 $\lim_{x\to 0^{+}}$ 不能写作 $\lim_{x\to 0}$ , 因为 $x^{\rme}$ 对一切 $x<0$ 无意义.
+}
+
+\bigskip
+
+\Formula{C$_{\bm0}$}{
+	设数列 $(x_{n})_{n=1}^{\infty}$ 满足 $x_{1}=2$ 和
+	\Equation{
+		x_{n+1}=\frac{2}{x_{n}+1}\ ,
+	}
+	计算 $\lim_{n\to\infty}x_{n}$ .
+}
+\Proof{证明I\score{2}}{
+	\par 我们先用数学归纳法证明对一切正整数 $n$ 有 $x_{2n-1}>1$ 和 $x_{2n}<1$ 成立: 当 $n=1$ 时显然成立, 假设 $n=m$ 时成立, 则
+	\Equation{
+		x_{2m+1}=\frac{2}{x_{2m}+1}>1\AND x_{2m+2}=\frac{2}{x_{2m+1}+1}<1\ ,
+	}
+	因此上述命题对一切正整数 $n$ 成立, 也即数列 $a_{n}=x_{2n-1}$ 和 $b_{n}=x_{2n}$ 分别有下界和上界, 又由
+	\Equation{
+		x_{n+2}-x_{n}=\frac{2}{\sfrac{2}{\braI{x_{n}+1}}+1}-x_{n}=-\frac{\braI{x_{n}+2}\braI{x_{n}-1}}{x_{n}+3}
+	}
+	可知 $(a_{n})_{n=1}^{\infty}$ 和 $(b_{n})_{n=1}^{\infty}$ 分别递减和递增, 由单调有界准则可知其极限均存在, 又有
+	\Equation{
+		\lim_{n\to\infty}x_{2n-1}=\lim_{n\to\infty}x_{2n+1}=\lim_{n\to\infty}\frac{2}{\sfrac{2}{\braI{x_{2n-1}+1}}+1}\implies\lim_{n\to\infty}x_{2n-1}=1\ ,\\[-14mm]
+	}
+	\Equation{
+		\lim_{n\to\infty}x_{2n}=\lim_{n\to\infty}\frac{2}{x_{2n-1}+1}=1\ ,
+	}
+
+\newpage
+
+	\noindent 于是 $\lim_{n\to\infty}x_{n}=\boxed{1}$ .
+}
+\Proof{证明II\score{2}}{
+	\par 观察可得数列前几项为 $x_{1}=2$ , $x_{2}=\sfrac{2}{3}$ , $x_{3}=\sfrac{6}{5}$ , 下面我们先用数学归纳法证明 $\sfrac{2}{3}\leqslant x_{n}\leqslant\sfrac{6}{5}$ 对一切 $n\geqslant 2$ 成立: $n=2$ 时显然成立, 假设 $n=m$ 时成立, 则
+	\Equation{
+		x_{m+1}\in\braII{\frac{2}{\sfrac{6}{5}+1}\and\frac{2}{\sfrac{2}{3}+1}}=\braII{\frac{10}{11}\and\frac{6}{5}}\subset\braII{\frac{2}{3}\and\frac{6}{5}}\ ,
+	}
+	因此上述命题对一切 $n\geqslant 2$ 成立. 由此我们有
+	\Equation{
+		\frac{\braIV{x_{n+1}-1}}{\braIV{x_{n}-1}}\leqslant\frac{3}{5}\ ,
+	}
+	累乘后可得
+	\Equation{
+		\frac{\braIV{x_{n}-1}}{\braIV{x_{2}-1}}\leqslant\braI{\frac{3}{5}}^{n-2}\ ,
+	}
+	\Equation{
+		0\leqslant\braIV{x_{n}-1}\leqslant\frac{1}{3}\braI{\frac{3}{5}}^{n-2}\ ,
+	}
+	于是由迫敛性得 $\lim_{n\to\infty}x_{n}=\boxed{1}$ .
+}
+\Proof{$^{*}$证明III\score{1.5}}{
+	\par 令 $f\braI{x}=\sfrac{2}{\braI{x+1}}$ , 我们在证明II中已经证明了 $x_{n}\geqslant\sfrac{2}{3}$ 恒成立, 而
+	\Equation{
+		\Forall{x_{1}\and x_{2}}{\braVII{\sfrac{2}{3}\and+\infty}}
+		\braIV{f\braI{x_{1}}-f\braI{x_{2}}}&=\braIV{\frac{2}{\braI{x_{1}+1}\braI{x_{2}+1}}}\braIV{x_{1}-x_{2}}\\[1mm]
+		&\leqslant\frac{18}{25}\braIV{x_{1}-x_{2}}\ ,
+	}
+	因此 $f\braI{x}$ 在 $\braVII{\sfrac{2}{3}\and+\infty}$ 上为压缩映射, 由Banach不动点定理知 $\lim_{n\to\infty}x_{n}=\boxed{1}$ .
+}
+\Proof{证明IV\score{1.5}}{
+	\Equation{
+		x_{n+1}=\frac{2}{x_{n}+1}&\implies x_{n+1}-1=\frac{1-x_{n}}{x_{n}+1}\\[2mm]
+		&\implies\frac{1}{x_{n+1}-1}=-\frac{2}{x_{n}-1}-1\\[2mm]
+		&\implies\frac{1}{x_{n+1}-1}+\frac{1}{3}=-2\braI{\frac{1}{x_{n}-1}+\frac{1}{3}}\ ,
+	}
+	考虑数列 $a_{n}=\sfrac{1}{\braI{x_{n}-1}}+\sfrac{1}{3}$ , 这是一个等比数列, 并且 $a_{1}=\sfrac{4}{3}$ , 于是
+	\Equation{
+		a_{n}=\sfrac{4}{3}\cdot\braI{-2}^{n-1}\ ,
+	}
+	从而
+	\Equation{
+		\lim_{n\to\infty}x_{n}=\lim_{n\to\infty}\braI{\frac{3}{\braI{-2}^{n+1}-1}+1}=\boxed{1}\ .
+	}
+}
+\Proof{证明V\score{1.5}}{
+	\par 注意到
+	\Equation{
+		x_{n+1}+2=\frac{2x_{n}+4}{x_{n}+1}\AND x_{n+1}-1=\frac{1-x_{n}}{x_{n}+1}\ ,
+	}
+	两式相除可得
+	\Equation{
+		\frac{x_{n+1}+2}{x_{n+1}-1}=-2\cdot\frac{x_{n}+2}{x_{n}-1}\ ,
+	}
+	考虑数列 $a_{n}=\sfrac{\braI{x_{n}+2}}{\braI{x_{n}-1}}$ , 这是一个等比数列, 并且 $a_{1}=4$ , 于是
+	\Equation{
+		a_{n}=4\cdot\braI{-2}^{n-1}\ ,
+	}
+	从而
+	\Equation{
+		\lim_{n\to\infty}x_{n}=\lim_{n\to\infty}\braI{\frac{3}{\braI{-2}^{n+1}-1}+1}=\boxed{1}\ .
+	}
+}
+\Proof{要点}{
+	+ 当 $n\to\infty$ 时我们有 $\lim_{n\to\infty}x_{n}=\lim_{n\to\infty}x_{n+1}$ , 应用极限法则便可知极限只能是方程
+	\Equation{
+		x=\frac{2}{x+1}
+	}
+	的解, 但极限的存在性仍然需要证明.
+	+ 注意到数列 $(x_{n})_{n=1}^{\infty}$ 的奇子列和偶子列分别以相反的方向靠近极限值 $1$ , 我们可以通过其前几项来确定数列取值的范围.
+	+ 证明I中通过单调有界准则证明奇子列和偶子列的极限均存在后, 需要证明其极限相等.
+	+ Banach不动点定理可以推广到一般的完备度量空间, 感兴趣的读者可以自行了解.
+}
+
+\newpage

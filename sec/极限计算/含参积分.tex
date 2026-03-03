@@ -1,0 +1,126 @@
+
+\Theorem{含参积分极限法则}{
+    设函数 $f\braI{x\and t}$ 在 $\braII{a\and b}\times\braII{c\and d}$ 上连续, 且 $\lim_{x\to x_{0}}\alpha\braI{x}$ 和 $\lim_{x\to x_{0}}\beta\braI{x}$ 均存在, 则
+    \Equation{
+        \lim_{x\to x_{0}}\Int{\alpha(x)}{\beta(x)}{f\braI{x\and t}}{t}=\Int{\lim\limits_{x\to x_{0}}\alpha(x)}{\lim\limits_{x\to x_{0}}\beta(x)}{\lim_{x\to x_{0}}f\braI{x\and t}}{t}\ .
+    }
+}
+
+\Theorem{含参积分求导法则}{
+    设函数 $\alpha\and\beta$ 在 $\braII{a\and b}$ 上可导, 二元函数 $f\and f\fder_{1}$ 在 $\braI{a\and b}\times\braII{c\and d}$ 上连续, 且 $\alpha\braI{x}\and\beta\braI{x}\in\braII{a\and b}$ 对一切 $x\in\braII{a\and b}$ 成立, 则在 $\braII{a\and b}$ 上有
+    \Equation{
+        \frac{\partial}{\partial x}\Int{\alpha(x)}{\beta(x)}{f\braI{x\and t}}{t}=\Int{\alpha(x)}{\beta(x)}{f\fder_{1}\braI{x\and t}}{t}+\beta\fder\braI{x}f\braI{x\and\beta\braI{x}\!}-\alpha\fder\braI{x}f\braI{x\and\alpha\braI{x}\!}\ .
+    }
+}
+
+\par 变限积分求导法则可视为上述定理在 $f$ 退化为一元函数时的特例. 
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \lim_{x\to 0}\frac{\Int{0}{x^{2}}{\sin\braI{x-t}}{t}}{x^{3}}\ .
+    }
+}
+\Proof{证明I}{
+    \Equation{
+        \lim_{x\to 0}\frac{\Int{0}{x^{2}}{\sin\braI{x-t}}{t}}{x^{3}}\xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{\Int{0}{x^{2}}{\cos\braI{x-t}}{t}+2x\sin\braI{x-x^{2}}}{3x^{2}}\\[1mm]
+        =\,&\lim_{x\to 0}\frac{\Int{0}{x^{2}}{\cos\braI{x-t}}{t}}{3x^{2}}+\frac{2}{3}\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{-\Int{0}{x^{2}}{\sin\braI{x-t}}{t}+2x\cos\braI{x-x^{2}}}{6x}+\frac{2}{3}\\[1mm]
+        =\,&\lim_{x\to 0}\frac{-\Int{0}{x^{2}}{\sin\braI{x-t}}{t}}{6x}+1\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{-\Int{0}{x^{2}}{\cos\braI{x-t}}{t}-2x\sin\braI{x-x^{2}}}{6}+1\\[-1mm]
+        =\,&\,1\ .
+    }
+}
+\Proof{证明II}{
+    \Equation*{
+        \lim_{x\to 0}\frac{\Int{0}{x^{2}}{\sin\braI{x-t}}{t}}{x^{3}}\xlongequal{u\,=\,x-t}\,&\lim_{x\to 0}\frac{\Int{x-x^{2}}{x}{\sin u}{u}}{x^{3}}\\[1mm]
+        =\,&\lim_{x\to 0}\frac{\Int{0}{x}{\sin u}{u}-\Int{0}{x-x^{2}}{\sin u}{u}}{x^{3}}\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{\sin x-\braI{1-2x}\sin\braI{x-x^{2}}}{3x^{2}}\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{\cos x+2\sin\braI{x-x^{2}}-\braI{1-2x}^{2}\cos\braI{x-x^{2}}}{6x}\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0}\frac{-\sin x+\braI{1-2x}^{3}\sin\braI{x-x^{2}}-\braI{12x-6}\cos\braI{x-x^{2}}}{6}\\[-1mm]
+        =\,&\,1\ .
+    }
+}
+
+\par 对于计算较为复杂或者无法应用含参积分计算法则的情形, 一般需要通过放缩技巧并结合迫敛性来确定其极限.
+
+\Formula{例2}{
+    计算
+    \Equation{
+        \lim_{x\to 0^{+}}\frac{\Int{0}{x^{2}}{\sin\sqrt{x^{2}-t^{2}}}{t}}{x^{3}}\ .
+    }
+}
+\Proof{证明I}{
+    \par 考虑 $0<x<1$ 时的情形, 注意到
+    \Equation{
+        \frac{\sin\sqrt{x^{2}-x^{4}}}{x^{3}}\Int{0}{x^{2}}{\!}{t}<\frac{1}{x^{3}}\Int{0}{x^{2}}{\sin\sqrt{x^{2}-t^{2}}}{t}<\frac{\sin x}{x^{3}}\Int{0}{x^{2}}{\!}{t}\ ,\\[-14mm]
+    }
+    \Equation{
+        \frac{x^{2}\sin\sqrt{x^{2}-x^{4}}}{x^{3}}<\frac{1}{x^{3}}\Int{0}{x^{2}}{\sin\sqrt{x^{2}-t^{2}}}{t}<\frac{x^{2}\sin x}{x^{3}}\ ,
+    }
+    同时有
+    \Equation{
+        \lim_{x\to 0^{+}}\frac{x^{2}\sin\sqrt{x^{2}-x^{4}}}{x^{3}}=1\AND\lim_{x\to 0^{+}}\frac{x^{2}\sin x}{x^{3}}=1\ ,
+    }
+    于是由迫敛性有
+    \Equation{
+        \lim_{x\to 0^{+}}\frac{\Int{0}{x^{2}}{\sin\sqrt{x^{2}-t^{2}}}{t}}{x^{3}}=1\ .
+    }
+}
+\Proof{证明II}{
+    \Equation*{
+        \lim_{x\to 0^{+}}\frac{\Int{0}{x^{2}}{\sin\sqrt{x^{2}-t^{2}}}{t}}{x^{3}}\xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0^{+}}\frac{\Int{0}{x^{2}}{\frac{x\cos\sqrt{x^{2}-t^{2}}}{\sqrt{x^{2}-t^{2}}}}{t}+2x\sin\sqrt{x^{2}-x^{4}}}{3x^{2}}\\[1mm]
+        =\,&\lim_{x\to 0^{+}}\frac{\Int{0}{x^{2}}{\frac{\cos\sqrt{x^{2}-t^{2}}}{\sqrt{x^{2}-t^{2}}}}{t}}{3x}+\frac{2}{3}\\[1mm]
+        \xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0^{+}}\frac{-\Int{0}{x^{2}}{\frac{x\sin\sqrt{x^{2}-t^{2}}}{x^{2}-t^{2}\vphantom{\braI{^{2}}^{2}}}+\frac{x\cos\sqrt{x^{2}-t^{2}}}{\braI{x^{2}-t^{2}}^{3/2}}}{t}+\frac{2x\cos\sqrt{x^{2}-x^{4}}}{\sqrt{x^{2}-x^{4}}}}{3}+\frac{2}{3}\\[1mm]
+        =\,&\,\frac{4}{3}-\frac{1}{3}\braI{\lim_{x\to 0^{+}}\frac{x^{3}\sin\sqrt{x^{2}-\xi^{2}\braI{x}}}{x^{2}-\xi^{2}\braI{x}}+\lim_{x\to 0^{+}}\frac{x^{3}\cos\sqrt{x^{2}-\xi^{2}\braI{x}}}{\braI{x^{2}-\xi^{2}\braI{x}\!}^{3/2}}}\\[1mm]
+        =\,&\,\frac{4}{3}-\frac{1}{3}\braI{\lim_{x\to 0^{+}}\frac{x^{3}}{\braI{x^{2}-\xi^{2}\braI{x}\!}^{1/2}}+\lim_{x\to 0^{+}}\frac{x^{3}}{\braI{x^{2}-\xi^{2}\braI{x}\!}^{3/2}}}\\[-1mm]
+        =\,&\,1\ ,
+    }
+    其中最后一个等式是由于
+    \Equation*{
+        \xi\braI{x}<x^{2}\implies\lim_{x\to 0^{+}}\frac{\xi\braI{x}}{x}=0\implies\lim_{x\to 0^{+}}\frac{x^{3}}{\braI{x^{2}-\xi^{2}\braI{x}\!}^{3/2}}=\lim_{x\to 0^{+}}\frac{1}{\braI{1-\bigsfrac{\xi^{2}\braI{x}}{x^{2}}}^{3/2}}=1\ .
+    }
+}
+
+\Formula{例3}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{\frac{nx^{n}}{x+1}}{x}\ .
+    }
+}
+\Proof{证明I}{
+    \par 注意到对一切 $0<x<1$ 有
+    \Equation{
+        \frac{nx^{n+1}}{\braI{n+1}\braI{x+1}^{2}}<\frac{nx^{n+1}}{n+1}\ ,
+    }
+    根据广义积分的严格保序性和迫敛性有
+    \Equation{
+        \Int{0}{1}{\frac{nx^{n+1}}{\braI{n+1}\braI{x+1}^{2}}}{x}<\Int{0}{1}{\frac{nx^{n+1}}{n+1}}{x}=\frac{nx^{n+2}}{n^{2}+3n+2}\,\bigg|_{\,x=0}^{\,x=1}=\frac{n}{n^{2}+3n+2}\ ,\\[-14mm]
+    }
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{\frac{nx^{n+1}}{\braI{n+1}\braI{x+1}^{2}}}{x}=0\ ,
+    }
+    于是
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{\frac{nx^{n}}{x+1}}{x}=\lim_{n\to\infty}\braI{\frac{nx^{n+1}}{\braI{n+1}\braI{x+1}}\,\bigg|_{\,x=0}^{\,x=1}+\Int{0}{1}{\frac{nx^{n+1}}{\braI{n+1}\braI{x+1}^{2}}}{x}}=\frac{1}{2}\ .
+    }
+}
+
+\newpage
+
+\Proof{证明II}{
+    \par 注意到对一切 $0<x<1$ 有
+    \Equation{
+        \frac{x}{2}\leqslant\frac{x}{x+1}\leqslant\frac{1}{2}\implies\frac{nx^{n}}{2}\leqslant\frac{nx^{n}}{x+1}\leqslant\frac{nx^{n-1}}{2}
+    }
+    成立, 于是根据广义积分的严格保序性有
+    \Equation{
+        \frac{n}{2n+2}=\Int{0}{1}{\frac{nx^{n}}{2}}{x}\leqslant\Int{0}{1}{\frac{nx^{n}}{x+1}}{x}\leqslant\Int{0}{1}{\frac{nx^{n-1}}{2}}{x}=\frac{1}{2}\ ,
+    }
+    再由迫敛性得
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{\frac{nx^{n}}{x+1}}{x}=\frac{1}{2}\ .
+    }
+}
+
+\newpage

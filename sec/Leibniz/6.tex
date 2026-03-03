@@ -1,0 +1,133 @@
+
+\Formula{A$_{\bm6}$}{
+	计算 $$\lim_{x\to\infty}x^{2}\braI{\rme^{1/x}-\rme^{1/(x+1)}}\ .$$
+}
+\Proof{证明I\score{1}}{
+	\par 由\link{Alpha}{Lagrange中值定理}知对一切 $\braIV{x}>1$ 存在
+    \Equation{
+        \xi\braI{x}\in\braI{\frac{1}{x+1}\and\frac{1}{x}}
+    }
+    使得
+    \Equation{
+        \rme^{1/x}-\rme^{1/(x+1)}=\frac{\rmd}{\rmd t}\braI{\rme^{t}}\bigsubst{t=\xi(x)}{}\braI{\frac{1}{x}-\frac{1}{x+1}}=\frac{\rme^{\xi(x)}}{x^{2}+x}\ ,
+    }
+    而 $x\to\infty$ 时根据迫敛性有 $\xi\braI{x}\to 0$ , 于是
+    \Equation{
+        \lim_{x\to\infty}x^{2}\braI{\rme^{1/x}-\rme^{1/(x+1)}}=\lim_{x\to\infty}\frac{x^{2}}{x^{2}+x}\rme^{\xi(x)}=\boxed{1}\ .
+    }
+}
+\Proof{证明II\score{0.5}}{
+	\Equation{
+		\lim_{x\to\infty}x^{2}\braI{\rme^{1/x}-\rme^{1/(x+1)}}=\lim_{x\to 0}\frac{\rme^{x}-\rme^{x/(x+1)}}{x^{2}}=-\lim_{x\to 0}\frac{\rme^{x}\braI{\exp\braI{-\frac{x^{2}}{x+1}}-1}}{x^{2}}=\boxed{1}\ .
+	}
+}
+\Proof{要点}{
+	+ 使用Lagrange中值定理求解极限的方法大多数情况下均可被L'Hôpital法则替代, 但在过程书写上往往更加简洁, 读者可自行尝试并比对复杂度.
+	+ 若使用Lagrange中值定理得到的中值函数 $\xi\braI{x}$ 不随 $x$ 而收敛, 则该方法失效, 但并不代表极限一定不存在, 此时需要考虑使用其它极限计算方法.
+	+ 对于一些更加复杂的问题, 我们不仅需要计算 $\lim\xi\braI{x}$ , 还需要得到 $\xi\braI{x}$ 作为无穷小量或无穷大量的阶.
+}
+
+\bigskip
+
+\Formula{B$_{\bm6}$}{
+	设 $f$ 是定义在 $\bfR$ 上的函数, 并且 $$f\braI{tx+\braI{1-t}y}\leqslant tf\braI{x}+\braI{1-t}f\braI{y}$$ 对任意 $x\and y\in\bfR$ 和 $0<t<1$ 成立, 证明 $g\braI{x}=f\braI{x}+f\braI{-x}$ 在 $\braVII{0\and+\infty}$ 上递增.
+}
+
+\newpage
+
+\Proof{证明\score{1}}{
+	\par 对任意的 $0\leqslant x_{1}<x_{2}$ , 分别将
+    \Equation{
+        \braI{t\and x\and y}=\braI{\frac{x_{1}+x_{2}}{2x_{2}}\and x_{2}\and-x_{2}}\AND\braI{t\and x\and y}=\braI{\frac{x_{1}+x_{2}}{2x_{2}}\and-x_{2}\and x_{2}}\ ,
+    }
+    代入不等式有
+    \Equation{
+        f\braI{x_{1}}\leqslant\frac{x_{1}+x_{2}}{2x_{2}}f\braI{x_{2}}+\frac{x_{2}-x_{1}}{2x_{2}}f\braI{-x_{2}}\ ,\\[-14mm]
+    }
+    \Equation{
+        f\braI{-x_{1}}\leqslant\frac{x_{1}+x_{2}}{2x_{2}}f\braI{-x_{2}}+\frac{x_{2}-x_{1}}{2x_{2}}f\braI{x_{2}}\ ,
+    }
+    相加即得
+    \Equation{
+        f\braI{x_{1}}+f\braI{-x_{1}}\leqslant f\braI{x_{2}}+f\braI{-x_{2}}\ ,
+    }
+    这就证明了 $g$ 在 $\braVII{0\and+\infty}$ 上单调递增.
+}
+\Proof{要点}{
+	+ 本题条件表明 $f$ 为下凸函数.
+	+ 本题未要求 $f$ 在任何区间上可导, 因此无法通过计算 $g$ 的导数来证明其单调性.
+	+ 注意不等式的方向, 通过合适的取值使得 $tx+\braI{1-t}y$ 取得 $x_{1}$ 和 $-x_{1}$ 即可完成构造.
+}
+
+\bigskip
+
+\Formula{C$_{\bm6}$}{
+	设 $\braVII{0\and+\infty}$ 上的可导函数 $f$ 满足 $f\braI{0}=1$ 且 $\braIV{f\braI{x}}\leqslant\rme^{-x}$ 恒成立, 证明存在 $\xi\in\braI{0\and+\infty}$ 使得 $$f\fder\braI{\xi}+\rme^{-\xi}=0\ .$$
+}
+\Proof{证明\score{1.5}}{
+	\par 构造函数
+    \Equation{
+        F\braI{x}=\casesII{f\braI{\tan x}-\rme^{-\tan x}}{x\in\braVII{0\and\sfrac{\pi}{2}}}{-2}{0}{x=\sfrac{\pi}{2}}\ ,
+    }
+    由 $0\leqslant\braIV{f\braI{x}}\leqslant\rme^{-x}$ 有
+    \Equation{
+        \lim_{x\to\pi/2^{-}}F\braI{x}=\lim_{x\to+\infty}f\braI{x}-\lim_{x\to+\infty}\rme^{-x}=0\ ,
+    }
+
+\newpage
+
+    \noindent 即 $F\braI{x}$ 在 $\braII{0\and\sfrac{\pi}{2}}$ 上连续, 对此应用\link{Alpha}{Rolle中值定理}可知存在 $\xi_{0}\in\braI{0\and\sfrac{\pi}{2}}$ 使得
+    \Equation{
+        F\fder\braI{\xi_{0}}=\sec^{2}\xi_{0}\braI{f\fder\braI{\tan\xi_{0}}+\rme^{-\tan\xi_{0}}}=0\ ,
+    }
+	显然 $\sec^{2}\xi_{0}\ne 0$ , 于是令 $\xi=\tan\xi_{0}$ 即可完成证明.
+}
+\Proof{要点}{
+	+ 如果函数在区间边界处无定义但单侧极限存在, 可以考虑在该处对函数进行延拓来适用各种中值定理.
+	+ 可以通过作代换 $x'=\tan x$ 来将无限区间上的问题转化至有限区间上.
+}
+
+\bigskip
+
+\Formula{END$_{\,\mathbf{Leibniz}}$}{
+	证明不存在在 $\bfR$ 上连续可导的严格递增函数 $f$ 满足 $f\fder\braI{x}=f\braI{f\braI{x}\!}$ .
+}
+\Proof{证明\score{(1+2+4)}}{
+	\par 由于 $f$ 严格递增, 故显然其值域构成开区间. 下面我们先证明其值域不可能为 $\braI{a\and b}$ , 其中 $a\and b\in\bfR$ .
+    \par 假设 $f$ 的值域为 $\braI{a\and b}$ , 由单调有界准则知必有
+    \Equation{
+        \lim_{x\to-\infty}f\braI{x}=a\AND\lim_{x\to+\infty}f\braI{x}=b\ ,
+    }
+    又由 $f$ 在 $\bfR$ 上连续知
+    \Equation{
+        \lim_{x\to-\infty}f\fder\braI{x}=\lim_{x\to-\infty}f\braI{f\braI{x}\!}=f\braI{a}\ ,\\[-16mm]
+    }
+    \Equation{
+        \lim_{x\to+\infty}f\fder\braI{x}=\lim_{x\to+\infty}f\braI{f\braI{x}\!}=f\braI{b}\ ,
+    }
+    因此
+    \Equation{
+        a=\lim_{x\to-\infty}\frac{\rme^{x}f\braI{x}}{\rme^{x}}\xlongequal{\rm{L'H}}\lim_{x\to-\infty}\frac{\rme^{x}\braI{f\braI{x}+f\fder\braI{x}\!}}{\rme^{x}}=a+f\braI{a}\ ,\\[-14mm]
+    }
+    \Equation{
+        b=\lim_{x\to+\infty}\frac{\rme^{x}f\braI{x}}{\rme^{x}}\xlongequal{\mathrm{L'H}}\lim_{x\to+\infty}\frac{\rme^{x}\braI{f\braI{x}+f\fder\braI{x}\!}}{\rme^{x}}=b+f\braI{b}\ ,
+    }
+    从而 $f\braI{a}=f\braI{b}=0$ , 这与 $f$ 严格递增矛盾.
+    \par 不妨设 $f$ 的值域为 $\braI{a\and+\infty}$ , 其余情况则可类似地导出矛盾. 注意到
+    \Equation{
+        \lim_{x\to+\infty}\frac{f\braI{x}}{x}\xlongequal{\rm{L'H}}\lim_{x\to+\infty}f\fder\braI{x}=\lim_{x\to+\infty}f\braI{f\braI{x}\!}=+\infty\ ,
+    }
+
+\newpage
+
+	\noindent 故存在正数 $x_{0}$ 使得 $f\braI{x_{0}}-x_{0}>1$ , 由\link{Alpha}{Lagrange中值定理}知对某个 $\xi\in\braI{x_{0}\and f\braI{x_{0}}\!}$ 有
+    \Equation{
+        f\fder\braI{\xi}=\frac{f\braI{f\braI{x_{0}}\!}-f\braI{x_{0}}}{f\braI{x_{0}}-x_{0}}<f\braI{f\braI{x_{0}}\!}=f\fder\braI{x_{0}}\ ,
+    }
+    这与 $f\fder\braI{x}=f\braI{f\braI{x}\!}$ 严格递增矛盾. 从而不存在符合条件的函数 $f$ .
+}
+\Proof{要点}{
+	+ 讨论 $\lim_{x\to\infty}f\braI{x}$ 的收敛情况, 往往可以作为嵌套函数形态分析的着手点.
+}
+
+\newpage

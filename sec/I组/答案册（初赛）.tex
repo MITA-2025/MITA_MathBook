@@ -1,0 +1,143 @@
+
+\leaf{1}{
+	$\boxed{-1}$
+}
+
+\leaf{2}{
+	$\boxed{\sfrac{\rme}{2}-1}$
+}
+
+\leaf{3}{
+	$\boxed{-\frac{3^{n}n\,!}{4}\pi}$
+}
+
+\leaf{4}{
+	$\boxed{-6}$
+}
+
+\leaf{5}{
+	$\boxed{3x+3y-1=0}$ 或 $\boxed{y=\sfrac{1}{3}-x}$
+}
+
+\bigskip
+
+\stem{A}{
+	\branch{A$_{\bm1}$}{
+		\par 只需保证 $g$ 在 $x=0$ 处连续即可, 因此
+		\Equation{
+			a=g\braI{0}=\lim_{x\to 0}g\braI{x}=\lim_{x\to 0}\frac{f\braI{x}}{x}=\lim_{x\to 0}f\fder\braI{x}=f\fder\braI{0}=0\ .
+		}
+	}
+	\branch{A$_{\bm2}$}{
+		\par 当 $x\ne 0$ 时, 我们有
+		\Equation{
+			g\fder\braI{x}=\frac{xf\fder\braI{x}-f\braI{x}}{x^{2}}\ ,
+		}
+		\par 当 $x=0$ 时, 我们有
+		\Equation{
+			g\fder\braI{0}=\lim_{x\to 0}\frac{g\braI{x}-g\braI{0}}{x}=\lim_{x\to 0}\frac{f\braI{x}}{x^2}\xlongequal{\mathrm{L'H}}\lim_{x\to 0}\frac{f\fder\braI{x}}{2x}=\frac{1}{2}f\fdder\braI{0}\ ,
+		}
+		于是 $g$ 在 $\bfR$ 上可导.
+		\par 最后, 我们有
+		\Equation{
+			\lim_{x\to 0}g\fder\braI{x}=\lim_{x\to 0}\frac{f\fder\braI{x}-f\fder\braI{0}}{x}-\lim_{x\to 0}\frac{f\braI{x}}{x^{2}}=f\fdder\braI{0}-\frac{1}{2}f\fdder\braI{0}=\frac{1}{2}f\fdder\braI{0}=g\fder\braI{0}\ ,
+		}
+		于是 $g\fder$ 在 $x=0$ 处连续, 进而 $g\fder$ 在 $\bfR$ 上连续.
+	}
+}
+
+\newpage
+
+\stem{B}{
+	\branch{B$_{\bm1}$}{
+		\par 考虑函数
+		\Equation{
+			G\braI{x}=x+\Int{0}{x}{f\braI{s}}{s}\ ,
+		}
+		我们有 $G\fder\braI{x}=\braI{1+f\braI{x}\!}>0$ , 因此 $G$ 在 $\braVII{0\and+\infty}$ 上严格递增, 于是
+		\Equation{
+			F\fder\braI{x}\xlongequal{u=x-t}\,&\,\braII{\Int{0}{x}{\braI{2t-x}f\braI{G\braI{x-t}\!}}{t}}'\\[1mm]
+			=\,&\,\braII{\Int{0}{x}{\braI{x-2u}f\braI{G\braI{u}\!}}{u}}'\\[1mm]
+			=\,&\,\braII{x\Int{0}{x}{f\braI{G\braI{u}\!}}{u}}'-2\braII{\Int{0}{x}{uf\braI{G\braI{u}\!}}{u}}'\\[1mm]
+			=\,&\,\Int{0}{x}{f\braI{G\braI{u}\!}}{u}+xf\braI{G\braI{x}\!}-2xf\braI{G\braI{x}\!}\\[1mm]
+			=\,&\,\Int{0}{x}{f\braI{G\braI{u}\!}}{u}-xf\braI{G\braI{x}\!}\\[1mm]
+			=\,&\,\Int{0}{x}{f\braI{G\braI{u}\!}-f\braI{G\braI{x}\!}}{u}\\[-1mm]
+			<\,&\,0\ ,
+		}
+		这就证明了 $F$ 在 $\braVII{0\and+\infty}$ 上严格递减.
+	}
+}
+
+\stem{C}{
+	\branch{C$_{\bm1}$}{
+		\par 假设存在 $x_{0}\in\braI{0\and 1}$ 使得 $f\braI{x_{0}}>0$ , 则由连续性可知 $\lim_{x\to x_{0}}f\braI{x}>0$ , 又由极限的保号性知存在 $\delta>0$ 使得对一切 $x\in\braI{x_{0}-\delta\and x_{0}+\delta}$ 有 $f\braI{x}>0$ 成立, 于是
+		\Equation{
+			\Int{x_{0}-\delta}{x_{0}+\delta}{f\braI{x}}{x}>0\ ,
+		}
+		同时又有
+		\Equation{
+			\Int{0}{x_{0}-\delta}{f\braI{x}}{x}\geqslant 0\AND\Int{x_{0}+\delta}{1}{f\braI{x}}{x}\geqslant 0\ ,
+		}
+
+\newpage
+
+		\noindent 于是
+		\Equation{
+			\Int{0}{1}{f\braI{x}}{x}=\Int{0}{x_{0}-\delta}{f\braI{x}}{x}+\Int{x_{0}-\delta}{x_{0}+\delta}{f\braI{x}}{x}+\Int{x_{0}+\delta}{1}{f\braI{x}}{x}>0\ ,
+		}
+		这就导出了矛盾, 因此 $f\braI{x}=0$ .
+	}
+	\branch{C$_{\bm2}$}{
+		\par 注意到
+		\Equation{
+			\Int{0}{1}{\braI{f\braI{x}-2x}^{2}}{x}=\frac{1}{3}\braI{3\Int{0}{1}{f^{2}\braI{x}}{x}-12\Int{0}{1}{xf\braI{x}}{x}+4}=0\ ,
+		}
+		于是应用\textbf{C$_{\bm1}$}中所得的结论有 $f\braI{x}=2x$ .
+	}
+}
+
+\stem{D}{
+	\branch{D$_{\bm1}$}{
+		\par 考虑函数
+		\Equation{
+			F\braI{x}=f\braI{x}\exp\braI{\Int{0}{x}{f\braI{t}}{t}}\ ,
+		}
+		注意到 $F\braI{0}=F\braI{1}=0$ , 对 $F$ 应用\link{Alpha}{Rolle中值定理}可知存在 $\xi\in\braI{0\and 1}$ 使得
+		\Equation{
+			F\fder\braI{\xi}=\exp\braI{\Int{0}{\xi}{f\braI{t}}{t}}\braI{f\fder\braI{\xi}+f^{2}\braI{\xi}\!}=0\ ,
+		}
+		即 $f\fder\braI{\xi}+f^{2}\braI{\xi}=0$ .
+	}
+	\branch{D$_{\bm2}$}{
+		\par 考虑函数
+		\Equation{
+			F\braI{x}=\braII{xf\braI{x}+f\braI{x}-1}\exp\braI{\Int{0}{x}{f\braI{t}}{t}}\ ,
+		}
+		注意到 $F\braI{0}=F\braI{1}=0$ , 对 $F$ 应用\link{Alpha}{Rolle中值定理}可知存在 $\xi\in\braI{0\and 1}$ 使得
+		\Equation{
+			F\fder\braI{\xi}=\exp\braI{\Int{0}{\xi}{f\braI{t}}{t}}\braI{f\fder\braI{\xi}+f^{2}\braI{\xi}\!}\braI{\xi+1}=0\ ,
+		}
+		即 $f\fder\braI{\xi}+f^{2}\braI{\xi}=0$ .
+	}
+}
+
+\newpage
+
+\stem{E}{
+	\branch{E$_{\bm1}$}{
+		\par 考虑函数
+        \Equation{
+            F\braI{x}=\frac{x\Int{0}{x}{f^{2}\braI{t}}{t}}{\braI{\Int{0}{x}{f\braI{t}}{t}}^{2}}\ ,
+        }
+        我们有
+        \Equation{
+            \lim_{x\to 0^{+}}F\braI{x}\xlongequal{\mathrm{L'H}}\,&\lim_{x\to 0^{+}}\frac{\Int{0}{x}{f^{2}\braI{t}}{t}+xf^{2}\braI{x}}{2f\braI{x}\Int{0}{x}{f\braI{t}}{t}}\\[1mm]
+            =\,&\,\frac{1}{2f\braI{0}}\lim_{x\to 0^{+}}\frac{\Int{0}{x}{f^{2}\braI{t}}{t}}{\Int{0}{x}{f\braI{t}}{t}}+\frac{f\braI{0}}{2}\lim_{x\to 0^{+}}\frac{x}{\Int{0}{x}{f\braI{t}}{t}}\\[1mm]
+            \xlongequal{\mathrm{L'H}}\,&\,\frac{1}{2f\braI{0}}\lim_{x\to 0^{+}}f\braI{x}+\frac{f\braI{0}}{2}\lim_{x\to 0^{+}}\frac{1}{f\braI{x}}\\[-1mm]
+            =\,&\,1\ ,
+        }
+		而 $F\braI{x}=\sfrac{1}{a}$ 对一切 $x>0$ 成立, 于是符合条件的 $f$ 存在当且仅当 $a=1$ .
+	}
+}
+
+\newpage

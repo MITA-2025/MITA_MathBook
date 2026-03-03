@@ -1,0 +1,181 @@
+
+\Formula{A$_{\bm9}$}{
+	设函数 $f$ 在 $\braVII{0\and+\infty}$ 上连续, 并且 $\lim_{x\to+\infty}f\braI{x}=L$ , 证明
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{f\braI{nx}}{x}=L\ .
+    }
+}
+\Proof{证明\score{1}}{
+	\par 由积分中值定理I有
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{f\braI{nx}}{x}=\lim_{n\to\infty}\frac{\Int{0}{n}{f\braI{x}}{x}}{n}\xlongequal{\rm{Stolz}}\lim_{n\to\infty}\Int{n}{n+1}{f\braI{x}}{x}=\lim_{n\to\infty}f\braI{\xi_{n}}\ ,
+    }
+    其中 $\xi_{n}\in\braI{n\and n+1}$ , 由迫敛性得 $\lim_{n\to\infty}\xi_{n}=+\infty$ , 因此
+    \Equation{
+        \lim_{n\to\infty}\Int{0}{1}{f\braI{nx}}{x}=\lim_{x\to+\infty}f\braI{x}=L\ .
+    }
+}
+
+\bigskip
+
+\Formula{B$_{\bm9}$}{
+	设函数 $f\and g$ 在 $\braII{0\and 1}$ 上连续, 证明
+	\Equation{
+		\braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}\leqslant\Int{0}{1}{f^{2\!}\braI{x}}{x}\ \Int{0}{1}{g^{2\!}\braI{x}}{x}\ .
+	}
+}
+\Proof{证明I\score{2}}{
+    \par 若
+    \Equation{
+        \Int{0}{1}{f^{2\!}\braI{x}}{x}=0\ ,
+    }
+    则 $f\braI{x}=0$ 恒成立, 此时命题显然成立.
+    \par 否则, 考虑关于 $\lambda$ 的多项式函数
+    \Equation*{
+        \Int{0}{1}{\braI{\lambda f\braI{x}-g\braI{x}}^{2}\!}{x}=\braI{\Int{0}{1}{f^{2\!}\braI{x}}{x}}\lambda^{2}-2\braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}\lambda+\Int{0}{1}{g^{2\!}\braI{x}}{x}\ ,
+    }
+    注意到该函数对一切 $\lambda\in\bfR$ 非负, 由二次函数判别式知
+    \Equation{
+        \braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}\leqslant\Int{0}{1}{f^{2\!}\braI{x}}{x}\ \Int{0}{1}{g^{2\!}\braI{x}}{x}\ ,
+    }
+    这就证明了上述命题成立.
+}
+\newpage
+\Proof{证明II\score{2}}{
+    \par 若
+    \Equation{
+        \Int{0}{1}{g^{2\!}\braI{x}}{x}=0\ ,
+    }
+    则 $g\braI{x}=0$ 恒成立, 此时命题显然成立.
+    \par 否则, 我们可以对 $f$ 进行正交分解
+    \Equation*{
+        \Int{0}{1}{f^{2\!}\braI{x}}{x}&=\Int{0}{1}{\braI{\frac{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}{\Int{0}{1}{g^{2\!}\braI{x}}{x}}g\braI{x}+\braI{f\braI{x}-\frac{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}{\Int{0}{1}{g^{2\!}\braI{x}}{x}}g\braI{x}}\!}^{2}}{x}\\[1mm]
+        &=\frac{\braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}}{\Int{0}{1}{g^{2\!}\braI{x}}{x}}+\Int{0}{1}{\braI{f\braI{x}-\frac{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}{\Int{0}{1}{g^{2\!}\braI{x}}{x}}g\braI{x}}^{2}}{x}\\[1mm]
+        &\geqslant\frac{\braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}}{\Int{0}{1}{g^{2\!}\braI{x}}{x}}\ ,
+    }
+    这就证明了上述命题成立.
+}
+\Proof{证明III\score{2}}{
+    \par 若
+    \Equation{
+        \Int{0}{1}{f^{2\!}\braI{x}}{x}=0\OR\Int{0}{1}{g^{2\!}\braI{x}}{x}=0\ ,
+    }
+    则 $f\braI{x}=0$ 或 $g\braI{x}=0$ 恒成立, 此时命题显然成立.
+    \par 否则, 我们有
+    \Equation*{
+        2\Int{0}{1}{\frac{f\braI{x}}{\sqrt{\Int{0}{1}{f^{2\!}\braI{t}}{t}}}\frac{g\braI{x}}{\sqrt{\Int{0}{1}{g^{2\!}\braI{t}}{t}}}}{x}\leqslant\Int{0}{1}{\braI{\frac{f\braI{x}}{\sqrt{\Int{0}{1}{f^{2\!}\braI{t}}{t}}}}^{2}}{x}+\Int{0}{1}{\braI{\frac{g\braI{x}}{\sqrt{\Int{0}{1}{g^{2\!}\braI{t}}{t}}}}^{2}}{x}=2\ ,
+    }
+    于是
+    \Equation{
+        \Int{0}{1}{f\braI{x}g\braI{x}}{x}\leqslant\sqrt{\Int{0}{1}{f^{2\!}\braI{x}}{x}}\ \sqrt{\Int{0}{1}{g^{2\!}\braI{x}}{x}}\ ,
+    }
+    这就证明了上述命题成立.
+}
+\Proof{证明IV\score{1.5}}{
+    \par 由Cauchy不等式可知
+    \Equation{
+        \braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}&=\braI{\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f\braI{\frac{k}{n}}g\braI{\frac{k}{n}}\!}^{2}\\[1mm]
+        &=\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\braI{\frac{f\braI{\sfrac{k}{n}}}{\sqrt{n}}}\braI{\frac{g\braI{\sfrac{k}{n}}}{\sqrt{n}}}\!}^{2}\\[1mm]
+        &\leqslant\lim_{n\to\infty}\braII{\sum_{k=1}^{n}\braI{\frac{f\braI{\sfrac{k}{n}}}{\sqrt{n}}}^{2}\sum_{k=1}^{n}\braI{\frac{g\braI{\sfrac{k}{n}}}{\sqrt{n}}}^{2}}\\[1mm]
+        &\leqslant\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}f^{2\!}\braI{\frac{k}{n}}\cdot\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}g^{2\!}\braI{\frac{k}{n}}\\[1mm]
+        &=\Int{0}{1}{f^{2\!}\braI{x}}{x}\ \Int{0}{1}{g^{2\!}\braI{x}}{x}\ .
+    }
+}
+\Proof{证明V\score{1.5}}{
+    \Equation*{
+        &\quad\,\Int{0}{1}{\!\Int{0}{1}{\braI{f\braI{x}g\braI{y}-f\braI{y}g\braI{x}\!}^{2}}{y}}{x}\\[1mm]
+        &=\Int{0}{1}{\!\Int{0}{1}{f^{2\!}\braI{x}g^{2\!}\braI{y}}{y}}{x}+\Int{0}{1}{\!\Int{0}{1}{f^{2\!}\braI{y}g^{2\!}\braI{x}}{y}}{x}-2\Int{0}{1}{\!\Int{0}{1}{f\braI{x}g\braI{y}f\braI{y}g\braI{x}}{y}}{x}\\[1mm]
+        &=2\Int{0}{1}{f^{2\!}\braI{x}}{x}\ \Int{0}{1}{g^{2\!}\braI{x}}{x}-2\braI{\Int{0}{1}{f\braI{x}g\braI{x}}{x}}^{2}\ ,
+    }
+    显然该积分非负, 因此上述命题成立.
+}
+\Proof{证明VI\score{1.5}}{
+    \par 考虑函数
+    \Equation{
+        \Delta\braI{x}=\Int{0}{x}{f^{2\!}\braI{t}}{t}\ \Int{0}{x}{g^{2\!}\braI{t}}{t}-\braI{\Int{0}{x}{f\braI{t}g\braI{t}}{t}}^{2}\ ,
+    }
+    我们有
+    \Equation{
+        \Delta\fder\braI{x}&=f^{2\!}\braI{x}\Int{0}{x}{g^{2\!}\braI{t}}{t}+g^{2\!}\braI{x}\Int{0}{x}{f^{2\!}\braI{t}}{t}-2f\braI{x}g\braI{x}\Int{0}{x}{f\braI{t}g\braI{t}}{t}\\[1mm]
+        &=\Int{0}{x}{\braI{f\braI{x}g\braI{t}-f\braI{t}g\braI{x}\!}^{2}}{t}\\[-1mm]
+        &\geqslant0\ ,
+    }
+    并且 $\Delta\braI{0}=0$ , 因此 $\Delta\braI{1}\geqslant0$ , 这就证明了上述命题成立.
+}
+
+\newpage
+
+\bigskip
+
+\Proof{要点}{
+    + 除后三种证明外, 其余方法均需考虑积分值为 $0$ 的平凡情形.
+    + 本题所证结论即定积分形式的Cauchy\—Schwarz不等式, 事实上, 我们可以将其推广至一般的内积空间: 设 $\braI{V\and\braV{\cdot\and\cdot}\!}$ 是内积空间, $\norm{\cdot}$ 是由内积 $\braV{\cdot\and\cdot}$ 诱导的范数, 则
+    \Equation{
+        \Forall{\bm v_{1}\and\bm v_{2}}{V}
+        \norm{\bm v_{1}}\norm{\bm v_{2}}\geqslant\braIV{\!\braV{\bm v_{1}\and\bm v_{2}}\!}\ ,
+    }
+    其中等号当且仅当 $\braI{\bm v_{1}\and\bm v_{2}}$ 线性相关时取得. 其证明方式与证明II一致, 对于本题结论, 只需在内积空间 $\braI{C\braII{0\and 1}\and\braV{\cdot\and\cdot}_{\bfR}}$ 中应用上述一般情形的结论即可, 其中 $\braV{\cdot\and\cdot}_{\bfR}$ 定义为
+    \Equation{
+        \braV{f\and g}_{\bfR}:=\Int{0}{1}{f\braI{x}g\braI{x}}{x}\ ,
+    }
+    此时不等式取等条件为 $f$ 与 $g$ 在 $\braII{0\and 1}$ 上线性相关, 即存在常数 $\lambda\and\mu\in\bfR$ 使得 $\lambda f\braI{x}+\mu g\braI{x}=0$ 对一切 $x\in\braII{0\and 1}$ 成立.
+}
+
+\Formula{C$_{\bm9}$}{
+	设函数 $f$ 在 $\braII{0\and 1}$ 上一阶连续可导, 并且 $f\braI{0}=0$ , 证明
+    \Equation{
+        \Int{0}{1}{f^{2\!}\braI{x}}{x}\leqslant 4\Int{0}{1}{\braI{1-x}^{2}\braI{f\fder\braI{x}\!}^{2}}{x}\ .
+    }
+}
+\Proof{证明\score{1.5}}{
+	\par 若 $f\braI{x}=0$ , 则该命题显然成立; 否则由\textbf{B}$_{\bm9}$可得
+    \Equation{
+        \Int{0}{1}{f^{2\!}\braI{x}}{x}&=\braI{x-1}f^{2\!}\braI{x}\subst{0}{1}-2\Int{0}{1}{\braI{x-1}f\braI{x}f\fder\braI{x}}{x}\\[1mm]
+        &=2\Int{0}{1}{\braI{1-x}f\braI{x}f\fder\braI{x}}{x}\\[1mm]
+        &\leqslant2\braI{\Int{0}{1}{\braI{1-x}^{2}\braI{f\fder\braI{x}\!}^{2}}{x}}^{1/2}\braI{\Int{0}{1}{f^{2\!}\braI{x}}{x}}^{1/2}\ ,
+    }
+    于是
+    \Equation{
+        \braI{\Int{0}{1}{f^{2\!}\braI{x}}{x}}^{1/2}\leqslant2\braI{\Int{0}{1}{\braI{1-x}^{2}\braI{f\fder\braI{x}\!}^{2}}{x}}^{1/2}\ ,
+    }
+    不等式两侧同时平方即证.
+}
+
+\newpage
+
+\Formula{END$_{\,\mathbf{Riemann}}$}{
+	计算 $$\Int{-7/3}{-11/4}{\frac{x+4}{\braI{x+3}\braI{x+5}}\arccos\braI{\frac{1}{x+4}}}{x}\ .$$
+}
+\Proof{证明\score{(5+5)}}{
+    \par 注意到
+    \Equation{
+        \arccos\braI{\frac{1}{x}}=\arctan\sqrt{x^{2}-1}\ ,
+    }
+    我们有
+    \Equation*{
+        \Int{-7/3}{-11/4}{\frac{x+4}{\braI{x+3}\braI{x+5}}\arccos\braI{\frac{1}{x+4}}}{x}\xlongequal{t=(x+4)^{2}-1}\,&\,\Int{-7/3}{-11/4}{\frac{x+4}{\braI{x+4}^{2}-1}\arctan\sqrt{\braI{x+4}^{2}-1}}{x}\\[1mm]
+        =\,&\,\frac{1}{2}\Int{9/16}{16/9}{\frac{\arctan\sqrt{t}}{t}}{t}\\[1mm]
+        \xlongequal{u=\sqrt*{t}}\,&\,\Int{3/4}{4/3}{\frac{\arctan u}{u}}{u}\\[1mm]
+        =\,&\,\frac{1}{2}\braI{\Int{3/4}{4/3}{\frac{\arctan u}{u}}{u}-\Int{4/3}{3/4}{\frac{\arctan\braI{\sfrac{1}{u}}}{u}}{u}}\\[1mm]
+        =\,&\,\frac{1}{2}\Int{3/4}{4/3}{\frac{\arctan u+\arctan\braI{\sfrac{1}{u}}}{u}}{u}\\[1mm]
+        =\,&\,\frac{\pi}{4}\Int{3/4}{4/3}{u^{-1}}{u}\\[1mm]
+        =\,&\,\boxed{\frac{\pi}{2}\ln\frac{4}{3}}\ .
+    }
+}
+\Proof{要点}{
+    + 注意到恒等式 $\braI{x+4}^{2}-1=\braI{x+3}\braI{x+5}$ 的成立是本题的关键.
+    + 我们定义\newconcept{反正切积分函数}为
+    \Equation{
+        \mathrm{Ti}_{2}\braI{x}:=\Int{0}{x}{\frac{\arctan t}{t}}{t}\ .
+    }
+    它不是初等函数, 且没有简单的表达式, 但由倒数变换可以得到如下基本恒等式:
+    \Equation{
+        \mathrm{Ti}_{2}\braI{x}-\mathrm{Ti}_{2}\braI{\frac{1}{x}}=\frac{\pi\sgn x}{2}\ln\braIV{x}\ ,
+    }
+    这也能帮助我们得到本题的结果:
+    \Equation{
+        \Int{3/4}{4/3}{\frac{\arctan u}{u}}{u}=\mathrm{Ti}_{2}\braI{\frac{4}{3}}-\mathrm{Ti}_{2}\braI{\frac{3}{4}}=\boxed{\frac{\pi}{2}\ln\frac{4}{3}}\ .
+    }
+}
+
+\newpage

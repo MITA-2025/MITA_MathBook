@@ -1,0 +1,92 @@
+
+\Formula{A$_{\bm5}$}{
+	计算
+	\Equation{
+	    \braI{\rme^{\pi x}\cos\braI{\pi x}\!}^{(n)}\ ,
+	}
+	其中 $n\in\bfN$ .
+}
+\Proof{证明I\score{1}\method{数学归纳法}}{
+	\par 下面我们使用数学归纳法证明
+	\Equation{
+	    \braI{\rme^{\pi x}\cos\braI{\pi x}\!}^{(n)}=\boxed{\braI{\sqrt{2}\pi}^{n}\rme^{\pi x}\cos\braI{\pi x+\frac{n\pi}{4}}}\ .
+	}
+	\par 当 $n=0$ 时, 显然有上述性质成立.
+    \par 假设 $n=m$ 时上述性质成立, 则
+    \Equation{
+        \braII{\rme^{\pi x}\cos\braI{\pi x}\!}^{(m+1)}&=\braII{\!\braI{\sqrt{2}\pi}^{m}\rme^{\pi x}\cos\braI{\pi x+\frac{m\pi}{4}}\!}'\\[1mm]
+        &=\braI{\sqrt{2}\pi}^{m}\rme^{\pi x}\braII{\pi\cos\braI{\pi x+\frac{m\pi}{4}}-\pi\sin\braI{\pi x+\frac{m\pi}{4}}\!}\\[1mm]
+        &=\braI{\sqrt{2}\pi}^{m+1}\rme^{\pi x}\cos\braII{\!\braI{\pi x+\frac{m\pi}{4}}+\frac{\pi}{4}}\\[1mm]
+        &=\braI{\sqrt{2}\pi}^{m+1}\rme^{\pi x}\cos\braI{\pi x+\frac{\braI{m+1}\pi}{4}}\ ,
+    }
+    于是 $n=m+1$ 时上述命题成立, 这就完成了证明.
+}
+\Proof{$^{*}$证明II\score{1}}{
+	\par 由全纯函数 $\rme^{z}$ 的Cauchy\—Riemann方程可得
+	\Equation{
+        \braI{\rme^{\pi x}\cos\braI{\pi x}\!}^{(n)}&=\Re\braII{\!\braI{\rme^{(\pi+\pi\rmi)x}}^{(n)}}\\
+		&=\Re\braII{\!\braI{\pi+\pi\rmi}^{n}\rme^{(\pi+\pi\rmi)x}}\\
+		&=\Re\braII{\!\braI{\sqrt{2}\pi}^{n}\exp\braI{\pi x+\rmi\braI{\pi x+\frac{n\pi}{4}}\!}\!}\\[1mm]
+		&=\boxed{\braI{\sqrt{2}\pi}^{n}\rme^{\pi x}\cos\braI{\pi x+\frac{n\pi}{4}}}\ .
+    }
+}
+\Proof{要点}{
+	+ 可以尝试从前几阶导数入手, 观察其规律, 再使用数学归纳法证明猜想的正确性.
+}
+
+\newpage
+
+\Formula{B$_{\bm5}$}{
+	设函数 $f$ 在 $\braII{a\and b}$ 上可导且满足 $f\braI{a}=f\braI{b}=1$ , 证明存在 $\xi\and\eta\in\braI{a\and b}$ 使得
+	\Equation{
+		\rme^{\eta-\xi}\braII{f\braI{\eta}+f\fder\braI{\eta}\!}=1\ .
+	}
+}
+\Proof{证明I\score{1.5}}{
+	\par 构造函数 $F\braI{x}=\rme^{x}\braII{f\braI{x}-1}$ , 由\link{Alpha}{Rolle中值定理}知存在 $\eta\in\braI{a\and b}$ 使得
+    \Equation{
+        \rme^{\eta}\braI{f\braI{\eta}+f\fder\braI{\eta}-1}=0\ ,\\[-16mm]
+    }
+    \Equation{
+        f\braI{\eta}+f\fder\braI{\eta}=1\ ,
+    }
+    再令 $\xi=\eta$ 即得结论.
+}
+\Proof{证明II\score{1.5}}{
+	\par 由\link{Alpha}{Cauchy中值定理}可知存在 $\xi\and\eta\in\braI{a\and b}$ 使得
+	\Equation{
+		\frac{\rme^{a}f\braI{a}-\rme^{b}f\braI{b}}{a-b}=\rme^{\eta}\braII{f\braI{\eta}+f\fder\braI{\eta}\!}\AND\frac{\rme^{a}-\rme^{b}}{a-b}=\rme^{\xi}\ ,
+	}
+	将上述两式相除, 由 $f\braI{a}=f\braI{b}=1$ 即得
+	\Equation{
+		\rme^{\eta-\xi}\braII{f\braI{\eta}+f\fder\braI{\eta}\!}=1\ .
+	}
+}
+\Proof{要点}{
+	+ 在部分情况下, 可以固定某个待定中值, 从而将双中值问题转化为单中值定理来解决. 事实上, 对于此类问题, 即使使用两次中值定理, 我们也无法保证所得到的两个中值属于不同的区间, 因此此类问题实际上是伪双中值问题.
+}
+
+\bigskip
+
+\Formula{C$_{\bm5}$}{
+	设函数 $f\and g$ 在 $\braII{a\and b}$ 上二阶可导且满足
+	\Equation{
+		g\fdder\braI{x}\ne 0\AND f\braI{a}=f\braI{b}=g\braI{a}=g\braI{b}=0\ ,
+	}
+	证明存在 $\xi\in\braI{a\and b}$ 使得
+	\Equation{
+		\frac{f\braI{\xi}}{g\braI{\xi}}=\frac{f\fdder\braI{\xi}}{g\fdder\braI{\xi}}\ .
+	}
+}
+
+\newpage
+
+\Proof{证明\score{1.5}}{
+	\par 令 $F\braI{x}=f\braI{x}g\fder\braI{x}-f\fder\braI{x}g\braI{x}$ , 则 $F$ 在 $\braII{a\and b}$ 上可导且 $F\braI{a}=F\braI{b}=0$ , 由\link{Alpha}{Rolle中值定理}知存在 $\xi\in\braI{a\and b}$ 使得 $F\fder\braI{\xi}=0$ , 即
+	\Equation{
+		f\braI{\xi}g\fdder\braI{\xi}=f\fdder\braI{\xi}g\braI{\xi}\ ,
+	}
+	注意到必然有 $g\braI{\xi}\ne 0$ , 否则在 $g\braI{a}=g\braI{\xi}=g\braI{b}=0$ 上应用两次\link{Alpha}{Rolle中值定理}即得 $\eta\in\braI{a\and b}$ 使得 $g\fdder\braI{\eta}=0$ , 这就导出了矛盾. 由此可得结论.
+}
+
+\newpage

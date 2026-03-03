@@ -1,0 +1,70 @@
+
+\par 对于和式的通项为分式的极限, 我们可以暂时忽略分子和分母中次要的部分, 从而将其拟合为与之等价的无穷量, 然后验证分式整体与拟合量之间的差为无穷小量, 最终得到极限值. 例如:
+\Equation*{
+    \frac{k^{3}}{n^{4}+kn^{2}}=\frac{k^{3}}{n^{4}}+\braI{\frac{k^{3}}{n^{4}+kn^{2}}-\frac{k^{3}}{n^{4}}}\AND\frac{kn+k^{2}}{n^{2}+n+k}=\frac{kn+k^{2}}{n^{2}}+\braI{\frac{kn+k^{2}}{n^{2}+n+k}-\frac{kn+k^{2}}{n^{2}}}\ .
+}
+\par 该方法与等价无穷小代换采用了相同的数学思想.
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\braII{\sum_{k=1}^{n}\frac{k^{2}}{n^{2}+k}-\frac{n}{3}}\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{n\to\infty}\braII{\sum_{k=1}^{n}\frac{k^{2}}{n^{2}+k}-\frac{n}{3}}&=\lim_{n\to\infty}\braII{\sum_{k=1}^{n}\braI{\frac{k^{2}}{n^{2}+k}-\frac{k^{2}}{n^{2}}}+\sum_{k=1}^{n}\frac{k^{2}}{n^{2}}-\frac{n}{3}}\\[1mm]
+        &=\lim_{n\to\infty}\braII{-\sum_{k=1}^{n}\frac{k^{3}}{n^{4}+kn^{2}}+\frac{n\braI{n+1}\braI{2n+1}}{6n^{2}}-\frac{n}{3}}\\[1mm]
+        &=-\lim_{n\to\infty}\sum_{k=1}^{n}\frac{k^{3}}{n^{4}+kn^{2}}\\[1mm]
+        &=-\lim_{n\to\infty}\braII{\sum_{k=1}^{n}\braI{\frac{k^{3}}{n^{4}+kn^{2}}-\frac{k^{3}}{n^{4}}}+\sum_{k=1}^{n}\frac{k^{3}}{n^{4}}}\\[1mm]
+        &=-\lim_{n\to\infty}\braII{\sum_{k=1}^{n}\frac{k^{4}}{n^{6}+kn^{4}}+\frac{n^{2}\braI{n+1}^{2}}{4n^{4}}}\\[-1mm]
+        &=-\sfrac{1}{4}\ ,
+    }
+    其中
+    \Equation{
+        \lim_{n\to\infty}\sum_{k=1}^{n}\frac{k^{4}}{n^{6}+kn^{4}}\leqslant\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{n^{2}}=\lim_{n\to\infty}\frac{1}{n}=0\ .
+    }
+}
+
+\Formula{例2}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{2k}{n^{2}+n+k}}^{n}\ .
+    }
+}
+\Proof{证明}{
+    \Equation*{
+        \lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{2k}{n^{2}+n+k}}^{n}&=\exp\braI{\lim_{n\to\infty}n\ln\sum_{k=1}^{n}\frac{2k}{n^{2}+n+k}}\\[1mm]
+        &=\exp\braI{\lim_{n\to\infty}n\braI{\sum_{k=1}^{n}\frac{2k}{n^{2}+n+k}-1}\!}\\[1mm]
+        &=\exp\braI{\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\braI{\frac{2kn}{n^{2}+n+k}-\frac{2k}{n}}+\sum_{k=1}^{n}\frac{2k}{n}-n}\!}\\[1mm]
+        &=\exp\braI{1-2\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{kn+k^{2}}{n^{2}+n+k}}\\[1mm]
+        &=\exp\braI{1-2\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\braI{\frac{kn+k^{2}}{n^{2}+n+k}-\frac{kn+k^{2}}{n^{2}}}-\frac{2}{n}\sum_{k=1}^{n}\frac{kn+k^{2}}{n^{2}}}\\[1mm]
+        &=\exp\braI{1+2\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{kn^{2}+2k^{2}n+k^{3}}{n^{4}+n^{3}+kn^{2}}-2\Int{0}{1}{x^{2}+x}{x}}\\[-1mm]
+        &=\rme^{-2/3}\ ,
+    }
+    其中
+    \Equation{
+        \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{kn^{2}+2k^{2}n+k^{3}}{n^{4}+n^{3}+kn^{2}}\leqslant\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{4n^{3}}{n^{4}}=\lim_{n\to\infty}\frac{4}{n}=0\ .
+    }
+}
+
+\Formula{例3}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\braI{n-\frac{1}{n}\sum_{k=1}^{n}\sqrt{n^{2}+k}}\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\braI{n-\sqrt{n^{2}+k}}&=-\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{k}{n+\sqrt{n^{2}+k}}\\[1mm]
+        &=\lim_{n\to\infty}\braI{\frac{1}{n}\sum_{k=1}^{n}\braI{\frac{k}{2n}-\frac{k}{n+\sqrt{n^{2}+k}}}-\frac{1}{n}\sum_{k=1}^{n}\frac{k}{2n}}\\[1mm]
+        &=\lim_{n\to\infty}\sum_{k=1}^{n}\frac{k^{2}}{2n^{2}\braI{n+\sqrt{n^{2}+k}}^{2}}-\frac{1}{2}\Int{0}{1}{x}{x}\\[-1mm]
+        &=-\sfrac{1}{4}\ ,
+    }
+    其中
+    \Equation{
+        \lim_{n\to\infty}\sum_{k=1}^{n}\frac{k^{2}}{2n^{2}\braI{n+\sqrt{n^{2}+k}}^{2}}\leqslant\lim_{n\to\infty}\sum_{k=1}^{n}\frac{1}{8n^{2}}=\lim_{n\to\infty}\frac{1}{8n}=0\ .
+    }
+}
+
+\newpage

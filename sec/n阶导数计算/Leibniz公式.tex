@@ -1,0 +1,30 @@
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \braI{x^{2}\rme^{x}}^{(n)}\ .\quad\braI{n\in\bfN}
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \braI{x^{2}\rme^{x}}^{(n)}=\sum_{k=0}^{n}\rmC_{n}^{k}\braI{x^{2}}^{(k)}\braI{\rme^{x}}^{(n-k)}=\rme^{x}\braI{x^{2}+2nx+n\braI{n-1}\!}\ .
+    }
+}
+
+\Formula{例2}{
+    计算
+    \Equation{
+        \braI{\frac{1}{x^{2}-1}}^{(n)}\ .\quad\braI{n\in\bfN}
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \braI{\frac{1}{x^{2}-1}}^{(n)}&=\sum_{k=0}^{n}\rmC_{n}^{k}\braI{\frac{1}{x-1}}^{(n-k)}\braI{\frac{1}{x+1}}^{(k)}\\[1mm]
+        &=\sum_{k=0}^{n}\rmC_{n}^{k}\frac{\braI{-1}^{n-k}\braI{n-k}\,!}{\braI{x-1}^{n-k+1}}\frac{\braI{-1}^{k}k\,!}{\braI{x+1}^{k+1}}\\[1mm]
+        &=\frac{\braI{-1}^{n}n\,!}{\braI{x^{2}-1}\braI{x-1}^{n}}\sum_{k=0}^{n}\braI{\frac{x-1}{x+1}}^{k}\\[1mm]
+        &=\frac{\braI{-1}^{n}n\,!}{\braI{x^{2}-1}\braI{x-1}^{n}}\frac{1-\braI{\frac{x-1}{x+1}}^{n+1}}{1-\frac{x-1}{x+1}}\\[1mm]
+        &=\frac{\braI{-1}^{n}n\,!\braI{\!\braI{x+1}^{n+1}-\braI{x-1}^{n+1}}}{2\braI{x^{2}-1}^{n+1}}\ .
+    }
+}
+
+\newpage

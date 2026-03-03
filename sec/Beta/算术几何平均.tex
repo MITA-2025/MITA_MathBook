@@ -1,0 +1,42 @@
+
+\Theorem{算术几何平均的存在性}{
+    设 $a\and b$ 是正数, 数列 $(a_{n})_{n=0}^{\infty}$ 和 $(b_{n})_{n=0}^{\infty}$ 由递推关系
+    \Equation{
+        a_{n}=\casesII{a}{n=0}{-1}{\sqrt{a_{n}b_{n}}}{n>0}\AND b_{n}=\casesII{b}{n=0}{-1}{\frac{a_{n-1}+b_{n-1}}{2}}{n>0}
+    }
+    给出, 则 $(a_{n})_{n=0}^{\infty}\and(b_{n})_{n=0}^{\infty}$ 有相同的极限, 称为 $a\and b$ 的\newconcept{算术几何平均}, 记为 $\AGM\braI{a\and b}$ .
+}
+
+\Corollary{算术几何平均的性质}{
+    设 $a\and b$ 是正数, 则
+    + 对称性: $\AGM\braI{a\and b}=\AGM\braI{b\and a}$ .
+    + 齐次性: $\AGM\braI{\lambda a\and\lambda b}=\lambda\AGM\braI{a\and b}$ 对一切 $\lambda>0$ 成立.
+    + 迭代不变性:
+    \Equation{
+        \AGM\braI{a\and b}=\AGM\braI{\frac{a+b}{2}\and\sqrt{ab}}\ .
+    }
+}
+
+\Theorem{算术几何平均的Gauss公式}{
+    设 $a\and b$ 是正数, 则
+    \Equation{
+        \AGM\braI{a\and b}=\frac{\pi}{2}\braI{\Int{0}{+\infty}{\frac{1}{\sqrt{\braI{x^{2}+a^{2}}\braI{x^{2}+b^{2}}}}}{x}}^{-1}\ .
+    }
+}
+\Proof{证明}{
+    \par 令
+    \Equation{
+        I\braI{a\and b}=\Int{0}{+\infty}{\frac{1}{\sqrt{\braI{x^{2}+a^{2}}\braI{x^{2}+b^{2}}}}}{x}\ ,
+    }
+    作代换 $t=\sfrac{\braI{x-abx^{-1}}}{2}$ 可得
+    \Equation{
+        \Int{-\infty}{+\infty}{\frac{1}{\sqrt{\braI{x^{2}+a^{2}}\braI{x^{2}+b^{2}}}}}{x}=\Int{-\infty}{+\infty}{\frac{1}{\sqrt{\braI{t^{2}+ab}\braI{t^{2}+\bigsfrac{\braI{a+b}^{2}}{4}}}}}{t}\ ,
+    }
+    于是 $I\braI{a_{0}\and b_{0}}=I\braI{a_{1}\and b_{1}}=\cdots$ , 容易验证 $I$ 在 $\braI{0\and+\infty}\times\braI{0\and+\infty}$ 上连续, 于是
+    \Equation{
+        I\braI{a\and b}=\lim_{n\to\infty}I\braI{a_{n}\and b_{n}}=I\braI{m\and m}=\Int{0}{+\infty}{\frac{1}{x^{2}+m^{2}}}{x}=\frac{\pi}{2m}\ ,
+    }
+    其中 $m=\AGM\braI{a\and b}$ , 这就完成了证明.
+}
+
+\newpage

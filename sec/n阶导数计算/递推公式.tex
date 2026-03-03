@@ -1,0 +1,107 @@
+
+\par 我们可以将 $n$ 阶导数 $f\fnder{n}$ 视作函数列, 并通过构造递推公式来计算其通项公式, 常见做法是构造以 $f$ 为特解的简单线性微分方程, 然后对等式两侧同时求 $n$ 阶导.
+
+\Formula{例1}{
+    记
+    \Equation{
+        f\braI{x}=\frac{\arcsin x}{\sqrt{1-x^{2}}}\ ,
+    }
+    计算 $f\fnder{n}\braI{0}\ .\quad\braI{n\in\bfN}$
+}
+\Proof{证明}{
+    \par 等式两侧同时乘 $\sqrt{1-x^{2}}$ 并对其求导, 我们有
+    \Equation{
+        f\fder\braI{x}\sqrt{1-x^{2}}-\frac{xf\braI{x}}{\sqrt{1-x^{2}}}=\frac{1}{\sqrt{1-x^{2}}}\ ,\\[-15mm]
+    }
+    \Equation{
+        \braI{1-x^{2}}f\fder\braI{x}=xf\braI{x}+1\ ,
+    }
+    再对等式两侧同时求 $n-1$ 阶导, 我们有
+    \Equation{
+        &\braI{1-x^{2}}f\fnder{n}\braI{x}-2\braI{n-1}xf\fnder{n-1}\braI{x}-\braI{n-1}\braI{n-2}f\fnder{n-2}\braI{x}\\[-2mm]
+        =\ &xf\fnder{n-1}\braI{x}+\braI{n-1}f\fnder{n-2}\braI{x}\ ,
+    }
+    当 $x=0$ 时即 $f\fnder{n}\braI{0}=\braI{n-1}^{2}f\fnder{n-2}\braI{x}$ , 对一切 $n\in\bfN$ , 我们有
+    \Equation{
+        f\braI{0}=0\implies f\fnder{2n}\braI{0}=0\ ,\\[-16mm]
+    }
+    \Equation{
+        f\fder\braI{0}=1\implies f\fnder{2n+1}\braI{0}=\braI{\!\braI{2n}\,!!}^{2}\ ,
+    }
+    于是
+    \Equation{
+        f\fnder{n}\braI{0}=\casesII{\braI{\!\braI{n-1}\,!!}^{2}}{n\text{为奇数}}{-1}{0}{n\text{为偶数}}\ ,
+    }
+	其中规定 $0\,!!=1$ .
+}
+
+\Formula{例2}{
+        记 $f\braI{x}=\cos\braI{m\arcsin x}$ , 计算 $f\fnder{n}\braI{0}\ .\quad\braI{n\in\bfN}$
+}
+
+\newpage
+
+\Proof{证明}{
+    \par 对 $f$ 求导, 我们有
+    \Equation{
+        f\fder\braI{x}=-\frac{m\sin\braI{m\arcsin x}}{\sqrt{1-x^{2}}}\ ,
+    }
+    等式两侧同时乘 $\sqrt{1-x^{2}}$ , 并再对其求导, 我们有
+    \Equation{
+        f\fdder\braI{x}\sqrt{1-x^{2}}-\frac{xf\fder\braI{x}}{\sqrt{1-x^{2}}}=-\frac{m^{2}\cos\braI{m\arcsin x}}{\sqrt{1-x^{2}}}\ ,\\[-15mm]
+    }
+    \Equation{
+        \braI{1-x^{2}}f\fdder\braI{x}=xf\fder\braI{x}-m^{2}f\braI{x}\ ,
+    }
+    再对等式两侧同时求 $n$ 阶导, 我们有
+    \Equation{
+        &\braI{1-x^{2}}f\fnder{n+2}\braI{x}-2nxf\fnder{n+1}\braI{x}-n\braI{n-1}f\fnder{n}\braI{x}\\[-2mm]
+        =\ &xf\fnder{n+1}\braI{x}+nf\fnder{n}\braI{x}-m^{2}f\fnder{n}\braI{x}\ ,
+    }
+    当 $x=0$ 时即 $f\fnder{n+2}\braI{0}=\braI{n^{2}-m^{2}}f\fnder{n}\braI{0}$ , 对一切 $n\in\bfN$ , 我们有
+    \Equation{
+        f\braI{0}=1\implies f\fnder{2n}\braI{0}=\prod_{k=0}^{n-1}\braI{4k^{2}-m^{2}}\ ,\\[-15mm]
+    }
+    \Equation{
+        f\fder\braI{0}=0\implies f\fnder{2n+1}\braI{0}=0\ ,
+    }
+    于是
+    \Equation{
+        f\fnder{n}\braI{0}=\casesII{\prod_{k=0}^{\tfrac{n}{2}-1}\braI{4k^{2}-m^{2}}}{n\text{为偶数}}{-1}{0}{n\text{为奇数}}\ ,
+    }
+	其中规定 $n<m$ 时
+	\Equation{
+		\prod_{k=m}^{n}f\braI{k}=1\ .
+	}
+}
+
+\par 一些特殊的问题要求我们考虑特殊的递推公式, 例如下面我们所需计算的对象是函数列 $f_{n}\fnder{n}\braI{x}$ 的通项公式.
+
+\Formula{例3}{
+    记 $f_{n}\braI{x}=x^{n}\ln x$ $,$ 计算
+    \Equation{
+        \lim_{n\to\infty}\frac{f_{n}\fnder{n}\braI{\sfrac{1}{n}}}{n\,!}\ .
+    }
+}
+
+\newpage
+
+\Proof{证明}{
+    \par 对 $f_{n}$ 求导, 我们有
+    \Equation{
+        f_{n}\fder\braI{x}=nf_{n-1}\braI{x}+x^{n-1}\ ,
+    }
+     再对等式两侧同时求 $n-1$ 阶导, 我们有
+    \Equation{
+        f_{n}\fnder{n}\braI{x}=nf_{n-1}\fnder{n-1}\braI{x}+\braI{n-1}\,!\ ,\\[-15mm]
+    }
+    \Equation{
+        \frac{f_{n}\fnder{n}\braI{x}}{n\,!}=\frac{f_{n-1}\fnder{n-1}\braI{x}}{\braI{n-1}\,!}+\frac{1}{n}\ ,
+    }
+    当 $x=\sfrac{1}{n}$ 时即
+    \Equation{
+        \lim_{n\to\infty}\frac{f_{n}\fnder{n}\braI{\sfrac{1}{n}}}{n\,!}=\lim_{n\to\infty}\braII{f_{0}\braI{\frac{1}{n}}+\sum_{k=1}^{n}\frac{1}{k}}=\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{1}{k}-\ln n}=\gamma\ .
+    }
+}
+
+\newpage

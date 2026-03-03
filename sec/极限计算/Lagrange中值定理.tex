@@ -1,0 +1,76 @@
+
+\par 若极限表达式中存在形如 $F\braI{f\braI{x}\!}-F\braI{g\braI{x}\!}$ 的部分, 我们可以考虑利用\link{Alpha}{Lagrange中值定理}将其写作 $F\fder\braI{\xi\braI{x}\!}\braI{f\braI{x}-g\braI{x}\!}$ 并进一步完成求解. 在大多数情况下, 该方法可以作为L'Hôpital法则的简化版本使用. 然而, 当 $F\fder\braI{\xi\braI{x}\!}$ 的极限无法由迫敛性确定时, 应用Lagrange中值定理求解极限的方法失效.
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \lim_{x\to\infty}x^{2}\braI{a^{1/x}-a^{1/(x+1)}}\ .
+    }
+}
+\Proof{证明}{
+    \par 由\link{Alpha}{Lagrange中值定理}知对一切 $\braIV{x}>1$ 存在
+    \Equation{
+        \xi\braI{x}\in\braI{\frac{1}{x+1}\and\frac{1}{x}}
+    }
+    使得
+    \Equation{
+        a^{1/x}-a^{1/(x+1)}=\frac{\rmd}{\rmd t}\braI{a^{t}}\bigsubst{t=\xi(x)}{}\braI{\frac{1}{x}-\frac{1}{x+1}}=\frac{a^{\xi(x)}\ln a}{x^{2}+x}\ ,
+    }
+    而 $x\to\infty$ 时根据迫敛性有 $\xi\braI{x}\to 0$ , 于是
+    \Equation{
+        \lim_{x\to\infty}x^{2}\braI{a^{1/x}-a^{1/(x+1)}}=\lim_{x\to\infty}\frac{x^{2}}{x^{2}+x}a^{\xi(x)}\ln a=\ln a\ .
+    }
+}
+
+\Formula{例2}{
+    计算
+    \Equation{
+        \lim_{x\to 0}\frac{\tan\tan x-\sin\sin x}{\tan x-\sin x}\ .
+    }
+}
+\Proof{证明}{
+    \par 由\link{Alpha}{Lagrange中值定理}知对一切 $0<x<1$ 和 $-1<x<0$ 分别存在 $\xi\braI{x}\in\braI{\sin x\and\tan x}$ 和 $\xi\braI{x}\in\braI{\tan x\and\sin x}$ 使得
+    \Equation{
+        \tan\tan x-\tan\sin x=\braI{\tan t}\bigsubst{t=\xi(x)}{}\braI{\tan x-\sin x}=\frac{\tan x-\sin x}{\cos^{2}\xi\braI{x}}\ ,
+    }
+
+\newpage
+
+    \noindent 而 $x\to 0$ 时根据迫敛性有 $\xi\braI{x}\to 0$ , 于是
+    \Equation{
+        \lim_{x\to 0}\frac{\tan\tan x-\tan\sin x}{\tan x-\sin x}=\lim_{x\to 0}\frac{1}{\cos^{2}\xi\braI{x}}=1\ ,
+    }
+    另一方面, 我们有
+    \Equation{
+        \lim_{x\to 0}\frac{\tan\sin x-\sin\sin x}{\tan x-\sin x}=\lim_{x\to 0}\frac{\sfrac{\sin^{3}x}{2}}{\sfrac{x^{3}}{2}}=1\ ,
+    }
+    于是
+    \Equation{
+        \lim_{x\to 0}\frac{\tan\tan x-\sin\sin x}{\tan x-\sin x}=2\ .
+    }
+}
+
+\par 在一些情况下, 我们可能需要通过迫敛性获得更多关于 $\xi$ 的信息.
+
+\Formula{例3}{
+    计算
+    \Equation{
+        \lim_{x\to+\infty}x^{2}\braII{\ln\arctan\braI{x+1}-\ln\arctan x}\ .
+    }
+}
+\Proof{证明}{
+    \par 由\link{Alpha}{Lagrange中值定理}知对一切 $x>0$ 存在
+    \Equation{
+        \xi\braI{x}\in\braI{x\and x+1}
+    }
+    使得
+    \Equation{
+        \ln\arctan\braI{x+1}-\ln\arctan x=\frac{\rmd}{\rmd t}\braI{\ln\arctan t}\bigsubst{t=\xi(x)}{}=\frac{1}{\arctan\xi\braI{x}\braI{\xi\braI{x}^{2}+1}}\ ,
+    }
+    而 $x\to+\infty$ 时根据迫敛性有 $\xi\braI{x}\to+\infty$ 和 $\sfrac{\xi\braI{x}}{x}\to1$ , 于是
+    \Equation{
+        \lim_{x\to+\infty}x^{2}\braII{\ln\arctan\braI{x+1}-\ln\arctan x}=\lim_{x\to+\infty}\frac{x^{2}}{\arctan\xi\braI{x}\braI{\xi\braI{x}^{2}+1}}=\frac{2}{\pi}\ .
+    }
+}
+
+\newpage

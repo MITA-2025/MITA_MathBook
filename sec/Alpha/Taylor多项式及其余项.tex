@@ -1,0 +1,149 @@
+
+\Definition{Taylor多项式}{
+    设 $f$ 在 $x=x_{0}$ 处 $n$ 阶可导, 则 $f$ 在该处的\newconcept{$n$ 阶Taylor多项式}定义为
+    \Equation{
+        P_{n}\braI{x}=\sum_{k=0}^{n}\frac{f\fnder{k}\braI{x_{0}}}{k\,!}\braI{x-x_{0}}^{k}\ ,
+    }
+    其余项定义为 $R_{n}\braI{x}=f\braI{x}-P_{n}\braI{x}$ .
+}
+
+\Theorem{Peano余项}{
+    对任意自然数 $n$ , 若 $f$ 在 $x=x_{0}$ 处 $n$ 阶可导, 则存在 $x_{0}$ 的邻域 $U\braI{x_{0}}$ 使得对任意 $x\in U\braI{x_{0}}$ 都有 $R_{n}\braI{x}$ 是 $x\to x_{0}$ 时 $\braI{x-x_{0}}^{n}$ 的高阶无穷小.
+}
+\Proof{证明}{
+    \par 由\link{Alpha}{Taylor多项式}(Taylor多项式的定义)可知
+    \Equation{
+        R_{n}\braI{x_{0}}=R_{n}\fder\braI{x_{0}}=R_{n}\fdder\braI{x_{0}}=R_{n}\fddder\braI{x_{0}}=\cdots=R_{n}\fnder{n}\braI{x_{0}}=0\ ,
+    }
+    $f$ 在 $x=x_{0}$ 处 $n$ 阶可导, 故其必在 $x_{0}$ 的某邻域 $U\braI{x_{0}}$ 内有 $n-1$ 阶导数, 在该邻域内应用 $n$ 次L'Hospital法则可得
+    \Equation{
+        \lim_{x\to x_{0}}\frac{R_{n}\braI{x}}{\braI{x-x_{0}}^{n}}=\lim_{x\to x_{0}}\frac{R_{n}^{n}\braI{x_{0}}}{n\,!}=0\ .
+    }
+}
+
+\Theorem{Lagrange余项}{
+    对任意自然数 $n$ , 若 $f$ 在包含 $x_{0}$ 的区间 $I$ 上 $n+1$ 阶可导, 则对任意 $x\in I$ 都有
+    \Equation{
+        R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}}{\braI{n+1}\,!}\braI{x-x_{0}}^{n+1}\ ,
+    }
+    其中 $\min\braIII{x_{0}\and x}\leqslant\xi\leqslant\max\braIII{x_{0}\and x}$ .
+}
+\Proof{证明}{
+    \par 当 $x\ne x_{0}$ 时, 记 $\xi_{0}=x$ , 在 $I$ 上应用 $n+1$ 次\link{Alpha}{Cauchy中值定理}可得
+    \Equation{
+        \frac{R_{n}\braI{x}}{\braI{x-x_{0}}^{n+1}}=\frac{R_{n}\fder\braI{\xi_{1}}}{\braI{n+1}\braI{\xi_{1}-x_{0}}^{n}}=\cdots=\frac{R_{n}\fnder{n+1}\braI{\xi_{n+1}}}{\braI{n+1}\,!}=\frac{f\fnder{n+1}\braI{\xi_{n+1}}}{\braI{n+1}\,!}\ ,
+    }
+
+\newpage
+
+    \noindent 取 $\xi=\xi_{n+1}$ , 则有
+    \Equation{
+        R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}}{\braI{n+1}\,!}\braI{x-x_{0}}^{n+1}\ ,
+    }
+    其中
+    \Equation{
+        \min\braIII{x_{0}\and\xi_{0}}\leqslant\cdots\leqslant\min\braIII{x_{0}\and\xi_{n}}\leqslant\xi_{n+1}\leqslant\max\braIII{x_{0}\and\xi_{n}}\leqslant\cdots\leqslant\max\braIII{x_{0}\and\xi_{0}}\ ,
+    }
+    即 $\min\braIII{x_{0}\and x}\leqslant\xi\leqslant\max\braIII{x_{0}\and x}$ ;
+    \par 当 $x=x_{0}$ 时, 显然有 $R_{n}\braI{x}=0$ 对一切自然数 $n$ 恒成立, 取 $\xi=x_{0}$ 即符合条件.
+}
+
+\par 当 $n=0$ 时, 带\link{Alpha}{Lagrange余项}的Taylor公式即化为\link{Alpha}{Lagrange中值定理}.
+
+\Theorem{Cauchy余项}{
+    对任意自然数 $n$ , 若 $f$ 在包含 $x_{0}$ 的区间 $I$ 上 $n+1$ 阶可导, 则对任意 $x\in I$ 都有
+    \Equation{
+        R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}\braI{x-\xi}^{n}}{n\,!}\braI{x-x_{0}}\ ,
+    }
+    其中 $\min\braIII{x_{0}\and x}\leqslant\xi\leqslant\max\braIII{x_{0}\and x}$ .
+}
+\Proof{证明}{
+    \par 对任何给定的 $x\in I$ , 考虑关于 $t$ 的函数
+    \Equation{
+        \varphi\braI{t}=f\braI{x}-\sum_{k=0}^{n}\frac{f\fnder{k}\braI{t}}{k\,!}\braI{x-t}^{k}\AND\psi\braI{t}=x-t\ ,
+    }
+    根据余项的定义, 我们有
+    \Equation{
+        R_{n}\braI{x}=f\braI{x}-\sum_{k=0}^{n}\frac{f\fnder{k}\braI{x_{0}}}{k\,!}\braI{x-x_{0}}^{k}\ ,
+    }
+    即 $R_{n}\braI{x}=\varphi\braI{x_{0}}$ , 同时注意到
+    \Equation{
+        \varphi\fder\braI{t}=-\frac{f\fnder{n+1}\braI{t}\braI{x-t}^{n}}{n\,!}\AND\psi\fder\braI{t}=-1\ ,
+    }
+    于是在 $I$ 上应用\link{Alpha}{Cauchy中值定理}可得
+    \Equation{
+        \frac{R_{n}\braI{x}}{x-x_{0}}=\frac{\varphi\braI{x}-\varphi\braI{x_{0}}}{\psi\braI{x}-\psi\braI{x_{0}}}=\frac{\varphi\fder\braI{\xi}}{\psi\fder\braI{\xi}}\ ,
+    }
+
+\newpage
+
+    \noindent 即
+    \Equation{
+        R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}\braI{x-\xi}^{n}}{n\,!}\braI{x-x_{0}}\ .
+    }
+}
+
+\par 接下来我们考虑一种更一般的Taylor余项, \link{Alpha}{Lagrange余项}和\link{Alpha}{Cauchy余项}可视为其分别取 $p=n+1$ 和 $p=1$ 时的特殊情形.
+
+\Theorem{Schlomilch-Roche余项}(Schlomilch\—Roche余项){
+	对任意自然数 $n$ , 若 $f$ 在包含 $x_{0}$ 的区间 $I$ 上 $n+1$ 阶可导, 则对任意 $x\in I$ 都有
+	\Equation{
+		R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}\braI{x-\xi}^{n-p+1}\braI{x-x_{0}}^{p}}{p\cdot n\,!}\ ,
+	}
+	其中 $\min\braIII{x_{0}\and x}\leqslant\xi\leqslant\max\braIII{x_{0}\and x}$ .
+}
+\Proof{证明}{
+	\par 对任何给定的 $x\in I$ , 考虑关于 $t$ 的函数
+	\Equation{
+		\varphi\braI{t}=f\braI{x}-\sum_{k=0}^{n}\frac{f\fnder{k}\braI{t}}{k\,!}\braI{x-t}^{k}\AND\psi\braI{t}=\braI{x-t}^{p}\ ,
+	}
+	根据余项的定义, 我们有
+	\Equation{
+		R_{n}\braI{x}=f\braI{x}-\sum_{k=0}^{n}\frac{f\fnder{k}\braI{x_{0}}}{k\,!}\braI{x-x_{0}}^{k}\ ,
+	}
+    即 $R_{n}\braI{x}=\varphi\braI{x_{0}}$ , 同时注意到
+	\Equation{
+		\varphi\fder\braI{t}=-\frac{f\fnder{n+1}\braI{t}\braI{x-t}^{n}}{n\,!}\AND\psi\fder\braI{t}=-p\braI{x-t}^{p-1}\ ,
+	}
+	于是在 $I$ 上应用\link{Alpha}{Cauchy中值定理}可得
+	\Equation{
+		\frac{R_{n}\braI{x}}{\braI{x-x_{0}}^{p}}=\frac{\varphi\braI{x}-\varphi\braI{x_{0}}}{\psi\braI{x}-\psi\braI{x_{0}}}=\frac{\varphi\fder\braI{\xi}}{\psi\fder\braI{\xi}}\ ,
+	}
+	即
+	\Equation{
+		R_{n}\braI{x}=\frac{f\fnder{n+1}\braI{\xi}\braI{x-\xi}^{n-p+1}\braI{x-x_{0}}^{p}}{p\cdot n\,!}\ .
+	}
+}
+
+\par 最后给出的是精确形式的Taylor余项, 注意其存在条件相比前面几种余项略强.
+
+\newpage
+
+\Theorem{积分型余项}{
+    对任意自然数 $n$ , 若 $f$ 在包含 $x_{0}$ 的区间 $I$ 上有 $n+1$ 阶可积导数, 则对任意 $x\in I$ 都有
+    \Equation{
+        R_{n}\braI{x}=\frac{1}{n\,!}\Int{x_{0}}{x}{f\fnder{n+1}\braI{t}\braI{x-t}^{n}}{t}\ .
+    }
+}
+\Proof{证明}{
+    \par 对一切 $x\in I$ , 我们有
+    \Equation{
+        f\braI{x}&=f\braI{x_{0}}+\Int{x_{0}}{x}{f\fder\braI{t}}{t}\\[1mm]
+        &=f\braI{x_{0}}-\Int{x_{0}}{x}{f\fder\braI{t}}{\braI{x-t}}\\[1mm]
+        &=f\braI{x_{0}}+f\fder\braI{x_{0}}\braI{x-x_{0}}+\Int{x_{0}}{x}{f\fdder\braI{t}\braI{x-t}}{t}\\[1mm]
+        &=f\braI{x_{0}}+f\fder\braI{x_{0}}\braI{x-x_{0}}-\frac{1}{2}\Int{x_{0}}{x}{f\fdder\braI{t}}{\braI{\!\braI{x-t}^{2}}}\\[1mm]
+        &=f\braI{x_{0}}+f\fder\braI{x_{0}}\braI{x-x_{0}}+\frac{f\fdder\braI{x_{0}}}{2}\braI{x-x_{0}}^{2}+\frac{1}{2}\Int{x_{0}}{x}{f\fddder\braI{t}\braI{x-t}^{2}}{t}\ ,
+    }
+    反复如上应用 $n$ 次分部积分法有
+    \Equation{
+        f\braI{x}=\sum_{k=0}^{n}\frac{f\fnder{k}\braI{x_{0}}}{k\,!}\braI{x-x_{0}}^{k}+\frac{1}{n\,!}\Int{x_{0}}{x}{f\fnder{n+1}\braI{t}\braI{x-t}^{n}}{t}\ ,
+    }
+    从而有
+    \Equation{
+        R_{n}\braI{x}=\frac{1}{n\,!}\Int{x_{0}}{x}{f\fnder{n+1}\braI{t}\braI{x-t}^{n}}{t}\ .
+    }
+}
+
+\par 不难发现, 对积分型余项应用积分中值定理I即得\link{Alpha}{Cauchy余项}.
+
+\newpage

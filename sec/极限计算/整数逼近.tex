@@ -1,0 +1,67 @@
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\sin\braI{\sqrt{n^{2}+1}\,\pi}\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{n\to\infty}\sin\braI{\sqrt{n^{2}+1}\,\pi}&=\lim_{n\to\infty}\braI{-1}^{n}\sin\braI{\sqrt{n^{2}+1}\,\pi-n\pi}\\
+        &=\lim_{n\to\infty}\braI{-1}^{n}\sin\braI{\frac{\pi}{\sqrt{n^{2}+1}+n}}\ ,
+    }
+    其中 $\braI{-1}^{n}$ 是有界函数而
+    \Equation{
+        \sin\braI{\frac{\pi}{\sqrt{n^{2}+1}+n}}
+    }
+    是无穷小, 于是
+    \Equation{
+        \lim_{n\to\infty}\sin\braI{\sqrt{n^{2}+1}\,\pi}=0\ .
+    }
+}
+
+\Formula{例2}{
+	计算
+	\Equation{
+		\lim_{n\to\infty}\sin\braI{\frac{\pi}{\rme^{1/2n}-1}}\ .
+	}
+}
+\Proof{证明}{
+	\par 我们有
+	\Equation{
+		\lim_{x\to 0}\braI{\frac{\pi}{\rme^{x}-1}-\frac{\pi}{x}}&=\lim_{x\to 0}\frac{\pi\braI{x-\rme^{x}+1}}{x\braI{\rme^{x}-1}}\\[1mm]
+		&=\lim_{x\to 0}\frac{-\sfrac{\pi x^{2}}{2}+o\braI{x^{2}}}{x^{2}}\\[-1mm]
+		&=-\sfrac{\pi}{2}\ ,
+	}
+	于是由Heine定理有
+	\Equation{
+		\lim_{n\to\infty}\sin\braI{\frac{\pi}{\rme^{1/2n}-1}}=\lim_{n\to\infty}\sin\braI{\frac{\pi}{\rme^{1/2n}-1}-2n\pi}=\sin\braI{-\frac{\pi}{2}}=-1\ .
+	}
+}
+
+\newpage
+
+\Formula{例3}{
+    计算
+    \Equation{
+        \lim_{n\to\infty}\braIII{\!\braI{2+\sqrt{3}}^{n}}^{\braI{2+\sqrt*{3}}^{n}}\ ,
+    }
+    其中 $\braIII{x}$ 表示 $x$ 的小数部分, 即 $\braIII{x}=x-\floor{x}$ .
+}
+\Proof{证明}{
+    \par 注意到
+	\Equation{
+		\braI{2+\sqrt{3}}^{n}+\braI{2-\sqrt{3}}^{n}=2\sum_{k=0}^{\lfloor n/2\rfloor}\rmC_{n}^{2k}2^{n-2k}3^{k}
+	}
+    是整数, 因此
+    \Equation{
+        \lim_{n\to\infty}\braIII{\!\braI{2+\sqrt{3}}^{n}}^{\braI{2+\sqrt*{3}}^{n}}&=\lim_{n\to\infty}\braIII{-\braI{2-\sqrt{3}}^{n}}^{\braI{2+\sqrt*{3}}^{n}}\\[1mm]
+        &=\lim_{n\to\infty}\braI{-\braI{2-\sqrt{3}}^{n}-\floor{-\braI{2-\sqrt{3}}^{n}}}^{\braI{2+\sqrt*{3}}^{n}}\\[1mm]
+        &=\lim_{n\to\infty}\braI{1-\braI{2-\sqrt{3}}^{n}}^{\braI{2+\sqrt*{3}}^{n}}\\[1mm]
+        &=\exp\braI{\lim_{n\to\infty}\braI{2+\sqrt{3}}^{n}\ln\braI{1-\braI{2-\sqrt{3}}^{n}}\!}\\[1mm]
+        &=\exp\braI{\lim_{n\to\infty}-\braI{2+\sqrt{3}}^{n}\braI{2-\sqrt{3}}^{n}}\\[-1mm]
+        &=\sfrac{1}{\rme}\ .
+    }
+}
+
+\newpage

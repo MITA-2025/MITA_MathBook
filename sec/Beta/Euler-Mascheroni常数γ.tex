@@ -1,0 +1,99 @@
+
+\Theorem{Euler常数的存在性}($\bm\gamma$的存在性){
+    \Equation{
+        a_{n}=\sum_{k=1}^{n}\frac{1}{k}-\ln n
+    }
+    收敛.
+}
+\Proof{证明}{
+    \par 对一切 $n>1$ , 由\link{Alpha}{Lagrange余项}有
+    \Equation{
+        \ln\braI{1-\frac{1}{n}}=-\frac{1}{n}-\frac{1}{2\xi^{2}n^{2}}<-\frac{1}{n}\ ,
+    }
+    其中 $\xi\in\braI{0\and 1}$ , 于是对一切正整数 $n$ 有
+    \Equation{
+        a_{n}-a_{n-1}=\ln\frac{n-1}{n}+\frac{1}{n}<0\ ,
+    }
+    即 $(a_{n})_{n=1}^{\infty}$ 单调递减, 并且又有
+    \Equation{
+        a_{n}>\sum_{k=1}^{n}\ln\frac{k+1}{k}-\ln n=\ln\braI{1+\frac{1}{n}}>0\ ,
+    }
+    即 $(a_{n})_{n=1}^{\infty}$ 存在下界, 由单调有界准则知该极限存在.
+}
+
+\par 与自然常数 $\rme$ 类似, 上述极限无法通过常用函数简单表示, 由此我们定义其为新的数学常数. 我们目前尚不明确其\underline{是否为无理数}, 以及其\underline{是否可以作为某个有理系数多项式的根}.
+
+\Definition{Euler常数}(Euler常数 $\bm\gamma$){
+    我们定义\newconcept{Euler\—Mascheroni常数}为
+    \Equation{
+        \gamma:=\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{1}{k}-\ln n}\approx0.5772\,1566\,4901\,5328\,6061\ .
+    }
+}
+
+\Theorem{Euler常数的积分表示}($\bm\gamma$的积分表示){
+    \Equation{
+        \gamma=\Int{1}{+\infty}{\braI{\frac{1}{\floor{x}}-\frac{1}{x}}}{x}\ ,\\[-14mm]
+    }
+    \Equation{
+        \gamma=-\Int{0}{+\infty}{\rme^{-x}\ln x}{x}=-\Int{0}{1}{\ln\ln\frac{1}{x}}{x}\ .
+    }
+}
+
+\newpage
+
+\Proof{证明}{
+    \par 对第一组等式, 我们有
+    \Equation{
+        \gamma&=\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{1}{k}-\ln n}\\[1mm]
+        &=\lim_{n\to\infty}\braI{\frac{1}{n}+\sum_{k=1}^{n-1}\Int{k}{k+1}{\frac{1}{\floor{x}}}{x}-\Int{1}{n}{\frac{1}{x}}{x}}\\[1mm]
+        &=\lim_{n\to\infty}\Int{1}{n}{\braI{\frac{1}{\floor{x}}-\frac{1}{x}}}{x}\\[1mm]
+        &=\Int{1}{+\infty}{\braI{\frac{1}{\floor{x}}-\frac{1}{x}}}{x}\ .
+    }
+    \par 对第二组等式, 我们有
+    \Equation{
+        \gamma=\,&\,\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{1}{k}-\ln n}\\[1mm]
+        =\,&\,\lim_{n\to\infty}\braI{\sum_{k=1}^{n}\Int{0}{1}{x^{k-1}}{x}-\Int{1}{n}{x^{-1}}{x}}\\[1mm]
+        =\,&\,\lim_{n\to\infty}\braI{\Int{0}{1}{\frac{1-x^{n}}{1-x}}{x}-\Int{1}{n}{x^{-1}}{x}}\\[1mm]
+        \xlongequal{t=n-nx}\,&\,\lim_{n\to\infty}\braI{\Int{0}{n}{\frac{1-\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}-\Int{1}{n}{x^{-1}}{x}}\\[1mm]
+        =\,&\,\lim_{n\to\infty}\braI{\Int{0}{1}{\frac{1-\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}+\Int{1}{n}{\frac{1-\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}-\Int{1}{n}{x^{-1}}{x}}\\[1mm]
+        =\,&\,\Int{0}{1}{\frac{1-\rme^{-t}}{t}}{t}-\lim_{n\to\infty}\Int{1}{n}{\frac{\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}\\[1mm]
+        =\,&\,\Int{0}{1}{\frac{1-\rme^{-t}}{t}}{t}-\Int{1}{+\infty}{\frac{\rme^{-t}}{t}}{t}\\[1mm]
+        =\,&\,\braI{1-\rme^{-x}}\ln x\subst{0^{+}}{1}-\rme^{-x}\ln x\subst{1}{+\infty}-\Int{0}{1}{\rme^{-x}\ln x}{x}-\Int{1}{+\infty}{\rme^{-x}\ln x}{x}\\[1mm]
+        =\,&\,-\lim_{x\to 0^{+}}x\ln x-\lim_{x\to+\infty}\rme^{-x}\ln x-\Int{0}{+\infty}{\rme^{-x}\ln x}{x}\\[1mm]
+        =\,&\,-\Int{0}{+\infty}{\rme^{-x}\ln x}{x}=-\Int{0}{1}{\ln\ln\frac{1}{x}}{x}\ ,
+    }
+
+\newpage
+
+    \noindent 其中
+    \Equation{
+        \lim_{n\to\infty}\Int{1}{n}{\frac{\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}=\Int{1}{+\infty}{\frac{\rme^{-t}}{t}}{t}\ ,
+    }
+    成立是因为
+    \Equation{
+        \Int{1}{+\infty}{\frac{\braI{1-\sfrac{t}{n}}^{n}-\rme^{-t}}{t}}{t}<\Int{1}{n}{\frac{\braI{1-\sfrac{t}{n}}^{n}-\rme^{-t}}{t}}{t}<0\ ,
+    }
+    而
+    \Equation{
+        \lim_{n\to\infty}\Int{1}{+\infty}{\frac{\braI{1-\sfrac{t}{n}}^{n}-\rme^{-t}}{t}}{t}=0\ ,
+    }
+    因此
+    \Equation{
+        \lim_{n\to\infty}\Int{1}{n}{\frac{\braI{1-\sfrac{t}{n}}^{n}}{t}}{t}-\Int{1}{+\infty}{\frac{\rme^{-t}}{t}}{t}=\lim_{n\to\infty}\Int{1}{n}{\frac{\braI{1-\sfrac{t}{n}}^{n}-\rme^{-t}}{t}}{t}=0\ .
+    }
+}
+
+\par 最后, 从\link{Beta}{Euler常数的存在性}可导出下面的等价无穷关系.
+
+\Theorem{调和级数的等价量}{
+    \Equation{
+        \sum_{k=1}^{n}\frac{1}{k}\sim\ln n\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{n\to\infty}\braI{\sum_{k=1}^{n}\frac{1}{k}-\ln n}=\gamma\implies\lim_{n\to\infty}\frac{\sum_{k=1}^{n}\frac{1}{k}-\ln n}{\ln n}=0\implies\lim_{n\to\infty}\frac{\sum_{k=1}^{n}\frac{1}{k}}{\ln n}=1\ .
+    }
+}
+
+\newpage

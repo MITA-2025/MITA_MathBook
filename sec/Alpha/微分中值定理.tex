@@ -1,0 +1,160 @@
+
+\Theorem{Rolle中值定理}{
+    设 $f\in C\braII{a\and b}\cap D\braI{a\and b}$ , 若 $f\braI{a}=f\braI{b}$ , 则存在 $\xi\in\braI{a\and b}$ 使得 $f\fder\braI{\xi}=0$ .
+}
+\Proof{证明}{
+    \par 由连续函数的最值定理可知 $f$ 在区间 $\braII{a\and b}$ 上存在最大值 $M$ 和最小值 $m$ .
+    \par 若 $M=m$ , 则 $f$ 在 $\braI{a\and b}$ 上为常值函数, 此时取 $\xi=\sfrac{\braI{a+b}}{2}$ ;
+    \par 若 $M>m$ , 因为 $f\braI{a}=f\braI{b}$ , 所以必定存在 $\xi\in\braI{a\and b}$ 使得 $f$ 在 $x=\xi$ 处取得最大值或最小值, 再由Fermat引理可知 $f\fder\braI{\xi}=0$ .
+}
+
+\Theorem{Lagrange中值定理}{
+    设 $f\in C\braII{a\and b}\cap D\braI{a\and b}$ , 则存在 $\xi\in\braI{a\and b}$ 使得
+    \Equation{
+        f\fder\braI{\xi}=\frac{f\braI{b}-f\braI{a}}{b-a}\ .
+    }
+}
+\Proof{证明}{
+    \par 考虑函数
+    \Equation{
+        F\braI{x}=f\braI{x}-\braI{\frac{f\braI{b}-f\braI{a}}{b-a}}x\ ,
+    }
+    显然 $F$ 在 $\braII{a\and b}$ 上连续, 且在 $\braI{a\and b}$ 上可导, 并且有 $F\braI{a}=F\braI{b}$ 成立, 于是根据\link{Alpha}{Rolle中值定理}, 必定存在实数 $\xi\in\braI{a\and b}$ 使得 $F\fder\braI{\xi}=0$ , 即
+    \Equation{
+        f\fder\braI{\xi}=\frac{f\braI{b}-f\braI{a}}{b-a}\ .
+    }
+}
+
+\Theorem{Cauchy中值定理}{
+    设 $f\in C\braII{a\and b}\cap D\braI{a\and b}$ , 若 $g\fder\braI{x}\ne 0$ 对一切 $x\in\braI{a\and b}$ 成立, 则存在 $\xi\in\braI{a\and b}$ 使得
+    \Equation{
+        \frac{f\fder\braI{\xi}}{g\fder\braI{\xi}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ .
+    }
+}
+\Proof{证明}{
+    \par 考虑函数
+    \Equation{
+        F\braI{x}=f\braI{x}-\braI{\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}}g\braI{x}\ ,
+    }
+
+\newpage
+
+    \noindent 显然 $F$ 在 $\braII{a\and b}$ 上连续, 且在 $\braI{a\and b}$ 上可导, 并且有 $F\braI{a}=F\braI{b}$ 成立, 于是根据\link{Alpha}{Rolle中值定理}, 必定存在实数 $\xi\in\braI{a\and b}$ 使得 $F\fder\braI{\xi}=0$ , 即
+    \Equation{
+        \frac{f\fder\braI{\xi}}{g\fder\braI{\xi}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ .
+    }
+}
+
+\par 在\link{Alpha}{Cauchy中值定理}中令 $g\braI{x}=x$ 即得\link{Alpha}{Lagrange中值定理}.
+
+\par 事实上, 我们可以在 $g$ 严格单调时利用Lagrange中值定理得到Cauchy中值定理. 为了实现这一点, 我们将Cauchy中值定理看作关于参数方程的中值定理, 并对由此确定的函数 $F\braI{x}=f\braI{g^{-1}\braI{x}\!}$ 应用Lagrange中值定理, 即存在 $\xi_{0}\in\braI{g\braI{a}\and g\braI{b}\!}$ 使得
+\Equation{
+    F\fder\braI{\xi_{0}}=\frac{F\braI{g\braI{b}\!}-F\braI{g\braI{a}\!}}{g\braI{b}-g\braI{a}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ ,
+}
+同时由反函数的导数法则知
+\Equation{
+    F\fder\braI{\xi_{0}}=\braI{f\braI{g^{-1}\braI{x}\!}\!}'\subst{x=\xi_{0}}{}=\frac{f\fder\braI{g^{-1}\braI{\xi_{0}}\!}}{g\fder\braI{g^{-1}\braI{\xi_{0}}\!}}\ ,\\[-14mm]
+}
+\Equation{
+    \frac{f\fder\braI{g^{-1}\braI{\xi_{0}}\!}}{g\fder\braI{g^{-1}\braI{\xi_{0}}\!}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ ,
+}
+再令 $\xi=g^{-1\!}\braI{\xi_{0}}$ 即可完成证明.
+
+\par \link{Alpha}{Lagrange中值定理}是存在连续函数某切线平行于给定割线的性质刻画. 用 $y=g\braI{x}$ 表示 $f$ 在 $\braI{a\and f\braI{a}\!}$ 与 $\braI{b\and f\braI{b}\!}$ 两点处的连线方程, 我们要证明在 $\braI{a\and b}$ 上存在 $x=\xi$ 使得 $f$ 在 $g$ 在该处的变化率相等, 也即确保函数
+\Equation{
+    F_{0}\braI{x}=f\braI{x}-g\braI{x}=f\braI{x}-\braI{f\braI{a}+\frac{f\braI{b}-f\braI{a}}{b-a}\braI{x-a}}
+}
+的驻点存在, 而相差任意常数均保持原有导数, 进而我们可以将其优化为
+\Equation{
+    F\braI{x}=f\braI{x}-\braI{\frac{f\braI{b}-f\braI{a}}{b-a}}x\ ,
+}
+这就是我们所构造的辅助函数.
+
+\par 而对于\link{Alpha}{Cauchy中值定理}, 我们在上述基础上略加调整即得所需确保驻点存在的函数
+\Equation{
+    F_{0}\braI{x}=f\braI{x}-\braI{f\braI{a}+\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\braI{g\braI{x}-g\braI{a}\!}}\ ,
+}
+
+\newpage
+
+\noindent 优化后就是我们所构造的辅助函数
+\Equation{
+    F\braI{x}=f\braI{x}-\braI{\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}}g\braI{x}\ .
+}
+
+\par 下面两则由中值定理导出的结论表明导数在区间上具有稳定性——具有介值性质且不存在第一类间断点.
+
+\Theorem{导数介值定理}{
+    设 $f\in D\braII{a\and b}$ 且 $\min\braIII{f\fder\braI{a}\and f\fder\braI{b}}\leqslant C\leqslant\max\braIII{f\fder\braI{a}\and f\fder\braI{b}}$ , 则存在 $\xi\in\braI{a\and b}$ 使得 $f\fder\braI{\xi}=C$ .
+}
+
+\Theorem{导数极限定理}{
+    设 $f\in D\braI{a\and b}$ , 若极限 $\lim\limits_{x\to a^{+}}f\fder\braI{x}=A$ 存在, 则 $f\fder\braI{a}=A$ .
+}
+
+\par 最后, 我们给出上述中值定理的多元版本.
+
+\Theorem{多元Lagrange中值定理}{
+    设 $f\in C\braII{a\and b}\cap D\braI{a\and b}$ , 则
+    + 存在不同的实数 $\xi_{1}\and\cdots\and\xi_{n}\in\braI{a\and b}$ 使得
+    \Equation{
+        \sum_{k=1}^{n}\lambda_{k}f\fder\braI{\xi_{k}}=\frac{f\braI{b}-f\braI{a}}{b-a}\ ,
+    }
+    + 存在不同的实数 $\xi_{1}\and\cdots\and\xi_{n}\in\braI{a\and b}$ 使得
+    \Equation{
+        \sum_{k=1}^{n}\frac{\lambda_{k}}{f\fder\braI{\xi_{k}}}=\frac{b-a}{f\braI{b}-f\braI{a}}\ ,
+    }
+    其中各 $\lambda_{k}>0$ 且 $\lambda_{1}+\cdots+\lambda_{n}=1$ .
+}
+\Proof{{\bf 1}证明}{
+    \par 对全体正整数 $k\leqslant n$ , 令
+    \Equation{
+        x_{k}=a+\sum_{i=1}^{k}\lambda_{i}\braI{b-a}\ ,
+    }
+    对 $f$ 和每个区间 $\braI{x_{k-1}\and x_{k}}$ 应用\link{Alpha}{Lagrange中值定理}可知分别存在 $\xi_{k}\in\braI{x_{k-1}\and x_{k}}$ 使得
+    \Equation{
+        f\fder\braI{\xi_{k}}=\frac{f\braI{x_{k}}-f\braI{x_{k-1}}}{\lambda_{k}\braI{b-a}}\ ,
+    }
+    累加即得
+    \Equation{
+        \sum_{k=1}^{n}\lambda_{k}f\fder\braI{\xi_{k}}=\frac{f\braI{b}-f\braI{a}}{b-a}\ .
+    }
+}
+\Proof{{\bf 2}证明}{
+    \par 由介值定理可以找到 $a=x_{0}<x_{1}<\cdots<x_{n-1}<x_{n}=b$ 使得对一切正整数 $k\leqslant n$ 有
+    \Equation{
+        f\braI{x_{k}}=f\braI{a}+\sum_{i=1}^{k}\lambda_{i}\braII{f\braI{b}-f\braI{a}\!}\ ,
+    }
+    对 $f$ 和每个区间 $\braI{x_{k-1}\and x_{k}}$ 应用\link{Alpha}{Lagrange中值定理}可知存在 $\xi_{k}\in\braI{x_{k-1}\and x_{k}}$ 使得
+    \Equation{
+        f\fder\braI{\xi_{k}}=\frac{\lambda_{k}\braII{f\braI{b}-f\braI{a}\!}}{x_{k}-x_{k-1}}\ ,
+    }
+    累加即得
+    \Equation{
+        \sum_{k=1}^{n}\frac{\lambda_{k}}{f\fder\braI{\xi_{k}}}=\frac{b-a}{f\braI{b}-f\braI{a}}\ .
+    }
+}
+
+\Theorem{多元Cauchy中值定理}{
+    设 $f\and g\in C\braII{a\and b}\cap D\braI{a\and b}$ , 则存在不同的实数 $\xi_{1}\and\cdots\and\xi_{n}\in\braI{a\and b}$ 使得
+    \Equation{
+        \sum_{k=1}^{n}\frac{\lambda_{k}f\fder\braI{\xi_{k}}}{g\fder\braI{\xi_{k}}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ ,
+    }
+    其中各 $\lambda_{k}>0$ 且 $\lambda_{1}+\cdots+\lambda_{n}=1$ .
+}
+\Proof{证明}{
+    \par 由介值定理可以找到 $a=x_{0}<x_{1}<\cdots<x_{n-1}<x_{n}=b$ 使得对一切正整数 $k\leqslant n$ 有
+    \Equation{
+        g\braI{x_{k}}=g\braI{a}+\sum_{i=1}^{k}\lambda_{i}\braII{g\braI{b}-g\braI{a}\!}\ ,
+    }
+    对 $f\braI{x}$ 和每个区间 $\braI{x_{k-1}\and x_{k}}$ 应用\link{Alpha}{Cauchy中值定理}可知存在 $\xi_{k}\in\braI{x_{k-1}\and x_{k}}$ 使得
+    \Equation{
+        \frac{f\fder\braI{\xi_{k}}}{g\fder\braI{\xi_{k}}}=\frac{f\braI{x_{k}}-f\braI{x_{k-1}}}{\lambda_{k}\braII{g\braI{b}-g\braI{a}\!}}\ ,
+    }
+    累加得
+    \Equation{
+        \sum_{k=1}^{n}\lambda_{k}\frac{f\fder\braI{\xi_{k}}}{g\fder\braI{\xi_{k}}}=\frac{f\braI{b}-f\braI{a}}{g\braI{b}-g\braI{a}}\ .
+    }
+}
+
+\newpage

@@ -1,0 +1,100 @@
+
+\Theorem{Jenson不等式}{
+    设 $f$ 是区间 $I$ 上的上/下凸函数, 则对任意 $x_{1}\and x_{2}\and\cdots\and x_{n}\in I$ 有
+    \Equation{
+        f\text{上凸}:\quad f\braI{\sum_{k=1}^{n}p_{k}x_{k}}\geqslant\sum_{k=1}^{n}p_{k}f\braI{x_{k}}\ ,\\[-14mm]
+    }
+    \Equation{
+        f\text{下凸}:\quad f\braI{\sum_{k=1}^{n}p_{k}x_{k}}\leqslant\sum_{k=1}^{n}p_{k}f\braI{x_{k}}\ ,
+    }
+    其中各 $p_{k}>0$ 且 $p_{1}+\cdots+p_{n}=1$ .
+}
+\Proof{证明}{
+    \par 以 $f$ 下凸的情形为例. 当 $n=1$ 时由切线不等式有
+    \Equation{
+        p_{1}f\braI{x_{1}}\geqslant p_{1}f\braI{p_{1}x_{1}+p_{2}x_{2}}+p_{1}f\fder\braI{p_{1}x_{1}+p_{2}x_{2}}\braI{x_{1}-p_{1}x_{1}-p_{2}x_{2}}\ ,\\[-16mm]
+    }
+    \Equation{
+        p_{2}f\braI{x_{2}}\geqslant p_{2}f\braI{p_{1}x_{1}+p_{2}x_{2}}+p_{2}f\fder\braI{p_{1}x_{1}+p_{2}x_{2}}\braI{x_{2}-p_{1}x_{1}-p_{2}x_{2}}\ ,
+    }
+    上述两式相加可得 $f\braI{p_{1}x_{1}+p_{2}x_{2}}\leqslant p_{1}f\braI{x_{1}}+p_{2}f\braI{x_{2}}$ .
+    \par 假设上述命题对 $n$ 成立, 现在考虑 $n+1$ 的情形, 令 $P_{n}=p_{1}+\cdots+p_{n}$ , 我们有
+    \Equation{
+        f\braI{\sum_{k=1}^{n+1}p_{k}x_{k}}&=f\braI{p_{n+1}x_{n+1}+P_{n}\sum_{k=1}^{n}\frac{p_{k}x_{k}}{P_{n}}}\\[1mm]
+        &\leqslant p_{n+1}f\braI{x_{n+1}}+P_{n}f\braI{\sum_{k=1}^{n}\frac{p_{k}x_{k}}{P_{n}}}\\[1mm]
+        &\leqslant p_{n+1}f\braI{x_{n+1}}+P_{n}\sum_{k=1}^{n}\frac{p_{k}f\braI{x_{k}}}{P_{n}}\\[1mm]
+        &=\sum_{k=1}^{n+1}p_{k}f\braI{x_{k}}\ ,
+    }
+    其中
+    \Equation{
+        f\braI{\sum_{k=1}^{n}\frac{p_{k}x_{k}}{P_{n}}}\leqslant\sum_{k=1}^{n}\frac{p_{k}f\braI{x_{k}}}{P_{n}}
+    }
+    应用了归纳假设, 这是因为 $\braI{\sfrac{p_{1}}{P_{n}}+\cdots+\sfrac{p_{n}}{P_{n}}}=1$ .
+    \par 因此上述定理对一切正整数 $n$ 成立. 当 $f$ 上凸时, 同理可证.
+}
+
+\newpage
+
+\par 现在我们进一步将Jenson不等式推广至无穷形式与连续形式.
+
+\Theorem{Jenson不等式（无穷级数）}{
+    设 $f$ 是区间 $I$ 上的上/下凸函数, 则对任意 $I$ 中数列 $(x_{n})_{n=1}^{\infty}$ 有
+    \Equation{
+        f\text{上凸}:\quad f\braI{\sum_{n=1}^{\infty}p_{n}x_{n}}\geqslant\sum_{n=1}^{\infty}p_{n}f\braI{x_{n}}\ ,\\[-14mm]
+    }
+    \Equation{
+        f\text{下凸}:\quad f\braI{\sum_{n=1}^{\infty}p_{n}x_{n}}\leqslant\sum_{n=1}^{\infty}p_{n}f\braI{x_{n}}\ ,
+    }
+    其中 $(p_{n})_{n=1}^{\infty}$ 是正数列且
+    \Equation{
+        \sum_{n=1}^{\infty}p_{n}=1
+    }
+    的正项数列.
+}
+
+\Proof{证明}{
+    \par 以 $f$ 下凸的情形为例. 我们设
+    \Equation{
+        a_{n}=p_{n}f\braI{x_{n}}-p_{n}f\braI{\sum_{k=1}^{\infty}p_{k}x_{k}}-p_{n}f\fder\braI{\sum_{k=1}^{\infty}p_{k}x_{k}}\braI{x_{n}-\sum_{k=1}^{\infty}p_{k}x_{k}}\ ,
+    }
+    由切线不等式有 $a_{n}\geqslant0$ , 于是
+    \Equation*{
+        \sum_{n=1}^{\infty}a_{n}\geqslant0&\implies\sum_{n=1}^{\infty}\braII{p_{n}f\braI{x_{n}}-p_{n}f\braI{\sum_{k=1}^{\infty}p_{k}x_{k}}-p_{n}f\fder\braI{\sum_{k=1}^{\infty}p_{k}x_{k}}\braI{x_{n}-\sum_{k=1}^{\infty}p_{k}x_{k}}\!}\geqslant0\\[1mm]
+        &\implies\sum_{n=1}^{\infty}p_{n}f\braI{x_{n}}-f\braI{\sum_{n=1}^{\infty}p_{n}x_{n}}\sum_{n=1}^{\infty}p_{n}\geqslant f\fder\braI{\,\sum_{n=1}^{\infty}p_{n}x_{n}}\braI{\sum_{n=1}^{\infty}p_{n}x_{n}}\braI{1-\sum_{n=1}^{\infty}p_{n}}\\[1mm]
+        &\implies f\braI{\sum_{n=1}^{\infty}p_{n}x_{n}}\leqslant\sum_{n=1}^{\infty}p_{n}f\braI{x_{n}}\ .
+    }
+    \par 当 $f$ 上凸时, 同理可证.
+}
+
+\Theorem{Jenson不等式（定积分）}{
+    设 $f$ 是 $\braI{a\and b}$ 上的上/下凸函数, 则
+    \Equation{
+        f\text{上凸}:\quad f\braI{\frac{1}{b-a}\Int{a}{b}{g\braI{x}}{x}}\geqslant\frac{1}{b-a}\Int{a}{b}{f\braI{g\braI{x}\!}}{x}\ ,\\[-14mm]
+    }
+    \Equation{
+        f\text{下凸}:\quad f\braI{\frac{1}{b-a}\Int{a}{b}{g\braI{x}}{x}}\leqslant\frac{1}{b-a}\Int{a}{b}{f\braI{g\braI{x}\!}}{x}\ ,
+    }
+    其中 $g$ 和 $f\circ g$ 在 $\braI{a\and b}$ 上可积, 且 $a<g\braI{x}<b$ 恒成立.
+}
+
+\newpage
+
+\Proof{证明}{
+    \par 以 $f$ 下凸的情形为例. 由切线不等式有 $f\braI{x}\geqslant f\braI{x_{0}}+f\fder\braI{x_{0}}\braI{x-x_{0}}$ , 代入
+    \Equation{
+        \braI{x\and x_{0}}=\braI{g\braI{x}\and\frac{1}{b-a}\Int{a}{b}{g\braI{u}}{u}}
+    }
+    并在等式两边同时作 $a\to b$ 积分即得
+    \Equation{
+        f\braI{\frac{1}{b-a}\Int{a}{b}{g\braI{x}}{x}}\leqslant\frac{1}{b-a}\Int{a}{b}{f\braI{g\braI{x}\!}}{x}\ .
+    }
+    \par 当 $f$ 上凸时, 同理可证.
+}
+
+\par 上述三种Jenson不等式均表明“特定权重在映射下会发生偏移”, 而偏移量将由各处一阶泰勒余项的加权平均值给出. 特别地, 当 $f\fdder\braI{x}=0$ 时偏移量将始终为 $0$ , 此时可认为自变量的权重与函数值的权重等价, 因此我们可以交换运算次序, 即
+\Equation{
+    f\braI{\sum x}=\sum f\braI{x}\ ,
+}
+其中 $\sum$ 具有相同的权, 我们称这样的函数具有\newconcept{可加性}.
+
+\newpage

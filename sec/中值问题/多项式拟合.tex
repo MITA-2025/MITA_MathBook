@@ -1,0 +1,141 @@
+
+\par 若要证明形如 $f\fnder{n}\braI{\xi}=a$ 的结论, 则可以考虑构造多项式函数来拟合 $f$ 并多次应用Rolle中值定理来证明相关中值的存在性.
+
+\Formula{例1}{
+    设函数 $f\in D^{3}\braII{-1\and 1}$ 满足
+    \Equation{
+        f\braI{-1}=-1\ ,\ f\fder\braI{0}=0\ ,\ f\braI{1}=1\ ,
+    }
+    证明存在 $\xi\in\braI{-1\and 1}$ 使得 $f\fddder\braI{\xi}=6$ .
+}
+\Proof{证明}{
+    \par 考虑同时满足 $P\braI{-1}=-1$ , $P\braI{1}=1$ , $P\braI{0}=f\braI{0}$ , $P\fder\braI{0}=0$ 的三次多项式函数 $P$ , 我们有
+    \Equation{
+        P\braI{x}=x^{3}-f\braI{0}x^{2}+f\braI{0}\ ,
+    }
+    令 $F\braI{x}=f\braI{x}-P\braI{x}$ , 则有
+    \Equation{
+        F\braI{-1}=F\braI{0}=F\braI{1}=0\ ,
+    }
+    由\link{Alpha}{Rolle中值定理}可知分别存在 $\xi_{1}\in\braI{-1\and 0}$ 和 $\xi_{2}\in\braI{0\and 1}$ 使得
+    \Equation{
+        F\fder\braI{\xi_{1}}=F\fder\braI{0}=F\fder\braI{\xi_{2}}=0\ ,
+    }
+    再由\link{Alpha}{Rolle中值定理}可知分别存在 $\xi_{3}\in\braI{\xi_{1}\and 0}$ 和 $\xi_{4}\in\braI{0\and\xi_{2}}$ 以及 $\xi\in\braI{\xi_{3}\and\xi_{4}}$ 使得
+    \Equation{
+        F\fdder\braI{\xi_{3}}=F\fdder\braI{\xi_{4}}=0\ ,\\[-16mm]
+    }
+    \Equation{
+        F\fddder\braI{\xi}=0\implies f\fddder\braI{\xi}=6\ .
+    }
+}
+
+\par 需要注意, 在构造多项式 $P$ 时我们引入了与函数 $f$ 相关的参数 $f\braI{0}$ , 这是因为 $P$ 的最高次项系数与 $f\braI{0}$ 无关, 否则我们最多只能得到 $f\fddder\braI{\xi}=f\braI{0}$ 或类似的结论. 另外, 值得注意的是我们选取了条件 $P\braI{0}=f\braI{0}$ , 事实上, 对于其他例如 $P\fder\braI{1}=f\fder\braI{1}$ 的条件我们将不能得出有关 $f\fddder$ 的任何性质.
+
+\newpage
+
+\Formula{例2}{
+    设函数 $f\in D\braII{0\and 1}$ 满足
+    \Equation{
+        \Int{0}{1}{f\braI{x}}{x}=\frac{5}{2}\AND\Int{0}{1}{xf\braI{x}}{x}=\frac{3}{2}\ ,
+    }
+    证明存在 $\xi\in\braI{0\and 1}$ 使得 $f\fder\braI{\xi}=3$ .
+}
+\Proof{证明}{
+    \par 考虑同时满足
+    \Equation{
+        \Int{0}{1}{P\braI{x}}{x}=\frac{5}{2}\AND\Int{0}{1}{xP\braI{x}}{x}=\frac{3}{2}\ ,
+    }
+    的一次多项式函数 $P$ , 我们有
+    \Equation{
+        P\braI{x}=3x+1\ ,
+    }
+    令 $F\braI{x}=f\braI{x}-P\braI{x}$ , 则有
+    \Equation{
+        \Int{0}{1}{F\braI{x}}{x}=0\ ,\\[-14mm]
+    }
+    \Equation{
+        \Int{0}{1}{\!\Int{x}{1}{F\braI{t}}{t}}{x}=\Int{0}{1}{xF\braI{x}}{x}=0\ ,
+    }
+    由积分中值定理I可知存在 $\eta\in\braI{0\and 1}$ 使得
+    \Equation{
+        \Int{\eta}{1}{F\braI{x}}{x}=0\ ,
+    }
+    于是
+    \Equation{
+        \Int{0}{\eta}{F\braI{x}}{x}=\Int{\eta}{1}{F\braI{x}}{x}=0\ ,
+    }
+    再由积分中值定理I可知分别存在 $\xi_{1}\in\braI{0\and\eta}$ 和 $\xi_{2}\in\braI{\eta\and 1}$ 使得
+    \Equation{
+        F\braI{\xi_{1}}=F\braI{\xi_{2}}=0\ ,
+    }
+    最后, 由\link{Alpha}{Rolle中值定理}可知存在 $\xi\in\braI{\xi_{1}\and\xi_{2}}$ 使得
+    \Equation{
+        F\fder\braI{\xi}=0\implies f\fder\braI{\xi}=3\ .
+    }
+}
+
+\newpage
+
+\Formula{例3}{
+    设函数 $f\in D^{2}\braII{0\and 1}$ 满足 $f\braI{0}=f\braI{1}=0$ 且在 $\braI{0\and 1}$ 上有最小值 $-1$ , 证明存在 $\xi\in\braI{0\and 1}$ 使得 $f\fdder\braI{\xi}=8$ .
+}
+\Proof{证明I}{
+    \par 考虑同时满足 $P\braI{0}=P\braI{1}=0$ 且在 $\braI{0\and 1}$ 上有最小值 $-1$ 的二次多项式函数 $P$ , 我们有
+    \Equation{
+        P\braI{x}=4x^{2}-4x\ ,
+    }
+    令 $F\braI{x}=f\braI{x}-P\braI{x}$ .
+    \par 当 $f\braI{\sfrac{1}{2}}=-1$ 时有
+    \Equation{
+        F\braI{0}=F\braI{\frac{1}{2}}=F\braI{1}=0\ ,
+    }
+    由\link{Alpha}{Rolle中值定理}分别存在 $\xi_{1}\in\braI{0\and\sfrac{1}{2}}\and\xi_{2}\in\braI{\sfrac{1}{2}\and 1}\and\xi\in\braI{\xi_{1}\and\xi_{2}}$ 使得
+    \Equation{
+        F\fder\braI{\xi_{1}}=F\fder\braI{\xi_{2}}=0\ ,\\[-16mm]
+    }
+    \Equation{
+        F\fdder\braI{\xi}=0\implies f\fdder\braI{\xi}=8\ ;
+    }
+    \par 当 $f\braI{\sfrac{1}{2}}\ne-1$ 时, 我们知道存在 $c\in\braI{0\and 1}$ 使得 $f\braI{c}=-1$ , 此时有
+    \Equation{
+        F\braI{c}=-1-P\braI{c}<0\AND F\braI{\frac{1}{2}}=f\braI{\frac{1}{2}}-\braI{-1}>0\ ,
+    }
+    由介值定理可知存在 $\eta\in\braI{\min\braIII{c\and\sfrac{1}{2}}\and\max\braIII{c\and\sfrac{1}{2}}}$ 使得
+    \Equation{
+        F\braI{0}=F\braI{\eta}=F\braI{1}=0\ ,
+    }
+    由\link{Alpha}{Rolle中值定理}可知分别存在 $\xi_{1}\in\braI{0\and\eta}\and\xi_{2}\in\braI{\eta\and 1}\and\xi\in\braI{\xi_{1}\and\xi_{2}}$ 使得
+    \Equation{
+        F\fder\braI{\xi_{1}}=F\fder\braI{\xi_{2}}=0\ ,\\[-16mm]
+    }
+    \Equation{
+        F\fdder\braI{\xi}=0\implies f\fdder\braI{\xi}=8\ .
+    }
+}
+
+\par 考虑到可导函数的最值蕴含了其在该处导数为 $0$ 的性质, 我们可以直接在该处对函数进行Taylor展开.
+
+\newpage
+
+\Proof{证明II}{
+    \par 设我们有 $f\braI{c}=-1$ , 则由Fermat引理知 $f\fder\braI{c}=0$ , 从而根据\link{Alpha}{Lagrange余项}, 分别存在 $\xi_{1}\in\braI{0\and c}$ 和 $\xi_{2}\in\braI{c\and 1}$ 使得
+    \Equation{
+        f\braI{0}=f\braI{c}-cf\fder\braI{c}+\frac{c^{2}f\fdder\braI{\xi_{1}}}{2}\implies f\fdder\braI{\xi_{1}}=\frac{2}{c^{2}}\ ,\\[-14mm]
+    }
+    \Equation{
+        f\braI{1}=f\braI{c}+\braI{1-c}f\fder\braI{c}+\frac{\braI{1-c}^{2}f\fdder\braI{\xi_{2}}}{2}\implies f\fdder\braI{\xi_{2}}=\frac{2}{\braI{1-c}^{2}}\ ,
+    }
+    注意到
+    \Equation{
+        \braII{f\fdder\braI{\xi_{1}}-8}\braII{f\fdder\braI{\xi_{2}}-8}&=\frac{4\braI{1-4c^{2}}\braI{1-4\braI{1-c}^{2}}}{c^{2}\braI{1-c}^{2}}\\[1mm]
+        &=-\frac{4\braI{1+2c}\braI{3-2c}\braI{1-2c}^{2}}{c^{2}\braI{1-c}^{2}}\\[-1mm]
+        &<0\ ,
+    }
+    于是由介值定理可知存在 $\xi\in\braI{\xi_{1}\and\xi_{2}}$ 使得
+    \Equation{
+        f\fdder\braI{\xi}=8\ .
+    }
+}
+
+\newpage

@@ -1,0 +1,1202 @@
+
+% 2025 Simple·System
+
+\NeedsTeXFormat {LaTeX2e}
+\ProvidesPackage {simplesystem} [Preview 20]
+
+
+% --------------------------------------------------
+% | 外部宏包 | External Packages |
+% --------------------------------------------------
+
+\RequirePackage {xcolor, xparse, xstring}
+\RequirePackage {tikz, tocloft, amsmath}
+\RequirePackage [hidelinks] {hyperref}
+
+
+% --------------------------------------------------
+% | Simple·System 图标 | Simple·System Logo |
+% --------------------------------------------------
+
+\newcommand \plotsetting {
+	\draw[
+		black,
+		ultra thick,
+		domain = 0:360,
+		smooth,
+		samples = 100
+	]
+}
+\newcommand \SimpleSystem {
+    \begin{tikzpicture} [scale=0.3]
+		\plotsetting
+		plot (\x: {3.14159 - 0.36788 * cos (5 * \x)});
+		\plotsetting
+		plot (\x: {3.14159 + 0.36788 * cos (5 * \x)});
+	\end{tikzpicture}
+}
+
+
+% --------------------------------------------------
+% --------------------------------------------------
+% --------------------------------------------------
+
+% LaTeX3 编程模式 | LaTeX3 Programming
+
+\ExplSyntaxOn
+
+
+% --------------------------------------------------
+% | 变量声明 | Variables' Declarations |
+% --------------------------------------------------
+
+\newcounter {serial}
+\tl_new:N \l_tmpc_tl
+\tl_new:N \l_tmpd_tl
+\tl_new:N \l_tmpe_tl
+\tl_new:N \g_chaptername_tl
+\tl_new:N \g_subchaptername_tl
+\tl_new:N \g_sectionname_tl
+\tl_new:N \g_parttitlename_tl
+\tl_new:N \g_parameterA_tl
+\iow_new:N \g_scrfile_iow
+\iow_new:N \g_sstfile_iow
+\prop_new:N \g_sectionname_prop
+\prop_new:N \g_blockname_prop
+\clist_new:N \l_register_clist
+
+\tl_new:N \g_CatalogTitle_format_tl
+\tl_new:N \g_CatalogPartTitle_format_tl
+\tl_new:N \g_CatalogSection_format_tl
+\tl_new:N \g_CatalogIndex_format_tl
+\tl_new:N \g_IndexTitle_format_tl
+\tl_new:N \g_IndexSubchapter_format_tl
+\tl_new:N \g_IndexSection_format_tl
+\tl_new:N \g_SectionHeading_format_tl
+\tl_new:N \g_DefinitionName_format_tl
+\tl_new:N \g_DefinitionContentn_format_tl
+\tl_new:N \g_TheoremName_format_tl
+\tl_new:N \g_TheoremContent_format_tl
+\tl_new:N \g_CorollaryName_format_tl
+\tl_new:N \g_CorollaryContent_format_tl
+\tl_new:N \g_ProofName_format_tl
+\tl_new:N \g_ProofContent_format_tl
+\tl_new:N \g_ConventionName_format_tl
+\tl_new:N \g_ConventionContent_format_tl
+\tl_new:N \g_StructureName_format_tl
+\tl_new:N \g_StructureContent_format_tl
+\tl_new:N \g_ExampleName_format_tl
+\tl_new:N \g_ExampleContent_format_tl
+\tl_new:N \g_BlockLink_format_tl
+\tl_new:N \g_SectionLink_format_tl
+\tl_new:N \g_ChapterLink_format_tl
+
+
+% --------------------------------------------------
+% | 错误处理 | Error Handling |
+% --------------------------------------------------
+
+\msg_new:nnnn {SimpleSystemTeX} {SectionPositioningError} {
+    Section~'#1'~positioning~failed.
+} {
+    Please~ensure~that~the~'\ImportSection'~command~has~been~used~correctly~to~import~section~'#1'.
+}
+
+\msg_new:nnnn {SimpleSystemTeX} {BlockPositioningError} {
+    Block~'#1'~positioning~failed.
+} {
+    Please~ensure~that~the~block~'#1'~has~been~created.
+}
+
+
+% --------------------------------------------------
+% | 样式设定 | Format Settings |
+% --------------------------------------------------
+
+\NewDocumentCommand \FormatSetting {m +m} {
+    \tl_gset:cn {g_#1_format_tl} {#2}
+}
+
+% 参数宏 | Parameter Macros
+
+\tl_new:N \parttitlename
+\tl_new:N \chaptername
+\tl_new:N \subchaptername
+\tl_new:N \sectionname
+\tl_new:N \blockname
+\tl_new:N \blockcontent
+\tl_new:N \linktext
+\tl_new:N \parameterA
+\tl_new:N \parameterB
+\tl_new:N \targetchaptername
+\tl_new:N \targetsubchaptername
+\tl_new:N \targetsectionname
+
+\tl_set:Nn \parttitlename {<EmptyParameter>}
+\tl_set:Nn \chaptername {<EmptyParameter>}
+\tl_set:Nn \subchaptername {<EmptyParameter>}
+\tl_set:Nn \sectionname {<EmptyParameter>}
+\tl_set:Nn \blockname {<EmptyParameter>}
+\tl_set:Nn \blockcontent {<EmptyParameter>}
+\tl_set:Nn \linktext {<EmptyParameter>}
+\tl_set:Nn \parameterA {<EmptyParameter>}
+\tl_set:Nn \parameterB {<EmptyParameter>}
+\tl_set:Nn \targetchaptername {<EmptyParameter>}
+\tl_set:Nn \targetsubchaptername {<EmptyParameter>}
+\tl_set:Nn \targetsectionname {<EmptyParameter>}
+
+% 条件宏 | Condition Macros
+
+\cs_new:Npn \ifempty #1 #2 #3 {
+    \str_if_eq:VnTF {#1} {-NoValue-} {#2} {#3}
+}
+\cs_new:Npn \ifequal #1 #2 #3 #4 {
+    \str_if_eq:VnTF {#1} {#2} {#3} {#4}
+}
+
+% 预设值 | Default Values
+
+\FormatSetting {CatalogTitle} {
+    \Large\bfseries
+    \begin{center}Content\end{center}
+    \bigskip
+}
+\FormatSetting {CatalogPartTitle} {
+    \Large\parttitlename
+    \vspace{-5pt}
+}
+\FormatSetting {CatalogSection} {
+    \ifempty\subchaptername {
+        \,{\scriptsize\chaptername}\ |\ \sectionname
+    } {
+        \,{\scriptsize\chaptername}\ \subchaptername\ |\ \sectionname
+    }
+    \vspace{-7.5pt}
+}
+\FormatSetting {CatalogIndex} {
+    {\large\chaptername}\ \parameterA
+    \vspace{-7.5pt}
+}
+\FormatSetting {IndexTitle} {
+    \noindent
+    \bfseries{\huge\chaptername}\ {\Large\parameterA}
+    \par
+}
+\FormatSetting {IndexSubchapter} {
+    \ifempty\subchaptername{
+        {\Large\chaptername}
+    } {
+        {\normalsize\chaptername}\ {\Large\subchaptername}
+    }
+    \vspace{-5pt}
+}
+\FormatSetting {IndexSection} {
+    \ifempty\subchaptername {
+        \,{\scriptsize\chaptername}\ |\ \sectionname
+    } {
+        \,{\scriptsize\chaptername}\ \subchaptername\ |\ \sectionname
+    }
+}
+\FormatSetting {SectionHeading} {
+    \noindent
+    \bfseries
+    \ifempty\subchaptername {
+        {\Large\chaptername}{\huge\;|\;\sectionname}
+    } {
+        {\Large\chaptername}\ {\huge\subchaptername\;|\;\sectionname}
+    }
+    \par\bigskip
+}
+\FormatSetting {DefinitionName} {
+    \vspace{4pt}\noindent
+    \color{purple}\bfseries\blockname
+    \quad
+}
+\FormatSetting {DefinitionContent} {
+    \color{purple}\itshape\blockcontent
+}
+\FormatSetting {TheoremName} {
+    \vspace{4pt}\noindent
+    \color{teal}\bfseries\blockname
+    \quad
+}
+\FormatSetting {TheoremContent} {
+    \color{teal}\itshape\blockcontent
+}
+\FormatSetting {CorollaryName} {
+    \vspace{4pt}\noindent
+    \color{brown}\bfseries\blockname
+    \quad
+}
+\FormatSetting {CorollaryContent} {
+    \color{brown}\itshape\blockcontent
+}
+\FormatSetting {ProofName} {
+    \par\noindent
+    \itshape\blockname
+}
+\FormatSetting {ProofContent} {
+    \itshape\blockcontent
+    \par\smallskip
+}
+\FormatSetting {ConventionName} {
+    \vspace{4pt}\noindent
+    \color{darkgray}\bfseries
+    \ifequal\parameterB {sec} {
+        \ifempty\subchaptername {
+            \seclink{\chaptername}{\sectionlabel}
+        } {
+            \seclink{\chaptername}[\subchaptername]{\sectionlabel}
+        }
+    } {
+        \ifequal\parameterB {cpt} {
+            \cptlink{\chaptername}
+        } {
+            \ifequal\parameterB {subcpt} {
+                \cptlink{\chaptername}[\subchaptername]
+            } {
+                \parameterB
+            }
+        }
+    }
+    中的设定
+    \quad
+}
+\FormatSetting {ConventionContent} {
+    \color{darkgray}\itshape\blockcontent
+}
+\FormatSetting {StructureName} {
+    \vspace{4pt}\noindent
+    \color{violet}\bfseries\blockname
+    \quad
+}
+\FormatSetting {StructureContent} {
+    \color{violet}\itshape\blockcontent
+}
+\FormatSetting {ExampleName} {
+    \vspace{4pt}\noindent
+    \color{gray}\bfseries\blockname
+    \quad
+}
+\FormatSetting {ExampleContent} {
+    \color{gray}\itshape\blockcontent
+}
+\FormatSetting {BlockLink} {
+    \bfseries
+    \ifempty\linktext {
+        \,\blockname\,
+    } {
+        \,\linktext\,
+    }
+}
+\FormatSetting {SectionLink} {
+    \bfseries
+    \ifempty\linktext {
+        \ifempty\targetsubchaptername {
+            \,{\footnotesize\targetchaptername}\,|\,\targetsectionname\,
+        } {
+            \,{\footnotesize\targetchaptername}\;\targetsubchaptername\,|\,\targetsectionname\,
+        }
+    } {
+        \,\linktext\,
+    }
+}
+\FormatSetting {ChapterLink} {
+    \bfseries
+    \ifempty\linktext {
+        \ifempty\targetsubchaptername {
+            \,\targetchaptername\,
+        } {
+            \,{\footnotesize\targetchaptername}\;\targetsubchaptername\,
+        }
+    } {
+        \,\linktext\,
+    }
+}
+
+
+% --------------------------------------------------
+% | 试验语法 | Experimental Syntax |
+% --------------------------------------------------
+
+\cs_new:Npn \g_translate_format:N #1 {
+
+    \setcounter {serial} 0
+    \regex_replace_all:nnN { \s\+\s } { \c{stepcounter}\{serial\}\c{par}\c{noindent}\c{textbf}\{\c{theserial}.\}\ } #1
+    \regex_replace_all:nnN { \s\-\s } { \c{par}\c{noindent}\c{textbf}\{\c{textbullet}\}\c{,} } #1
+
+}
+
+\cs_new:Npn \g_align_transform:N #1 {
+
+    \regex_replace_all:nnN { \& } { \c{;}\c{!}\c{!}\c{!}\&\c{;}\c{!}\c{!}\c{!} } #1
+
+}
+
+\box_new:N \l_my_temp_box
+\cs_new_protected:Npn \calc_math_height:Nn #1 #2
+  {
+    \vbox_set:Nn \l_my_temp_box
+      {
+        % 暂时消除垂直间距以获取纯粹的公式高度
+        \setlength{\abovedisplayskip}{0pt}
+        \setlength{\belowdisplayskip}{0pt}
+        \setlength{\abovedisplayshortskip}{0pt}
+        \setlength{\belowdisplayshortskip}{0pt}
+        #2
+      }
+    \dim_set:Nn #1 { \box_ht:N \l_my_temp_box + \box_dp:N \l_my_temp_box }
+  }
+
+\NewDocumentCommand{\GetMathHeight}{ m m }
+  {
+    \calc_math_height:Nn #2 { #1 }
+  }
+
+
+% --------------------------------------------------
+% | 分析层 | Parser |
+% --------------------------------------------------
+
+\AtBeginDocument{
+
+    \iow_open:Nn \g_scrfile_iow { \c_sys_jobname_str.scr }
+    \iow_open:Nn \g_sstfile_iow { \c_sys_jobname_str.sst }
+
+}
+
+\NewDocumentCommand \ImportSection {m d[] m d() d<>} {
+
+    \IfNoValueTF {#4} {
+        \prop_gput:Nnn \g_sectionname_prop {#3} {#3}
+    } {
+        \prop_gput:Nnn \g_sectionname_prop {#3} {#4}
+    }
+
+    \iow_now:Nn \g_sstfile_iow {\Section {#1} {#2} {#3} {#5}}
+    \iow_now:Nn \g_scrfile_iow {\Section {#1} {#2} {#3} {#5}}
+
+}
+
+\NewDocumentCommand \MakeSimpleCatalog {} {
+
+    \iow_now:Nn \g_sstfile_iow {\Catalog}
+
+}
+
+\NewDocumentCommand \MakeSimpleIndex {m d[] d<>} {
+
+    \iow_now:Nn \g_sstfile_iow {\Index {#1} {#2} {#3}}
+    \iow_now:Nn \g_scrfile_iow {\Index {#1} {#3}}
+
+}
+
+\NewDocumentCommand \TextCommand {v} {
+
+    \iow_now:Nn \g_sstfile_iow {#1}
+
+}
+
+\NewDocumentCommand \CatalogPart {m} {
+
+    \iow_now:Nn \g_scrfile_iow {\Part {#1}}
+
+}
+
+\NewDocumentCommand \CatalogCommand {v} {
+
+    \iow_now:Nn \g_scrfile_iow {\Command {#1}}
+
+}
+
+
+% --------------------------------------------------
+% | 执行层 | Executor |
+% --------------------------------------------------
+
+\AtEndDocument{
+
+    \iow_close:N \g_scrfile_iow
+    \iow_close:N \g_sstfile_iow
+    \file_if_exist:nT {\c_sys_jobname_str.sst}
+    {\file_input:n {\c_sys_jobname_str.sst}}
+
+}
+
+\cs_set:Npn \PrintCatalogTitle {
+
+    \group_begin:
+
+    {\g_CatalogTitle_format_tl}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintCatalogPartTitle {
+
+    \group_begin:
+
+    \tl_set_eq:NN \parttitlename \g_parttitlename_tl
+
+    {\g_CatalogPartTitle_format_tl}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintCatalogSection #1 #2 #3 #4 {
+
+    \group_begin:
+
+    \prop_if_in:NnTF \g_sectionname_prop {#3}
+    {\prop_get:NnN \g_sectionname_prop {#3} \sectionname}
+    {\msg_warning:nnn {SimpleSystemTeX} {SectionPositioningError} {#3}}
+
+    \tl_set_eq:NN \parttitlename \g_parttitlename_tl
+    \tl_set:Nn \chaptername {#1}
+    \tl_set:Nn \subchaptername {#2}
+    \tl_set:Nn \parameterA {#4}
+
+    \par\noindent
+    \hyperref [#1·#2|#3]
+    {{\g_CatalogSection_format_tl}}
+    \cftdotfill{\cftnodots}
+    \textbf{\pageref{#1·#2|#3}}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintCatalogIndex #1 #2 {
+
+    \group_begin:
+
+    \tl_set_eq:NN \parttitlename \g_parttitlename_tl
+    \tl_set:Nn \chaptername {#1}
+    \tl_set:Nn \parameterA {#2}
+
+    \par\noindent
+    \hyperref [#1·-NoValue-]
+    {{\g_CatalogIndex_format_tl}}
+    \cftdotfill{\cftnodots}
+    \textbf{\pageref{#1·-NoValue-}}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintIndexTitle {
+
+    \group_begin:
+
+    \phantomsection
+    \label{\g_chaptername_tl·-NoValue-}
+
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+
+    {\g_IndexTitle_format_tl}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintIndexSubchapter {
+
+	\group_begin:
+
+    \phantomsection
+    \label{\g_chaptername_tl·\g_subchaptername_tl}
+
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+
+    {\g_IndexSubchapter_format_tl}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintIndexSection #1 {
+
+    \group_begin:
+
+    \prop_if_in:NnTF \g_sectionname_prop {#1}
+    {\prop_get:NnN \g_sectionname_prop {#1} \sectionname}
+    {\msg_warning:nnn {SimpleSystemTeX} {SectionPositioningError} {#1}}
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+
+    \par\noindent
+    \hyperref [\g_chaptername_tl·\g_subchaptername_tl|#1]
+    {{\g_IndexSection_format_tl}}
+    \cftdotfill{\cftnodots}
+    \textbf{\pageref{\g_chaptername_tl·\g_subchaptername_tl|#1}}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \PrintSectionHeading {
+
+    \group_begin:
+
+    \prop_if_in:NoTF \g_sectionname_prop \g_sectionname_tl
+    {\prop_get:NoN \g_sectionname_prop \g_sectionname_tl \sectionname}
+    {\msg_warning:nno {SimpleSystemTeX} {SectionPositioningError} \g_sectionname_tl}
+
+    \phantomsection
+    \label{\g_chaptername_tl·\g_subchaptername_tl|\g_sectionname_tl}
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+
+    {\g_SectionHeading_format_tl}
+
+    \group_end:
+
+}
+
+% 定义 | Definition
+
+\NewDocumentCommand \Definition {m d() d<> +m} {
+
+    \group_begin:
+
+    \prop_if_in:NoTF \g_sectionname_prop \g_sectionname_tl
+    {\prop_get:NoN \g_sectionname_prop \g_sectionname_tl \sectionname}
+    {\msg_warning:nno {SimpleSystemTeX} {SectionPositioningError} \g_sectionname_tl}
+    \IfNoValueTF {#2} {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#1}
+        \tl_set:Nn \l_tmpd_tl {#1}
+    } {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#2}
+        \tl_set:Nn \l_tmpd_tl {#2}
+    }
+
+    \phantomsection
+    \label{·\g_chaptername_tl·\g_subchaptername_tl|#1}
+
+    \tl_set:Nn \l_content_tl {#4}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \blockname \l_tmpd_tl
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#3}
+
+    {\g_DefinitionName_format_tl}
+    {\g_DefinitionContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 定理 | Theorem
+
+\NewDocumentCommand \Theorem {m d() d<> +m} {
+
+    \group_begin:
+
+    \prop_if_in:NoTF \g_sectionname_prop \g_sectionname_tl
+    {\prop_get:NoN \g_sectionname_prop \g_sectionname_tl \sectionname}
+    {\msg_warning:nno {SimpleSystemTeX} {SectionPositioningError} \g_sectionname_tl}
+    \IfNoValueTF {#2} {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#1}
+        \tl_set:Nn \l_tmpd_tl {#1}
+    } {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#2}
+        \tl_set:Nn \l_tmpd_tl {#2}
+    }
+
+    \phantomsection
+    \label{·\g_chaptername_tl·\g_subchaptername_tl|#1}
+
+    \tl_set:Nn \l_content_tl {#4}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \blockname \l_tmpd_tl
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#3}
+
+    {\g_TheoremName_format_tl}
+    {\g_TheoremContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 推论 | Corollary
+
+\NewDocumentCommand \Corollary {m d() d<> +m} {
+
+    \group_begin:
+
+    \prop_if_in:NoTF \g_sectionname_prop \g_sectionname_tl
+    {\prop_get:NoN \g_sectionname_prop \g_sectionname_tl \sectionname}
+    {\msg_warning:nno {SimpleSystemTeX} {SectionPositioningError} \g_sectionname_tl}
+    \IfNoValueTF {#2} {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#1}
+        \tl_set:Nn \l_tmpd_tl {#1}
+    } {
+        \prop_gput:Nnn \g_blockname_prop {#1} {#2}
+        \tl_set:Nn \l_tmpd_tl {#2}
+    }
+
+    \phantomsection
+    \label{·\g_chaptername_tl·\g_subchaptername_tl|#1}
+
+    \tl_set:Nn \l_content_tl {#4}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \blockname \l_tmpd_tl
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#3}
+
+    {\g_CorollaryName_format_tl}
+    {\g_CorollaryContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 证明 | Proof
+
+\NewDocumentCommand \Proof {m +m} {
+
+    \group_begin:
+
+    \prop_if_in:NoTF \g_sectionname_prop \g_sectionname_tl
+    {\prop_get:NoN \g_sectionname_prop \g_sectionname_tl \sectionname}
+    {\msg_warning:nno {SimpleSystemTeX} {SectionPositioningError} \g_sectionname_tl}
+
+    \tl_set:Nn \l_content_tl {#2}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set:Nn \blockname {#1}
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set:Nn \parameterA {?}
+    \tl_set:Nn \parameterB {?}
+
+    {\g_ProofName_format_tl}
+    {\g_ProofContent_format_tl}
+
+    \group_end:
+
+}
+
+% 引理 | Lemma
+
+\NewDocumentCommand \Lemma {m +m} {
+
+    {\BoldFontC\par\noindent #1}
+    {\kaishu\ #2}
+    \par\smallskip
+
+}
+
+% 设定 | Convention
+
+\NewDocumentCommand \Convention {m +m} {
+
+    \group_begin:
+
+    \tl_set_eq:NN \sectionlabel \g_sectionname_tl
+
+    \tl_set:Nn \l_content_tl {#2}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set:Nn \sectionname {!}
+    \tl_set:Nn \blockname {#1}
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#1}
+
+    {\g_ConventionName_format_tl}
+    {\g_ConventionContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 结构 | Structure
+
+\NewDocumentCommand \Structure {m +m} {
+
+    \group_begin:
+
+    \phantomsection
+    \label{·\g_chaptername_tl·\g_subchaptername_tl|#1}
+
+    \tl_set:Nn \l_content_tl {#2}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set:Nn \chaptername {!}
+    \tl_set:Nn \subchaptername {!}
+    \tl_set:Nn \sectionname {!}
+    \tl_set:Nn \blockname {#1}
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set:Nn \linktext {!}
+    \tl_set:Nn \parameterA {!}
+    \tl_set:Nn \parameterB {!}
+
+    {\g_StructureName_format_tl}
+    {\g_StructureContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 典例 | Example
+
+\NewDocumentCommand \Example {m +m} {
+
+    \group_begin:
+
+    \phantomsection
+    \label{·\g_chaptername_tl·\g_subchaptername_tl|#1}
+
+    \tl_set:Nn \l_content_tl {#2}
+    \g_translate_format:N \l_content_tl
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set:Nn \chaptername {!}
+    \tl_set:Nn \subchaptername {!}
+    \tl_set:Nn \sectionname {!}
+    \tl_set:Nn \blockname {#1}
+    \tl_set_eq:NN \blockcontent \l_content_tl
+    \tl_set:Nn \linktext {!}
+    \tl_set:Nn \parameterA {!}
+    \tl_set:Nn \parameterB {!}
+
+    {\g_ExampleName_format_tl}
+    {\g_ExampleContent_format_tl}
+
+    \regex_match:nVTF { \c{Equation}\s*\{.*\}\s*\Z } \l_content_tl
+    {\vspace{-20pt}} {\vspace{4pt}}
+
+    \group_end:
+
+}
+
+% 超链接 | Hyperlink
+
+\NewDocumentCommand \link {m d[] m d() d<>} {
+
+    \group_begin:
+
+    \prop_if_in:NeTF \g_blockname_prop {#3}
+    {\prop_get:NeN \g_blockname_prop {#3} \blockname}
+    {\msg_warning:nne {SimpleSystemTeX} {BlockPositioningError} {#3}}
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set:Nn \chaptername {#1}
+    \tl_set:Nn \subchaptername {#2}
+    \tl_set:Nn \sectionname {?}
+    \tl_set:Nn \blockcontent {?}
+    \tl_set:Nn \linktext {#4}
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#5}
+
+    \hyperref [·#1·#2|#3]
+    {{\g_BlockLink_format_tl}}
+
+    \group_end:
+
+}
+
+\NewDocumentCommand \seclink {m d[] m d() d<>} {
+
+    \group_begin:
+
+    \prop_if_in:NeTF \g_sectionname_prop {#3}
+    {\prop_get:NeN \g_sectionname_prop {#3} \targetsectionname}
+    {\msg_warning:nne {SimpleSystemTeX} {SectionPositioningError} {#3}}
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set_eq:NN \sectionname \g_sectionname_tl
+    \tl_set:Nn \linktext {#4}
+    \tl_set_eq:NN \parameterA \g_parameterA_tl
+    \tl_set:Nn \parameterB {#5}
+    \tl_set:Nn \targetchaptername {#1}
+    \tl_set:Nn \targetsubchaptername {#2}
+
+    \hyperref [#1·#2|#3]
+    {{\g_SectionLink_format_tl}}
+
+    \group_end:
+
+}
+
+\NewDocumentCommand \cptlink {m d[] d() d<>} {
+
+    \group_begin:
+
+    \tl_set:Nn \parttitlename {?}
+    \tl_set_eq:NN \chaptername \g_chaptername_tl
+    \tl_set_eq:NN \subchaptername \g_subchaptername_tl
+    \tl_set:Nn \linktext {#3}
+    \tl_set:Nn \parameterA {?}
+    \tl_set:Nn \parameterB {#4}
+    \tl_set:Nn \targetchaptername {#1}
+    \tl_set:Nn \targetsubchaptername {#2}
+
+    \hyperref [#1·#2]
+    {{\g_ChapterLink_format_tl}}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \Section #1 #2 #3 #4 {
+
+    \group_begin:
+
+    \tl_set:Nn \g_chaptername_tl {#1}
+    \tl_set:Nn \g_subchaptername_tl {#2}
+    \tl_set:Nn \g_sectionname_tl {#3}
+    \tl_set:Nn \g_parameterA_tl {#4}
+
+    \PrintSectionHeading
+
+    \str_if_eq:nnTF {#2} {-NoValue-} {
+        \iow_term:n {[SimpleSystemTeX]~Importing~section~"#1|#3"~...}
+        \file_if_exist:nTF {./sec/#1/#3.tex} {
+            \file_input:n {./sec/#1/#3.tex}
+            \iow_term:n {[SimpleSystemTeX]~Section~"#1|#3"~imported.}
+        } {
+            \iow_term:n {[SimpleSystemTeX]~Section~"#1|#3"~importing~failed.~(Not~found)}
+        }
+    } {
+        \iow_term:n {[SimpleSystemTeX]~Importing~section~"#1·#2|#3"~...}
+        \file_if_exist:nTF {./sec/#1/#2/#3.tex} {
+            \file_input:n {./sec/#1/#2/#3.tex}
+            \iow_term:n {[SimpleSystemTeX]~Section~"#1·#2|#3"~imported.}
+        } {
+            \iow_term:n {[SimpleSystemTeX]~Section~"#1·#2|#3"~importing~failed.~(Not~found)}
+        }
+    }
+
+    \group_end:
+
+}
+
+\cs_set:Npn \Catalog {
+
+    \group_begin:
+
+    \cs_set:Npn \Part ##1 {
+        \tl_set:Nn \g_parttitlename_tl {##1}
+        \PrintCatalogPartTitle
+    }
+    \cs_set:Npn \Command ##1 {##1}
+    \cs_set_eq:NN \Section \PrintCatalogSection
+    \cs_set_eq:NN \Index \PrintCatalogIndex
+
+    \iow_term:n {[SimpleSystemTeX]~Making~catalog ...}
+    \PrintCatalogTitle
+    \file_if_exist:nT {\c_sys_jobname_str.scr}
+    {\file_input:n {\c_sys_jobname_str.scr}}
+    \iow_term:n {[SimpleSystemTeX]~Catalog~made.}
+
+    \group_end:
+
+}
+
+\cs_set:Npn \Index #1 #2 #3 {
+
+    \group_begin:
+
+    \tl_set:Nn \g_chaptername_tl {#1}
+    \tl_set:Nn \g_parameterA_tl {#3}
+
+    \iow_term:n {[SimpleSystemTeX]~Making~index~"#1"~...}
+
+    \PrintIndexTitle
+
+    \clist_set:Nn \l_register_clist {}
+    \cs_set:Npn \Section ##1 ##2 ##3 ##4 {
+        \str_if_eq:nnT {##1} {#1} {
+            \seq_if_exist:cF {chapter_queue_#1_##2} {
+                \seq_new:c {chapter_queue_#1_##2}
+                \clist_put_right:Nn \l_register_clist {##2}
+            }
+            \seq_gput_right:cn {chapter_queue_#1_##2} {##3}
+        }
+    }
+    \cs_set_eq:NN \Part \use_none:n
+    \cs_set_eq:NN \Index \use_none:nn
+    \cs_set_eq:NN \Command \use_none:n
+    \file_if_exist:nT {\c_sys_jobname_str.scr}
+    {\file_input:n {\c_sys_jobname_str.scr}}
+
+    \iow_term:x {[SimpleSystemTeX]~Search~for~chapter~"#1"~finished,~which~containing~subchapters:~"\clist_use:Nn \l_register_clist {",~"}"}
+
+    \str_if_eq:eeTF {\str_head:n {#2}} {,} {
+        \clist_set:Nn \l_target_clist {-NoValue-#2}
+    } {
+        \clist_set:Nn \l_target_clist {#2}
+    }
+    \str_if_eq:nnTF {#2} {-NoValue-} {
+        \clist_map_inline:Nn \l_register_clist {
+            \tl_set:Nn \g_subchaptername_tl {##1}
+            \PrintIndexSubchapter
+            \seq_map_inline:cn {chapter_queue_#1_##1} {
+                \PrintIndexSection {####1}
+            }
+            \iow_term:n {[SimpleSystemTeX]~Index~"#1·##1"~printed.}
+            \seq_gclear:c {chapter_queue_#1_##1}
+        }
+    } {
+        \clist_map_inline:Nn \l_target_clist {
+            \seq_if_exist:cTF {chapter_queue_#1_##1} {
+            \tl_set:Nn \g_subchaptername_tl {##1}
+                \PrintIndexSubchapter
+                \seq_map_inline:cn {chapter_queue_#1_##1} {
+                    \PrintIndexSection {####1}
+                }
+                \iow_term:n {[SimpleSystemTeX]~Index~"#1·##1"~printed.}
+                \seq_gclear:c {chapter_queue_#1_##1}
+            } {
+                \iow_term:n {[SimpleSystemTeX]~Index~"#1·##1"~printing~failed.~(Not~found)}
+            }
+        }
+    }
+
+    \iow_term:n {
+        [SimpleSystemTeX]~Index~"#1"~made.
+    }
+
+    \group_end:
+
+}
+
+
+\ExplSyntaxOff
+
+% --------------------------------------------------
+% --------------------------------------------------
+% --------------------------------------------------
+
+
+% --------------------------------------------------
+% | 数学指令 | Mathematical Commands |
+% --------------------------------------------------
+
+% 字母符号 | Letter Symbols
+
+\newcommand \rmd {\mathrm{d}}
+\newcommand \rme {\mathrm{e}}
+\newcommand \rmi {\mathrm{i}}
+\newcommand \rmC {\mathrm{C}}
+\newcommand \rmH {\mathrm{H}}
+\newcommand \rmT {\mathrm{T}}
+\newcommand \bfC {\mathbf{C}}
+\newcommand \bfF {\mathbf{F}}
+\newcommand \bfN {\mathbf{N}}
+\newcommand \bfQ {\mathbf{Q}}
+\newcommand \bfR {\mathbf{R}}
+\newcommand \bfZ {\mathbf{Z}}
+\renewcommand \phi \varphi
+\renewcommand \epsilon \varepsilon
+\renewcommand \emptyset \varnothing
+
+% 分隔符 | Separators
+
+\let\and\relax
+\newcommand \and {\,,\,}
+\newcommand \by {\,;\,}
+\newcommand \AND {\quad\mathrm{and}\quad}
+\newcommand \OR {\quad\mathrm{or}\quad}
+
+% 括号 | Brackets
+
+\newcommand \braI [1] {\left(\;\!#1\;\!\right)}
+\newcommand \braII [1] {\left[\;#1\;\right]}
+\newcommand \braIII [1] {\left\{\;\!#1\;\!\right\}}
+\newcommand \braIV [1] {\left|\,#1\,\right|}
+\newcommand \braV [1] {\left\langle\,#1\,\right\rangle}
+\newcommand \braVI [1] {\left(\;\!#1\;\right]}
+\newcommand \braVII [1] {\left[\;#1\;\!\right)}
+\newcommand \ceil [1] {\left\lceil\;\!#1\;\!\right\rceil}
+\newcommand \floor [1] {\left\lfloor\;\!#1\;\!\right\rfloor}
+\newcommand \norm [1] {\left|\left|\;\!#1\;\!\right|\right|}
+
+% 运算符 | Operators
+
+\newcommand \rdots {\reflectbox{$\ddots$}}
+\newcommand \poly [2]{#1\;\![\,#2\,]}
+\newcommand \fsq {^{2\!}}
+\newcommand \fcu {^{3\!}}
+\newcommand \fnpow {^{n\!}}
+\newcommand \finv {^{-1\!}}
+\newcommand \fder {^{\,\prime\!}}
+\newcommand \fdder {^{\,\prime\prime\!}}
+\newcommand \fddder {^{\,\prime\prime\prime\!}}
+\newcommand \fnder [1] {^{\,(#1)\!}}
+\newcommand \sfrac [2] {#1\!\mathbin{\slash}\!#2}
+\newcommand \bigsfrac [2] {#1\!\mathbin{\big\slash}\!#2}
+\newcommand \Bigsfrac [2] {#1\!\mathbin{\Big\slash}\!#2}
+\newcommand \biggsfrac [2] {#1\!\mathbin{\bigg\slash}\!#2}
+\newcommand \Biggsfrac [2] {#1\!\mathbin{\Bigg\slash}\!#2}
+\newcommand \Int [4] {\int_{#1}^{\;\!#2}#3\,\rmd #4}
+\newcommand \restrict [1] {\,\big|_{\,#1}}
+\newcommand \subst [2] {\,\Big|_{\,#1}^{\,#2}}
+\newcommand \bigsubst [2] {\,\bigg|_{\,#1}^{\,#2}}
+\newcommand \Bigsubst [2] {\,\Bigg|_{\,#1}^{\,#2}}
+
+% 函数名称 | Function Names
+
+\let\Re\relax
+\let\Im\relax
+\let\char\relax
+\DeclareMathOperator \sgn {sgn}
+\DeclareMathOperator \Re {Re}
+\DeclareMathOperator \Im {Im}
+\DeclareMathOperator \char {char}
+\DeclareMathOperator \gm {gm}
+\DeclareMathOperator \am {am}
+\DeclareMathOperator \tr {tr}
+\DeclareMathOperator \im {im}
+\DeclareMathOperator \rank {rank}
+\DeclareMathOperator \spn {span}
+\DeclareMathOperator \sech {sech}
+\DeclareMathOperator \csch {csch}
+\DeclareMathOperator \arccot {arccot}
+\DeclareMathOperator \arcsec {arcsec}
+\DeclareMathOperator \arccsc {arccsc}
+\DeclareMathOperator \arsinh {arsinh}
+\DeclareMathOperator \arcosh {arcosh}
+\DeclareMathOperator \artanh {artanh}
+\DeclareMathOperator \arcoth {arcoth}
+\DeclareMathOperator \arsech {arsech}
+\DeclareMathOperator \arcsch {arcsch}
+
+% 逻辑量词 | Logical Quantifiers
+
+\newcommand \Forall [2] {\forall\ #1\in #2\ :\ \ }
+\newcommand \ForallII [4] {\forall\ #1\in #2\ ,\ #3\in #4\ :\ \ }
+\newcommand \Exists [2] {\exists\ #1\in #2\ :\ \ }
+\newcommand \ExistsII [4] {\exists\ #1\in #2\ ,\ #3\in #4\ :\ \ }
+
+% 基本结构 | Basic Structures
+
+\NewCommandCopy \originfrac \frac
+\RenewDocumentCommand \frac {s +m +m} {
+    \IfBooleanTF {#1} {
+        \originfrac{#2}{#3}
+    } {
+        \originfrac{\displaystyle #2}{\displaystyle #3}
+    }
+}
+
+\NewCommandCopy \originsqrt \sqrt
+\RenewDocumentCommand \sqrt {s d[] +m} {
+    \IfBooleanTF {#1} {
+        \IfValueTF {#2} {
+            \originsqrt [#2] {#3}
+        } {
+            \originsqrt {#3}
+        }
+    } {
+        \IfValueTF {#2} {
+            \originsqrt [#2] {\displaystyle #3}
+        } {
+            \originsqrt {\displaystyle #3}
+        }
+    }
+}
+
+% 矩阵 & 分支 | Matrices & Cases
+
+\let\matrix\relax
+\newcommand \casesII [5] {\begin{cases}\\[-10mm]\ \ #1&\quad#2\\[#3mm]\ \ #4&\quad#5\end{cases}}
+\newcommand \casesIII [8] {\begin{cases}\\[-10mm]\ \ #1&\quad#2\\[#3mm]\ \ #4&\quad#5\\[#6mm]\ \ #7&\quad#8\end{cases}}
+\NewDocumentCommand \matrix {m +m} {
+    \tl_set:Nn \l_content_tl {#2}
+    \g_align_transform:N \l_content_tl
+    \braI{\;\!\!
+        \begin{array}{#1}
+            \l_content_tl
+        \end{array}
+    \;\!\!}
+}
+\NewDocumentCommand \sqmatrix {m +m} {
+    \tl_set:Nn \l_content_tl {#2}
+    \g_align_transform:N \l_content_tl
+    \braII{\;\!
+        \begin{array}{#1}
+            \l_content_tl
+        \end{array}
+    \;\!}
+}
+\NewDocumentCommand \determinant {m +m} {
+    \tl_set:Nn \l_content_tl {#2}
+    \g_align_transform:N \l_content_tl
+    \braIV{
+        \begin{array}{#1}
+            \l_content_tl
+        \end{array}
+    }
+}
+
+% 通用公式环境 | General Formula Environments
+
+\NewDocumentCommand \Equation {s +m} {
+    \IfBooleanTF {#1} {
+        \[\resizebox{\textwidth}{!}{$
+            \displaystyle
+            \begin{aligned}
+                #2
+            \end{aligned}
+        $}\]
+    } {
+        \begin{align*}
+            #2
+        \end{align*}
+    }
+}
+
+\endinput

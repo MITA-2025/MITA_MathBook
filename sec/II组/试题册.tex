@@ -1,0 +1,73 @@
+
+\stem{Notation}{
+	\branch{•}{
+		$\bfR^{m\times n}$ \ 全体 $m\times n$ 型实矩阵在矩阵加法和矩阵数乘运算下构成的线性/向量空间.
+	}
+}
+
+\stem{A}{
+	\branch{A$_{\bm1}$}{
+		求与平面 $x+y-z-1=0$ 平行的双曲抛物面 $x^{2}-y^{2}=2z$ 的直母线方程.
+	}
+}
+
+\stem{B}{
+	\par 设函数 $f:\braII{0\and 1}\to\bfR$ 二阶连续可导, 并且满足 $f\braI{0}<0<f\braI{1}$ 和 $f\fder\braI{x}>0$ .
+	\branch{B$_{\bm1}$}{
+		证明: 存在唯一的 $\xi\in\braI{0\and 1}$ 使得 $f\braI{\xi}=0$ .
+	}
+	\par 设数列 $(x_{n})_{n=1}^{\infty}$ 满足 $x_{1}=1$ 和 $$x_{n+1}=x_{n}-\frac{f\braI{x_{n}}}{f\fder\braI{x_{n}}}\ ,$$ 并且 $f\fdder\braI{x}>0$ 恒成立.
+	\branch{B$_{\bm2}$}{
+		证明: $\lim_{n\to\infty}x_{n}=\xi$ .
+	}
+	\branch{B$_{\bm3}$}{
+		计算 $$\lim_{n\to\infty}\frac{x_{n+1}-\xi}{\braI{x_{n}-\xi}^{2}}\ .$$
+	}
+}
+
+\stem{C}{
+	\par 设 $\bm A_{1}\and\bm A_{2}\and\bm A_{3}\and\bm A_{4}$ 是 $2$ 阶实方阵, $\bm B$ 是 $2$ 阶非零实方阵.
+	\branch{C$_{\bm1}$}{
+		证明: $\det\braI{\bm A_{1}+\bm A_{2}}=\det\bm A_{1}+\det\bm A_{2}+\tr\braI{\bm A_{1}^{*}\bm A_{2}}$ .
+	}
+	\branch{C$_{\bm2}$}{
+		证明: 若 $\det\braI{\bm A_{k}+\bm B}=\det\bm A_{k}+\det\bm B$ 对 $k=1\and 2\and 3\and 4$ 均成立, 则存在不全为零的 $a_{1}\and a_{2}\and a_{3}\and a_{4}\in\bfR$ 使得 $a_{1}\bm A_{1}+a_{2}\bm A_{2}+a_{3}\bm A_{3}+a_{4}\bm A_{4}=\bm O$ .
+	}
+}
+
+\newpage
+
+\stem{D}{
+	\par 令 $$A=\braIII{\Int{0}{1}{f^{2}\braI{x}}{x}\ \bigg|\ f\in\mathcal{F}}\ ,$$ 其中 $\mathcal{F}$ 表示 $\braII{0\and 1}$ 上全体使得 $$\Int{x}{1}{f\braI{t}}{t}\geqslant\frac{1-x^{3}}{2}$$ 恒成立的连续函数 $f$ 构成的集合.
+	\branch{D$_{\bm1}$}{
+		证明: $A$ 是非空集合.
+	}
+	\branch{D$_{\bm2}$}{
+		计算 $\inf A$ .
+	}
+}
+
+\stem{E}{
+	\par 设 $n$ 是正整数, 连续函数 $f:\braII{0\and 1}\to\bfR$ 使得对一切自然数 $k\leqslant n$ 有 $$\Int{0}{1}{x^{k}f\braI{x}}{x}=\casesII{0}{k<n}{-2}{1}{k=n}\ .$$
+	\branch{E$_{\bm1}$}{
+		证明: $f$ 不为常值函数.
+	}
+	\branch{E$_{\bm2}$}{
+		证明: $f$ 在 $\braI{0\and 1}$ 上至少有 $n$ 个零点.
+	}
+	\branch{E$_{\bm3}$}{
+		证明: 存在 $\xi\in\braII{0\and 1}$ 使得 $\braIV{f\braI{\xi}}\geqslant 2^{n}\braI{n+1}$ .
+	}
+}
+
+\stem{F}{
+	\par 称 $\bfR^{n\times n}$ 的子空间 $\mathcal{I}$ 是 $\bfR^{n\times n}$ 的\newconcept{双边理想}, 当且仅当对任意 $\bm A\in\bfR^{n\times n}$ 和 $\bm B\in\mathcal{I}$ 总有 $\bm A\bm B\in\mathcal{I}$ 和 $\bm B\bm A\in\mathcal{I}$ 成立.
+	\branch{F$_{\bm1}$}{
+		证明: 若 $\mathcal{I}$ 是 $\bfR^{n\times n}$ 的双边理想, 则 $\mathcal{I}=\braIII{\bm O}$ 或 $\mathcal{I}=\bfR^{n\times n}$ .
+	}
+	\branch{F$_{\bm2}$}{
+		设 $n>1$ , $\phi:\bfR^{n\times n}\to\bfR$ 是线性映射, 并且 $$\phi\braI{\bm A\bm B}=\phi\braI{\bm A}\phi\braI{\bm B}$$ 对一切 $\bm A\and\bm B\in\bfR^{n\times n}$ 成立, 证明: $\phi\braI{\bm A}=0$ 恒成立.
+	}
+}
+
+\newpage

@@ -1,0 +1,39 @@
+
+\Theorem{有理函数极限法则(x->0)}(有理函数极限法则 $\braI{x\to 0}$){
+    $\ForallII{m\and n}{\bfN}{a\and b}{\bfR\setminus\braIII{0}}$
+    \Equation{
+        \lim_{x\to 0}\frac{ax^{m}+o\braI{x^{m}}}{bx^{n}+o\braI{x^{n}}}=\casesIII{\infty}{m<n}{-2}{\sfrac{a}{b}}{m=n}{-2}{0}{m>n}\ .
+    }
+}
+
+\Formula{例1}{
+    计算
+    \Equation{
+        \lim_{x\to 0}\frac{x^{2}/2-\sqrt{1+x^{2}}+1}{x^{2}\braI{\cos x-\rme^{x^{2}}}}\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{x\to 0}\frac{x^{2}/2-\sqrt{1+x^{2}}+1}{x^{2}\braI{\cos x-\rme^{x^{2}}}}=\lim_{x\to 0}\frac{x^{4}/8+o\braI{x^{4}}}{-3x^{4}/2+o\braI{x^{4}}}=-\frac{1}{12}\ .
+    }
+}
+
+\par 下面的例子中, $\rme^{1-x/2+x^{2}\!/3+o(x^{2})}$ 不能直接利用 $\rme^{x}$ 的Peano余项展开, 因为其中包含的常数项会使得我们无法确定常数项和 $1$ 次项的系数.
+
+\Formula{例2}{
+    计算
+    \Equation{
+        \lim_{x\to 0^{+}}\frac{\braI{1+x}^{1/x}+\rme x/2-\rme}{x^{2}}\ .
+    }
+}
+\Proof{证明}{
+    \Equation{
+        \lim_{x\to 0^{+}}\frac{\braI{1+x}^{1/x}+\rme x/2-\rme}{x^{2}}&=\lim_{x\to 0^{+}}\frac{\rme^{\tfrac{\ln\braI{1+x}}{x}}+\rme x/2-\rme}{x^{2}}\\[1mm]
+        &=\lim_{x\to 0^{+}}\frac{\rme^{1-x/2+x^{2}\!/3+o(x^{2})}+\rme x/2-\rme}{x^{2}}\\[1mm]
+        &=\rme\lim_{x\to 0^{+}}\frac{\rme^{-x/2+x^{2}\!/3+o(x^{2})}+x/2-1}{x^{2}}\\[1mm]
+        &=\rme\lim_{x\to 0^{+}}\frac{11x^{2}/24+o\braI{x^{2}}}{x^{2}}\\[1mm]
+        &=\frac{11}{24}\rme\ .
+    }
+}
+
+\newpage

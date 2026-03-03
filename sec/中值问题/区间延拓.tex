@@ -1,0 +1,57 @@
+
+\par 若函数 $f$ 的连续区间为 $\braI{a\and b}$ , 其中 $a\and b\in\bfR$ , 则可以通过补充 $f$ 在 $x=a$ 和 $x=b$ 处的定义来构造具有闭连续区间 $\braII{a\and b}$ 的函数 $F$ 来应用\link{Alpha}{Rolle中值定理}.
+
+\Formula{例1}{
+    设函数 $f\in C\braII{0\and 1}$ 满足 $f\braI{0}=0$ 和
+    \Equation{
+        \Int{0}{1}{f\braI{x}}{x}=0\ ,
+    }
+    证明存在 $\xi\in\braI{0\and 1}$ 使得
+    \Equation{
+        \Int{0}{\xi}{f\braI{x}}{x}=\xi f\braI{\xi}\ .
+    }
+}
+\Proof{证明}{
+    \par 考虑函数
+    \Equation{
+        F\braI{x}=\casesII{\frac{1}{x}\Int{0}{x}{f\braI{t}}{t}}{x\in\braVI{0\and 1}}{-1}{0}{x=0}\ ,
+    }
+    我们有
+    \Equation{
+        \lim_{x\to 0^{-}}\frac{1}{x}\Int{0}{x}{f\braI{t}}{t}\xlongequal{\mathrm{L'H}}\lim_{x\to 0^{-}}f\braI{x}=0\ ,
+    }
+    即 $F$ 在 $\braII{0\and 1}$ 上连续, 对此应用\link{Alpha}{Rolle中值定理}可知存在 $\xi\in\braI{0\and 1}$ 使得
+    \Equation{
+        F\fder\braI{\xi}=\frac{\xi f\braI{\xi}-\Int{0}{\xi}{f\braI{x}}{x}}{\xi^{2}}=0\ ,
+    }
+    也即
+    \Equation{
+        \Int{0}{\xi}{f\braI{x}}{x}=\xi f\braI{\xi}\ .
+    }
+}
+
+\par 若函数 $f$ 的连续区间为 $\braI{-\infty\and+\infty}$ , 则可以先通过换元将区间变换为有界区间, 再补充端点处的定义.
+
+\Formula{例2}{
+    设函数 $f\in D\braVII{0\and+\infty}$ 满足 $f\braI{0}=0$ 且有 $\braIV{f\braI{x}}\leqslant\rme^{-x}$ 恒成立, 证明存在 $\xi\in\braI{0\and+\infty}$ 使得 $f\fder\braI{\xi}+\rme^{-\xi}=0$ .
+}
+\Proof{证明}{
+    \par 考虑函数
+    \Equation{
+        F\braI{x}=\casesII{f\braI{\tan x}-\rme^{-\tan x}}{x\in\braVII{0\and\sfrac{\pi}{2}}}{-2}{0}{x=\sfrac{\pi}{2}}\ ,
+    }
+    由 $0\leqslant\braIV{f\braI{x}}\leqslant\rme^{-x}$ 有
+    \Equation{
+        \lim_{x\to\pi/2^{-}}F\braI{x}=\lim_{x\to+\infty}f\braI{x}-\lim_{x\to+\infty}\rme^{-x}=0\ ,
+    }
+    即 $F$ 在 $\braII{0\and\sfrac{\pi}{2}}$ 上连续, 对此应用\link{Alpha}{Rolle中值定理}可知存在 $\xi_{0}\in\braI{0\and\sfrac{\pi}{2}}$ 使得
+    \Equation{
+        F\fder\braI{\xi_{0}}=\sec^{2}\xi_{0}\braI{f\fder\braI{\tan\xi_{0}}+\rme^{-\tan\xi_{0}}}=0\ ,
+    }
+    也即存在 $\xi=\tan\xi_{0}\in\braI{0\and+\infty}$ 使得
+    \Equation{
+        f\fder\braI{\xi}+\rme^{-\xi}=0\ .
+    }
+}
+
+\newpage

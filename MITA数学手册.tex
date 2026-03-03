@@ -1,21 +1,12 @@
 
-% 2025 MITA [SimpleSystemTeX]
+% 2025 MITA
 
 % 导言区 (XeLaTeX)
 
 \documentclass[10pt]{article}
-\usepackage{ctex,bm,xcolor,xparse,import}
-
-% 编译时间
-
-\usepackage{datetime2}
-\DTMsetstyle{iso}
-\special{
-    pdf: encrypt
-    ownerpw (\DTMtoday)
-    length (128)
-    perm (0)
-}
+\usepackage{simplesystem,ctex,bm,import}
+\usepackage{pgfplots,siunitx,amssymb,extarrows,amsthm}
+\everymath{\displaystyle}
 
 % 页面规格
 
@@ -35,210 +26,266 @@
 \xeCJKsetup{
     CJKecglue = \hspace{0.15em}
 }
-\newCJKfontfamily\titlefontC{方正春晚龙行体 简 Heavy}
-\newCJKfontfamily\labelfontC{方正春晚龙行体 简 Bold}
-\newCJKfontfamily\quotefontC{方正春晚龙行体 简 Thin}
-\newfontfamily\titlefontE{FZChunWanLXTS Heavy}
-\newcommand{\「}{\;「}
-\newcommand{\」}{」\;}
+\newCJKfontfamily\HeavyFontC{方正春晚龙行体 简 Heavy}
+\newCJKfontfamily\BoldFontC{方正春晚龙行体 简 Bold}
+\newCJKfontfamily\ThinFontC{方正春晚龙行体 简 Thin}
+\newfontfamily\HeavyFontE{FZChunWanLXTS Heavy}
+\newcommand{\—}{\,—\,}
+\newcommand \newconcept [1] {{\color{purple}\kaishu\,\underline{#1}\,}}
 
-% 通用显示宏
+\newcommand{\sM}{\!{\scriptscriptstyle M}}
 
-\usepackage{siunitx}
-\newcommand{\serial}[1]{\par\noindent{\bf #1}}
-\renewcommand{\and}{\,,\,}
+\DeclareMathOperator \AGM {AGM}
 
-% 数学显示宏
+% 题目/证明
 
-\usepackage{amssymb,amsmath}
-\newcommand{\dis}{\displaystyle}
-\newcommand{\re}{\mathrm{e}}
-\newcommand{\ri}{\mathrm{i}}
-\newcommand{\rC}{\mathrm{C}}
-\newcommand{\bF}{\mathbf{F}}
-\newcommand{\bN}{\mathbf{N}}
-\newcommand{\bZ}{\mathbf{Z}}
-\newcommand{\bQ}{\mathbf{Q}}
-\newcommand{\bR}{\mathbf{R}}
-\newcommand{\bI}{\mathbf{I}}
-\newcommand{\bC}{\mathbf{C}}
-\newcommand{\AND}{\quad\text{和}\quad}
-\newcommand{\braI}[1]{\left(\,#1\,\right)}
-\newcommand{\braII}[1]{\left[\ #1\ \right]}
-\newcommand{\braIII}[1]{\left\{\,#1\,\right\}}
-\newcommand{\braIV}[1]{\left|\,#1\,\right|}
-\newcommand{\braV}[1]{\left\langle\,#1\,\right\rangle}
-\newcommand{\braVI}[1]{\left\lfloor\,#1\,\right\rfloor}
-\newcommand{\braVII}[1]{\left\lceil\,#1\,\right\rceil}
-\newcommand{\norm}[1]{\left|\left|\,#1\,\right|\right|}
-\renewcommand{\Re}{\operatorname{Re}}
-\renewcommand{\Im}{\operatorname{Im}}
-\newcommand{\der}{^{\prime}}
-\newcommand{\dder}{^{\prime\prime}}
-\newcommand{\ddder}{^{\prime\prime\prime}}
-\newcommand{\dn}[1]{^{(#1)}}
-\newcommand{\fder}{^{\,\prime\!}}
-\newcommand{\fdder}{^{\,\prime\prime\!}}
-\newcommand{\fddder}{^{\,\prime\prime\prime\!}}
-\newcommand{\fdn}[1]{^{\,(#1)\!}}
-\newcommand{\sfrac}[2]{#1\!\mathbin{\slash}\!#2}
-\newcommand{\bigsfrac}[2]{#1\!\mathbin{\big\slash}\!#2}
-\newcommand{\Bigsfrac}[2]{#1\!\mathbin{\Big\slash}\!#2}
-\newcommand{\biggsfrac}[2]{#1\!\mathbin{\bigg\slash}\!#2}
-\newcommand{\Biggsfrac}[2]{#1\!\mathbin{\Bigg\slash}\!#2}
-\newcommand{\Exists}[2]{\exists\ #1\in #2\ \,\rm{s.t.}\quad}
-\newcommand{\Forall}[2]{\forall\ #1\in #2\ :\quad}
-\newcommand{\ForallII}[4]{\forall\ #1\in #2\ ,\ #3\in #4\ :\quad}
-\newcommand{\FORALL}[2]{\forall\ #1\in #2\ :}
-\newcommand{\FORALLIF}[3]{\forall\ #1\in #2\ :\ #3\ \implies}
-\newcommand{\FORALLII}[4]{\forall\ #1\in #2\ ,\ #3\in #4\ :}
-\newcommand{\FORALLIFII}[5]{\forall\ #1\in #2\ ,\ #3\in #4\ :\ #5\ \implies}
-\newcommand{\casesII}[5]{\begin{cases}\\[-10mm]\ \ \dis#1&\quad#2\\[#3mm]\ \ \dis#4&\quad#5\end{cases}}
-\DeclareMathOperator{\sech}{\mathrm{sech}\,}
-\DeclareMathOperator{\csch}{\mathrm{csch}\,}
-\DeclareMathOperator{\arccot}{\mathrm{arccot}\,}
-\DeclareMathOperator{\arcsec}{\mathrm{arcsec}\,}
-\DeclareMathOperator{\arccsc}{\mathrm{arccsc}\,}
-\DeclareMathOperator{\arsinh}{\mathrm{arsinh}\,}
-\DeclareMathOperator{\arcosh}{\mathrm{arcosh}\,}
-\DeclareMathOperator{\artanh}{\mathrm{artanh}\,}
-\DeclareMathOperator{\arcoth}{\mathrm{arcoth}\,}
-\DeclareMathOperator{\arsech}{\mathrm{arsech}\,}
-\DeclareMathOperator{\arcsch}{\mathrm{arcsch}\,}
-\DeclareMathOperator{\rd}{d}
-\DeclareMathOperator{\spn}{span}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\gm}{gm}
-\DeclareMathOperator{\am}{am}
-
-% 超链接
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks = true,
-    linkcolor = black
-}
-\newcommand{\labelname}{}
-\NewDocumentCommand{\link}{d<>+ m m}{
-    \IfNoValueTF{#1}{
-        \renewcommand{\labelname}{#3}
+\NewDocumentCommand{\Formula}{m d<> +m}{
+    \IfNoValueTF{#2}{
+        \smallskip\noindent{\ThinFontC\textbf{#1}\quad}#3
     }{
-        \renewcommand{\labelname}{#1}
+        \smallskip\noindent{\ThinFontC\textbf{#2}\quad}#3
     }
-    \hyperref[#2|#3]{\bf\quotefontC\!\!\!\!\!\!\!\!\!\labelname\!\!\!}
+    \par\smallskip
 }
-\NewDocumentCommand{\seclink}{m}{
-    \hyperref[-#1]{\bf\quotefontC\,#1\,}
-}
-
-% 章节标题
-
-\usepackage{ntheorem}
-\newcommand{\sectionlabel}{}
-\newcommand{\sectionname}{}
-\newtheorem*{head}{}
-\NewDocumentCommand{\heading}{+d<> m}{
-    \IfNoValueTF{#1}{
-        \renewcommand{\sectionname}{#2}
-    }{
-        \renewcommand{\sectionname}{#1}
-    }
-    \renewcommand{\sectionlabel}{#2}
-    \begin{head}
-        \label{-\sectionlabel}
-    \end{head}
-    \vspace{-24pt}
-    \noindent
-    {\bf\titlefontC\huge\sectionname}
+\NewDocumentCommand{\leaf}{m +m}{
+    \noindent\textbf{#1}\ \ #2
     \par\bigskip
 }
+\NewDocumentCommand{\stem}{m +m}{
+    \noindent\textbf{\Large #1}#2
+    \par\bigskip\bigskip
+}
+\NewDocumentCommand{\branch}{m +m}{
+    \par\smallskip\noindent\textbf{#1}\ #2
+}
+\newcommand \score [1] {\,$^{\times #1}$}
+\newcommand \method [1] {{\scriptsize（#1）}}
 
-% 公式
+% 样式设置 | Format Settings
 
-\newcommand{\Formulaname}{}
-\newenvironment{FormulaEnvironment}[1]{
-    \phantomsection
-    \label{\sectionlabel|#1}
-}{\par\smallskip}
-\NewDocumentCommand{\Formula}{m +d<> +m}{
-    \IfNoValueTF{#2}{
-        \renewcommand{\Formulaname}{#1}
-    }{
-        \renewcommand{\Formulaname}{#2}
+\ExplSyntaxOn
+\FormatSetting {CatalogTitle} {
+    \huge\HeavyFontC
+    \begin{center}目录\end{center}\bigskip
+}
+\FormatSetting {CatalogPartTitle} {
+    \par\bigskip\noindent
+    \Large\HeavyFontC\HeavyFontE\parttitlename
+    \vspace{5pt}
+}
+\FormatSetting {CatalogSection} {
+    \bfseries\BoldFontC
+    \ifequal\chaptername {Alpha} {
+        \sectionname
+    } {
+        \ifequal\chaptername {Beta} {
+            \sectionname
+        } {
+            \ifequal\chaptername {Gamma} {
+                \sectionname
+            } {
+                \ifequal\parttitlename {25-26~“名人杯”数学挑战赛} {
+                    \sectionname\quad\parameterA
+                } {
+                    \,\chaptername\ |\ \sectionname
+                }
+            }
+        }
     }
-    \begin{FormulaEnvironment}{#1}
-        \smallskip\noindent
-        {\bf\quotefontC\Formulaname\quad}\kaishu
-        #3
-    \end{FormulaEnvironment}
 }
-
-% 定义
-
-\newenvironment{DefinitionEnvironment}[1]{
-    \label{\sectionlabel|#1}
-}{\par\smallskip}
-\NewDocumentCommand{\Definition}{s m +m}{
-    \begin{DefinitionEnvironment}{#2}
-        \color{purple}\smallskip\noindent
-        \IfBooleanTF{#1}{{\bf\quotefontC#2$^{\star}$\;\,}}{{\bf\quotefontC#2\quad}}\kaishu
-        #3
-    \end{DefinitionEnvironment}
+\FormatSetting {SectionHeading} {
+    \noindent
+    \ifequal\chaptername {I组} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \begin{center}
+            {25-26~“花梨杯”数学竞赛\ \chaptername}
+            \ifempty\parameterA {} {\parameterA}
+            {\large\,\sectionname}
+        \end{center}
+    } {}
+    \ifequal\chaptername {II组} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \begin{center}
+            {25-26~“花梨杯”数学竞赛\ \chaptername}
+            {\large\,\sectionname}
+        \end{center}
+    } {}
+    \ifequal\chaptername {Alpha} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \sectionname
+    } {}
+    \ifequal\chaptername {Beta} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \sectionname
+    } {}
+    \ifequal\chaptername {Gamma} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \sectionname
+    } {}
+    \ifequal\chaptername {极限计算} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \chaptername\ |\ \sectionname
+    } {}
+    \ifequal\chaptername {n阶导数计算} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \chaptername\ |\ \sectionname
+    } {}
+    \ifequal\chaptername {中值问题} {
+        \LARGE\HeavyFontC\HeavyFontE
+        \chaptername\ |\ \sectionname
+    } {}
+    \par\bigskip
 }
-
-% 定理（包含证明）
-
-\newcommand{\THEOREMname}{}
-\newenvironment{TheoremEnvironment}[1]{
-    \phantomsection
-    \label{\sectionlabel|#1}
-}{\par\smallskip}
-\NewDocumentCommand{\Theorem}{s m +d<> +m +m}{
-    \IfNoValueTF{#3}{
-        \renewcommand{\THEOREMname}{#2}
-    }{
-        \renewcommand{\THEOREMname}{#3}
+\FormatSetting {DefinitionName} {
+    \vspace{4pt}\noindent
+    \color{purple}\bfseries\ThinFontC\blockname
+    \quad
+}
+\FormatSetting {DefinitionContent} {
+    \color{purple}\kaishu\blockcontent
+}
+\FormatSetting {TheoremName} {
+    \vspace{4pt}\noindent
+    \color{teal}\bfseries\ThinFontC\blockname
+    \quad
+}
+\FormatSetting {TheoremContent} {
+    \color{teal}\kaishu\blockcontent
+}
+\FormatSetting {ProofName} {
+    \color{gray}\par\noindent
+    \kaishu\blockname
+}
+\FormatSetting {ProofContent} {
+    \color{gray}\kaishu\blockcontent
+    \par\smallskip
+}
+\FormatSetting {BlockLink} {
+    \bfseries\ThinFontC
+    \ifempty\linktext {
+        \,\blockname\,
+    } {
+        \,\linktext\,
     }
-    \begin{TheoremEnvironment}{#2}
-        \color{teal}\smallskip\noindent
-        \IfBooleanTF{#1}{{\bf\quotefontC\THEOREMname$^{\star}$\;\,}}{{\bf\quotefontC\THEOREMname\quad}}\kaishu
-        #4
-    \end{TheoremEnvironment}
-    #5
+}
+\FormatSetting {SectionLink} {
+    \bfseries\BoldFontC
+    \ifempty\linktext {
+        \ifempty\targetsubchaptername {
+            \,{\footnotesize\targetchaptername}\,|\,\targetsectionname\,
+        } {
+            \,{\footnotesize\targetchaptername}\;\targetsubchaptername\,|\,\targetsectionname\,
+        }
+    } {
+        \,\linktext\,
+    }
+}
+\FormatSetting {ChapterLink} {
+    \bfseries\BoldFontC
+    \ifempty\linktext {
+        \ifempty\targetsubchaptername {
+            \,\targetchaptername\,
+        } {
+            \,{\footnotesize\targetchaptername}\;\targetsubchaptername\,
+        }
+    } {
+        \,\linktext\,
+    }
 }
 
-% 证明
+\ExplSyntaxOff
 
-\newenvironment{ProofEnvironment}[1]{
-    \kaishu\par\noindent#1
-}{\par\smallskip}
-\NewDocumentCommand{\Proof}{m +m}{
-    \begin{ProofEnvironment}{#1}
-        #2
-    \end{ProofEnvironment}
+\NewCommandCopy \origintext \text
+\RenewDocumentCommand \text {s +m} {
+    \IfBooleanTF {#1} {
+        \origintext{#2}
+    } {
+        \ \origintext{#2}\ 
+    }
 }
-\newcommand{\ProofEndT}{\unskip\hspace*{\fill}$\square$\par}
-\newcommand{\ProofEndF}{\tag*{$\square$}}
 
 % 编码区
 
 \begin{document}
 
+    \kaishu
+
     \pagestyle{empty}
-
-    % 封面 Cover
-    \include{./封面}
-
-    % 目录 Content
-    \include{./目录}
-
+    \begin{center}
+	    \vspace*{\fill}
+	    \MITALogo{0.075}
+	    \BoldFontC\HeavyFontE\par\bigskip
+        {\Huge MITA数学手册}
+	    \par\large 2026 01
+	    \vspace*{\fill}
+    \end{center}
+    \newpage
     \pagestyle{plain}
 
-    \subimport{./Sections/}{初等函数导数表}
-    \subimport{./Sections/}{裂项求和}
-    \subimport{./Sections/}{三角恒等式}
-    \subimport{./Sections/}{Taylor级数}
+    % 目录 Content
 
-    \pagestyle{empty}
+    \MakeSimpleCatalog
+    \TextCommand{\newpage}
+
+    \CatalogCommand{\bigskip}
+
+    \CatalogPart{$\bm\alpha$}
+    \ImportSection{Alpha}{微分中值定理}
+    \ImportSection{Alpha}{Jenson不等式}
+    \ImportSection{Alpha}{Taylor多项式及其余项}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{$\bm\beta$}
+    \ImportSection{Beta}{自然常数e}(自然常数 $\bm{\rme}$)
+    \ImportSection{Beta}{Euler-Mascheroni常数γ}(Euler\—Mascheroni常数 $\bm{\gamma}$)
+    \ImportSection{Beta}{幂平均}
+    \ImportSection{Beta}{算术几何平均}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{$\bm\gamma$}
+    \ImportSection{Gamma}{初等函数导数表}
+    \ImportSection{Gamma}{三角恒等式}
+    \ImportSection{Gamma}{裂项求和}
+    \ImportSection{Gamma}{Taylor级数表}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{极限计算}
+    \ImportSection{极限计算}{Peano余项}
+    \ImportSection{极限计算}{Lagrange中值定理}
+    \ImportSection{极限计算}{含参积分}
+    \ImportSection{极限计算}{整数逼近}
+    \ImportSection{极限计算}{等价无穷拟合}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{$\bm n$ 阶导数计算}
+    \ImportSection{n阶导数计算}{Leibniz公式}
+    \ImportSection{n阶导数计算}{递推公式}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{中值问题}
+    \ImportSection{中值问题}{多项式拟合}
+    \ImportSection{中值问题}{区间延拓}
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{25-26 “名人杯”数学挑战赛}
+    \ImportSection{Cauchy}{0}<2025.10.10>
+    \ImportSection{Cauchy}{1}<2025.10.17>
+    \ImportSection{Cauchy}{2}<2025.10.24>
+    \ImportSection{Cauchy}{3}<2025.10.31>
+    \ImportSection{Leibniz}{4}<2025.11.14>
+    \ImportSection{Leibniz}{5}<2025.11.21>
+    \ImportSection{Leibniz}{6}<2025.11.28>
+    \ImportSection{Riemann}{7}<2025.12.12>
+    \ImportSection{Riemann}{8}<2025.12.19>
+    \ImportSection{Riemann}{9}<2025.12.26>
+    \CatalogCommand{\par\bigskip}
+
+    \CatalogPart{25-26 “花梨杯”数学竞赛}
+    \ImportSection{I组}{试题册（初赛）}(试题册)<初赛>
+    \ImportSection{I组}{答案册（初赛）}(答案册)<初赛>
+    \ImportSection{II组}{试题册}
+    \ImportSection{II组}{答案册}
+
+    %\ImportSection{名人杯}{Theorem Lib}
 
 \end{document}

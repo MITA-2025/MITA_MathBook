@@ -1,17 +1,11 @@
 
-% 2025 Mita
-
-% Sections/裂项求和
-
-\heading{裂项求和}
-
 \par 裂项求和又叫作伸缩级数分解, 是一种通用求和技巧, 即通过初等变换使得求和项前后相互抵消, 从而极大地简化求和计算, 在下面的例子中, 裂项的部分将被 $[\ ]$ 包裹以示区分, 并且求和符号将被简化表示, 我们约定 $n$ 为恒正求和指标.
 
 \Formula{分式裂项}{
-    $\FORALLIF{m_{1}\and m_{2}}{\bZ}{m_{1}\ne m_{2}}$
-    \begin{align*}
-        \sum\frac{1}{\dis\prod_{m=m_{1}}^{m_{2}}\braI{kn+m}}=\sum\frac{1}{m_{2}-m_{1}}\braII{\frac{1}{\dis\prod_{m=m_{1}}^{m_{2}-1}\braI{kn+m}}-\frac{1}{\dis\prod_{m=m_{1}+1}^{m_{2}}\braI{kn+m}}}\ .
-    \end{align*}
+    $\Forall{m_{1}\and m_{2}}{\bfZ}$ $m_{1}\ne m_{2}\implies$
+    \Equation{
+        \sum\frac{1}{\prod_{m=m_{1}}^{m_{2}}\braI{kn+m}}=\sum\frac{1}{m_{2}-m_{1}}\braII{\frac{1}{\prod_{m=m_{1}}^{m_{2}-1}\braI{kn+m}}-\frac{1}{\prod_{m=m_{1}+1}^{m_{2}}\braI{kn+m}}}\ .
+    }
     作为推论, 我们有
     \begin{flalign*}
         &\sum\frac{1}{n^{2}+kn}=\frac{1}{k}\sum\braII{\frac{1}{n}-\frac{1}{n+k}}\ ,\quad\braI{\forall\,n:n\ne-k}&\\[-13mm]
@@ -26,18 +20,18 @@
     \begin{flalign*}
         &\sum\frac{3n+1}{\braI{n+1}\braI{n+2}\braI{n+3}}=4\sum\braI{\braII{\frac{2}{n+2}-\frac{1}{n+1}-\frac{1}{n+3}}+\braII{\frac{1}{n+2}-\frac{1}{n+1}}}\ .&
     \end{flalign*}
-    \begin{align*}
+    \Equation{
         \sum\frac{a_{n+1}-a_{n}}{a_{n}a_{n+1}}=\sum\braII{\frac{1}{a_{n}}-\frac{1}{a_{n+1}}}\ ,
-    \end{align*}
+    }
     其中 $\braIII{a_{n}}$ 为非零复数列. 作为推论, 我们有
     \begin{flalign*}
         &\sum\frac{a^{n}}{\braI{a^{n}+k}\braI{a^{n+1}+k}}=\frac{1}{a-1}\sum\braII{\frac{1}{ a^{n}+k}-\frac{1}{ a^{n+1}+k}}\ ,\quad\braI{a\ne1\and\forall\,n:a^{n}\ne-k}&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{qn-n+q}{\braI{n^{2}+n}q^{n+1}}=\sum\braII{\frac{1}{nq^{n}}-\frac{1}{\braI{n+1}q^{n+1}}}\ ,\quad\braI{q\ne0}&\\[-13mm]
+        &\sum\frac{qn-n+q}{\braI{n^{2}+n}q^{n+1}}=\sum\braII{\frac{1}{nq^{n}}-\frac{1}{\braI{n+1}q^{n+1}}}\ ,\quad\braI{q\ne 0}&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{a^{2^{n}}}{\dis1-a^{2^{n+1}}}=\sum\braII{\frac{1}{\dis1-a^{2^{n}}}-\frac{1}{\dis1-a^{2^{n+1}}}}\ .\quad\braI{a\ne1}&
+        &\sum\frac{a^{2^{n}}}{1-a^{2^{n+1}}}=\sum\braII{\frac{1}{1-a^{2^{n}}}-\frac{1}{1-a^{2^{n+1}}}}\ .\quad\braI{a\ne1}&
     \end{flalign*}
     \par 对于含有 $\braI{-1}^{n}$ 的通项, 需要在裂项时变更符号, 例如
     \begin{flalign*}
@@ -49,7 +43,7 @@
 
 \Formula{根式裂项}{
     \begin{flalign*}
-        &\sum\frac{1}{\sqrt{n}+\sqrt{n+k}}=\frac{1}{k}\sum\braII{\!\sqrt{n+k}-\sqrt{n}}\ ,\quad\braI{k\ne0\and\forall\,n:n+k>0}&\\[-13mm]
+        &\sum\frac{1}{\sqrt{n}+\sqrt{n+k}}=\frac{1}{k}\sum\braII{\!\sqrt{n+k}-\sqrt{n}}\ ,\quad\braI{k\ne 0\and\forall\,n:n+k>0}&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
         &\sum\frac{1}{\sqrt{2n-1}+\sqrt{2n+1}}=\frac{1}{2}\sum\braII{\!\sqrt{2n+1}-\sqrt{2n-1}}\ ,&\\[-13mm]
@@ -58,7 +52,7 @@
         &\sum\frac{1}{n\sqrt{n+1}+\braI{n+1}\sqrt{n}}=\sum\braII{\frac{1}{\sqrt{n}}-\frac{1}{\sqrt{n+1}}}\ ,&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{n-\sqrt{\dis n^{2}-1}}{\sqrt{n\braI{n+1}}}=\sum\braII{\sqrt{\frac{n}{n+1}}-\sqrt{\frac{n-1}{n}}\,}\ .&
+        &\sum\frac{n-\sqrt{n^{2}-1}}{\sqrt{n\braI{n+1}}}=\sum\braII{\sqrt{\frac{n}{n+1}}-\sqrt{\frac{n-1}{n}}\,}\ .&
     \end{flalign*}
 }
 
@@ -84,14 +78,14 @@
 }
 
 \Formula{差比数列前n项和}<差比数列前$\bm{n}$项和>{
-    $\FORALLII{k\and b}{\bC}{q}{\bC\setminus\braIII{1}}$
-    \begin{align*}
+    $\ForallII{k\and b}{\bfC}{q}{\bfC\setminus\braIII{1}}$
+    \Equation{
         \sum\braI{kn+b}q^{n-1}=\sum\braII{\!\braI{\frac{k}{q-1}\braI{n+1}+t}q^{n}-\braI{\frac{k}{q-1}n+t}q^{n-1}}\ ,
-    \end{align*}
+    }
     其中
-    \begin{align*}
+    \Equation{
         t=\frac{b}{q-1}-\frac{kq}{\braI{q-1}^{2}}\ .
-    \end{align*}
+    }
     作为推论, 我们有等比数列前 $n$ 项和
     \begin{flalign*}
         &\sum a\cdot q^{n-1}=\frac{a}{q-1}\sum\braII{q^{n}-q^{n-1}}\ .&
@@ -108,10 +102,10 @@
         &\sum\sin\theta\sin\braI{2n\theta+\theta}=\frac{1}{2}\sum\braII{\cos2n\theta-\cos2\braI{n+1}\theta}\ ,&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{\sin\theta}{\cos n\theta\cdot\cos\braI{n+1}\theta}=\sum\braII{\tan\braI{n+1}\theta-\tan n\theta}\ ,\quad\braI{\forall\,n:\cos n\theta\ne0}&\\[-13mm]
+        &\sum\frac{\sin\theta}{\cos n\theta\cdot\cos\braI{n+1}\theta}=\sum\braII{\tan\braI{n+1}\theta-\tan n\theta}\ ,\quad\braI{\forall\,n:\cos n\theta\ne 0}&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{\sin\theta}{\sin n\theta\cdot\sin\braI{n+1}\theta}=\sum\braII{\cot n\theta-\cot\braI{n+1}\theta}\ ,\quad\braI{\forall\,n:\sin n\theta\ne0}&\\[-13mm]
+        &\sum\frac{\sin\theta}{\sin n\theta\cdot\sin\braI{n+1}\theta}=\sum\braII{\cot n\theta-\cot\braI{n+1}\theta}\ ,\quad\braI{\forall\,n:\sin n\theta\ne 0}&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
         &\sum3^{n-1}\sin^{3}\frac{\theta}{3^{n}}=\frac{1}{4}\sum\braII{3^{n}\sin\frac{\theta}{3^{n}}-3^{n-1}\sin\frac{\theta}{3^{n-1}}}\ ,&\\[-13mm]
@@ -124,7 +118,7 @@
     \end{flalign*}
     我们可以结合导数的线性性质来裂项求和, 例如
     \begin{flalign*}
-        &\sum\frac{1}{2^{n}}\tan\frac{\theta}{2^{n}}=-\frac{\rd}{\rd\theta}\ln\braIV{\prod\cos\frac{\theta}{2^{n}}}=-\frac{\rd}{\rd\theta}\ln\braIV{2^{-n}\prod\braII{\sin\frac{\theta}{2^{n-1}}\bigg/\sin\frac{\theta}{2^{n}}}}\ .&
+        \sum\frac{1}{2^{n}}\tan\frac{\theta}{2^{n}}=-\frac{\rmd}{\rmd\theta}\ln\braIV{\prod\cos\frac{\theta}{2^{n}}}=-\frac{\rmd}{\rmd\theta}\ln\braIV{2^{-n}\prod\braII{\sin\frac{\theta}{2^{n-1}}\bigg/\sin\frac{\theta}{2^{n}}}}\ .&
     \end{flalign*}
 }
 
@@ -142,7 +136,7 @@
         &\sum\sqrt{1+\frac{1}{n^{2}}+\frac{1}{\braI{n+1}^{2}}}=\sum\braII{1+\frac{1}{n}-\frac{1}{n+1}}\ ,&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
-        &\sum\frac{2}{\dis\sqrt[3]{n^{2}-2n+1}+\sqrt[3]{n^{2}-1}+\sqrt[3]{n^{2}+2n+1}}=\sum\braII{\!\sqrt[3]{n+1}-\sqrt[3]{n}}\ ,&\\[-13mm]
+        &\sum\frac{2}{\sqrt[3]{n^{2}-2n+1}+\sqrt[3]{n^{2}-1}+\sqrt[3]{n^{2}+2n+1}}=\sum\braII{\!\sqrt[3]{n+1}-\sqrt[3]{n}}\ ,&\\[-13mm]
     \end{flalign*}
     \begin{flalign*}
         &\prod\braI{1+a^{2^{n}}}=\prod\braII{\frac{1-a^{2^{n+1}}}{1-a^{2^{n}}}}\ ,\quad\braI{a\ne1}&\\[-13mm]
